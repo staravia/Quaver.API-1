@@ -38,6 +38,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         public int GraphIntervalOffsetMs { get; } = 100;
 
+        // Chords
+        public float BothHandChordedMultiplier { get; }
+
         // Simple Jacks
         public float SJackLowerBoundaryMs { get; }
         public float SJackUpperBoundaryMs { get; }
@@ -88,6 +91,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         public StrainConstantsKeys()
         {
+            // Chords
+            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.9f);
+
             // Simple Jack
             SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 40);
             SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);

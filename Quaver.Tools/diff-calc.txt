@@ -39,7 +39,7 @@ Komiya Mao - (can you) understand me? [4K Hard?]	20.93587
 Komiya Mao - (can you) understand me? [4K Normal?]	13.80972
 Komiya Mao - (can you) understand me? [Adri's 4K Insane?]	22.83312
 Komiya Mao - (can you) understand me? [Scarlet's 4K Expert?]	29.61704
-Komiya Mao - (can you) understand me? [Scarlet's 7k Easy?]	13.62342
+Komiya Mao - (can you) understand me? [Scarlet's 7k Easy?]	13.62341
 Komiya Mao - (can you) understand me? [Scarlet's 7k Normal?]	19.45032
 Komiya Mao - (can you) understand me? [cindsa's 7k Expert?]	34.39265
 Komiya Mao - (can you) understand me? [cindsa's 7k Hard?]	30.48389
@@ -84,10 +84,10 @@ Camellia - Quaoar [50,000th Star]	26.91679
 100-200-400 - Fascination MAXX [4K Light]	13.45883
 100-200-400 - Fascination MAXX [7K Beginner]	12.47711
 100-200-400 - Fascination MAXX [7K Heavy]	36.88384
-100-200-400 - Fascination MAXX [7K Light]	22.21525
-100-200-400 - Fascination MAXX [MEGA's 7K Fascination]	39.49172
+100-200-400 - Fascination MAXX [7K Light]	22.21524
+100-200-400 - Fascination MAXX [MEGA's 7K Fascination]	39.49173
 100-200-400 - Fascination MAXX [MrDorian's 4K Standard]	19.97513
-100-200-400 - Fascination MAXX [SitekX's 7K Standard]	25.89461
+100-200-400 - Fascination MAXX [SitekX's 7K Standard]	25.89458
 100-200-400 - Fascination MAXX [_UJ's 4K Fascination]	32.60211
 100-200-400 - Fascination MAXX [_UJ's 4K Heavy]	28.51432
 P*Light - NINJA IS DEAD IIDX ver. [Hard]	18.28517
@@ -114,8 +114,8 @@ Camellia ft. Nanahira - Tsukitourou (Lite Show Magic Remix) [Insane]	27.21481
 Camellia ft. Nanahira - Tsukitourou (Lite Show Magic Remix) [Normal]	6.775736
 Dunderpatrullen - Interlude (Fantasy Friendship Forever) [4K Easy]	4.347291
 Dunderpatrullen - Interlude (Fantasy Friendship Forever) [4K Normal]	7.401533
-Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Easy]	6.012593
-Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Normal]	12.95448
+Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Easy]	6.01233
+Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Normal]	12.95464
 Camellia ft. Yukacco - Be Wild [Gone Wild]	29.78958
 Autopilot Off- - Make a Sound [Tachyon's Insane]	34.49311
 Autopilot Off- - Make a Sound [Scarlet's Hard]	29.09465
@@ -187,7 +187,7 @@ HyuN - Princess of Winter [4k Insane]	25.8076
 HyuN - Princess of Winter [4k Normal]	9.125105
 HyuN - Princess of Winter [4k  Easy]	5.887896
 HyuN - Princess of Winter [4k Beginner]	2.911918
-HyuN - Princess of Winter [7k ?? (wip)]	41.23612
+HyuN - Princess of Winter [7k ?? (wip)]	41.23613
 HyuN - CrossOver (feat. LyuU) [Staravia's LN]	32.02719
 PianoLuigi ft. Text to Speech - Why You Should Play Quaver [Not Sponsored]	34.18958
 zetoban - Csikos Post [Insane]	24.83039
@@ -265,14 +265,14 @@ Rokina - Icicle Stinger [Beginner]	33.56821
 P90x - Endurance/Accuracy Training [Chords] [XY&Z 2]	37.33316
 P90x - Endurance/Accuracy Training [Chords] [[123bpm] Harder, Better, Faster, Stronger]	15.38776
 P90x - Endurance/Accuracy Training [Chords] [[184bpm] Honey Come!!]	27.5771
-Hatsuki Yura - Izayoi Warabeuta [HD]	28.68816
+Hatsuki Yura - Izayoi Warabeuta [HD]	28.68817
 P90x - Endurance/Accuracy Training [Chords] [[220bpm] Toumei Elegy]	32.88827
 Hatsuki Yura - Izayoi Warabeuta [NM]	15.38276
 P90x - Endurance/Accuracy Training [Chords] [[254bpm] XY&Z]	38.22884
 DJ Myosuke & Noizenecio - Architecture [Mat's 4k DEATH]	36.13003
 Porter Robinson & Madeon - Shelter [4K DUMP]	31.62169
 m1dy - Kiranger [kiiroi tishatsu]	37.8179
-Parks, Squares and Alley - In Your House [Sunshine]	25.77574
+Parks, Squares and Alley - In Your House [Sunshine]	25.77572
 Holder - Crash Bandicoot Theme Trap Remix [k]	35.80992
 Yooh - Road To The LegenD, [Road To The [L]ege[N]D,]	37.75566
 Smooth McGroove - Guile Theme Acapella [usa]	35.64172
@@ -310,9 +310,9 @@ Couple N & Miraie - Endear [Falling From The Sky]	28.68295
 Couple N & Miraie - Endear [Hard]	22.10269
 Couple N & Miraie - Endear [Normal]	13.77703
 Kobaryo - Northern Limit [KH_Supernova's UltRa!!!]	38.55302
-osu!mania 7K Dan Course - LN Dan Phase I [0th Dan (Marathon)]	18.88545
-osu!mania 7K Dan Course - LN Dan Phase I [1st Dan (Marathon)]	17.79776
-osu!mania 7K Dan Course - LN Dan Phase I [2nd Dan (Marathon)]	27.05757
+osu!mania 7K Dan Course - LN Dan Phase I [0th Dan (Marathon)]	18.88544
+osu!mania 7K Dan Course - LN Dan Phase I [1st Dan (Marathon)]	17.79774
+osu!mania 7K Dan Course - LN Dan Phase I [2nd Dan (Marathon)]	27.05756
 osu!mania 7K Dan Course - LN Dan Phase I [3rd Dan (Marathon)]	35.11055
 P90x - Endurance/Accuracy Training [Chords] [[123bpm] Harder, Better, Faster, Stronger]	15.38776
 P90x - Endurance/Accuracy Training [Chords] [[184bpm] Honey Come!!]	27.5771
@@ -401,28 +401,28 @@ Lil Pump - gucci gang [would you gay would you gay would you gay would you gay w
 Expensive Dispenser - Thank You, Everybody! [Heart to Heart]	13.33217
 Buta-Otome - Mesen [Valley of Grace]	28.08204
 android52 - Reactive Factory (Work It Out) [Futurity]	16.06145
-5argon vs. encX - Exargon [Beginner]	8.16217
+5argon vs. encX - Exargon [Beginner]	8.162146
 5argon vs. encX - Exargon [Easy+]	10.26544
-5argon vs. encX - Exargon [Easy]	9.035532
-ARForest - The Last Page [final words]	41.61363
+5argon vs. encX - Exargon [Easy]	9.035518
+ARForest - The Last Page [final words]	41.61362
 ARForest - The Last Page [yahweh's final path]	41.68481
 Ata - Euphoria [A Journey Through Time]	35.23801
 fiend - Morrissey [Another]	31.15824
 fiend - Morrissey [Hard]	21.01398
 fiend - Morrissey [Insane]	27.77588
 fiend - Morrissey [Normal]	13.38954
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [Easy]	13.17575
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [SUPEROMEGAHYPERBEGINNER]	9.201933
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [beginner]	13.82881
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [the suffocating feeling of eternal loneliness]	13.69855
+Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [Easy]	13.17545
+Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [SUPEROMEGAHYPERBEGINNER]	9.200489
+Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [beginner]	13.82803
+Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [the suffocating feeling of eternal loneliness]	13.69831
 DJ Sharpnel - Moonearth [Cut ver.] [Lunar Anomaly]	45.5267
-Dormir - Sayonara Trip [Easy]	10.47194
-Dormir - Sayonara Trip [Extra]	34.38415
-Dormir - Sayonara Trip [Hard]	20.66004
+Dormir - Sayonara Trip [Easy]	10.47193
+Dormir - Sayonara Trip [Extra]	34.38416
+Dormir - Sayonara Trip [Hard]	20.66005
 Dormir - Sayonara Trip [Insane]	13.53982
-Dormir - Sayonara Trip [Normal]	8.996963
-Dormir - Sayonara Trip [SUPEROMEGAHYPERBEGINNER]	8.373715
-Dormir - Sayonara Trip [Beginner]	8.105003
+Dormir - Sayonara Trip [Normal]	8.996953
+Dormir - Sayonara Trip [SUPEROMEGAHYPERBEGINNER]	8.373674
+Dormir - Sayonara Trip [Beginner]	8.104965
 KOTONHOUSE ft. Nanahira - Midnight, Starlight [Stargazing]	15.4746
 M83 - Midnight City [High Life]	29.07301
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Beginner]	4.970684
@@ -450,7 +450,7 @@ Jack Stauber - Milk [Normal]	12.02028
 Jack Stauber - Milk [yahweh's Beginner]	6.440799
 Jack Stauber - Milk [yahweh's Easy]	6.514433
 Jack Stauber - Milk [yahweh's long gone]	30.53222
-JYOCHO - 365 [as it comes to a stop]	30.67525
+JYOCHO - 365 [as it comes to a stop]	30.67524
 The Weeknd ft. Daft Punk - Starboy [motherfuckin star boy]	27.85683
 Ludwig van Beethoven - Sonata no. 8 "Pathetique" mvt. 3 [Allegro]	25.61924
 Ludwig van Beethoven - Sonata no. 8 "Pathetique" mvt. 3 [Moderato]	22.71103
@@ -467,24 +467,24 @@ Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Easy]	5.582887
 Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Beginner]	4.309612
 KRUX - Illusion of Inflict [7K Hyper]	34.93433
 KRUX - Illusion of Inflict [7K Kruxified]	42.44578
-KRUX - Illusion of Inflict [7K Normal]	20.95731
+KRUX - Illusion of Inflict [7K Normal]	20.95728
 KRUX - Illusion of Inflict [CS' 4K Illusionist]	30.77251
 KRUX - Illusion of Inflict [Fontes' 4K Easy]	8.675024
-KRUX - Illusion of Inflict [Kawawa's 7K Another]	39.96455
+KRUX - Illusion of Inflict [Kawawa's 7K Another]	39.96456
 KRUX - Illusion of Inflict [Lude's 4K Another]	28.7333
-KRUX - Illusion of Inflict [Ramuchi's 7K Easy]	15.29227
+KRUX - Illusion of Inflict [Ramuchi's 7K Easy]	15.29218
 KRUX - Illusion of Inflict [Rem's 4K Normal]	13.56904
 KRUX - Illusion of Inflict [Wonki's 4K Hyper]	23.26385
-Kaneko Chiharu - WHITEOUT [ADVANCED]	33.60332
-Kaneko Chiharu - WHITEOUT [BASIC]	11.16779
-Kaneko Chiharu - WHITEOUT [GRAVITY]	46.42544
-Kaneko Chiharu - WHITEOUT [NOVICE]	19.94463
+Kaneko Chiharu - WHITEOUT [ADVANCED]	33.60331
+Kaneko Chiharu - WHITEOUT [BASIC]	11.16778
+Kaneko Chiharu - WHITEOUT [GRAVITY]	46.42543
+Kaneko Chiharu - WHITEOUT [NOVICE]	19.94464
 Kaneko Chiharu - WHITEOUT [Rem's EXHAUST]	46.63551
 Kaneko Chiharu - WHITEOUT [SILVERKADS' HEAVENLY]	47.62112
-Kaneko Chiharu - WHITEOUT [Wonki's MAXIMUM]	44.44259
-Risk Junk - quaver [Another]	34.89022
-Risk Junk - quaver [Black Another]	40.67229
-Risk Junk - quaver [Kawawa's Hyper]	24.43361
+Kaneko Chiharu - WHITEOUT [Wonki's MAXIMUM]	44.44258
+Risk Junk - quaver [Another]	34.89021
+Risk Junk - quaver [Black Another]	40.67228
+Risk Junk - quaver [Kawawa's Hyper]	24.43362
 Risk Junk - quaver [Kawawa's Normal]	14.48036
 Red Velvet - Power Up [Blue Lemonade]	42.33973
 Kucchi- - Remilia ~Kyuuketsuki no Tame no Kyousoukyoku [Expert]	26.7631
@@ -508,9 +508,9 @@ Various Artists - 4K LN Dan Courses v2 - Level 3 - [9th Dan (Marathon)]	34.49812
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [11th Dan - Yoake (Marathon)]	38.72386
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [12th Dan - Yuugure (Marathon)]	39.87546
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [13th Dan - Yoru (Marathon)]	41.36292
-osu!mania 7K Dan Course - LN Dan Phase II [4th Dan]	36.58962
+osu!mania 7K Dan Course - LN Dan Phase II [4th Dan]	36.58961
 osu!mania 7K Dan Course - LN Dan Phase II [5th Dan]	39.14566
-osu!mania 7K Dan Course - LN Dan Phase II [6th Dan]	42.94725
+osu!mania 7K Dan Course - LN Dan Phase II [6th Dan]	42.94726
 osu!mania 7K Dan Course - LN Dan Phase II [7th Dan]	43.1519
 osu!mania 7K Dan Course - LN Dan Phase II [8th Dan]	46.01385
 Various Artists - Chordjack Pack #2 [Gokuraku Jodo 1.15x]	40.58033

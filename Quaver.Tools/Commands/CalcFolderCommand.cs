@@ -67,6 +67,9 @@ namespace Quaver.Tools.Commands
                     if (map == null)
                         continue;
 
+                    if (map.GetKeyCount() != 4)
+                        continue;
+
                     var diffCalc = map.SolveDifficulty();
 
                     Console.WriteLine($"{files.Count - i}");

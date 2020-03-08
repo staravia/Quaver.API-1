@@ -234,6 +234,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                                     if (l.FingerState == k.FingerState)
                                     {
                                         sameStateFound = true;
+                                        break;
                                     }
                                 }
 
@@ -245,6 +246,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                             // Remove un-needed data point because it has been merged with the current point
                             StrainSolverData.RemoveAt(j);
                         }
+                    }
+                    else
+                    {
+                        StrainSolverData[i].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
                     }
                 }
             }

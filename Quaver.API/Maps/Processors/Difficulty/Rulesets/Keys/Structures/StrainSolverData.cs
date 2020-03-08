@@ -1,7 +1,7 @@
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * Copyright (c) 2017-2018 Swan & The Quaver Team <support@quavergame.com>.
 */
 
@@ -40,6 +40,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         ///     When the longest LN in self.HitObjects ends
         /// </summary>
         public float EndTime { get; set; }
+
+        /// <summary>
+        ///     If this hand is chorded with another hand, a certain multiplier will be applied
+        /// </summary>
+        public float ChordMultiplier { get; set; } = 1;
 
         /// <summary>
         ///     Base strain value calculated by its action
@@ -117,7 +122,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
             // Calculate the strain value of each individual object and add to total
             foreach (var hitOb in HitObjects)
             {
-                hitOb.StrainValue = ActionStrainCoefficient * PatternStrainMultiplier * RollManipulationStrainMultiplier * JackManipulationStrainMultiplier + hitOb.LnStrainDifficulty;
+                hitOb.StrainValue = ActionStrainCoefficient * ChordMultiplier * PatternStrainMultiplier * RollManipulationStrainMultiplier * JackManipulationStrainMultiplier + hitOb.LnStrainDifficulty;
                 TotalStrainValue += hitOb.StrainValue;
             }
 
