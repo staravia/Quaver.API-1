@@ -37,7 +37,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// <summary>
         ///     Strain Multiplier calculated by LN difficulty
         /// </summary>
-        public float LnStrainMultiplier { get; set; } = 1;
+        public float LnStrainDifficulty { get; set; } = 1;
 
         /// <summary>
         ///     Current Strain Value for this hit object.

@@ -457,13 +457,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     continue;
 
                 var durationValue = Math.Min(1, Math.Max(0, ( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs));
-                var baseMultiplier = 1 + durationValue * StrainConstants.LnBaseMultiplier;
+                var baseDifficulty = StrainConstants.LnBaseValue + durationValue * StrainConstants.LnBaseMultiplier;
 
                 foreach (var k in data.HitObjects)
-                    k.LnStrainMultiplier = baseMultiplier;
+                    k.LnStrainDifficulty = baseDifficulty;
 
                 // Loop through all strain solver data on the current hand until the LN is finished
                 var next = data;
+
                 while (next.NextStrainSolverDataOnCurrentHand != null)
                 {
                     next = next.NextStrainSolverDataOnCurrentHand;
@@ -471,36 +472,36 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     if (next.StartTime >= data.EndTime - StrainConstants.LnEndThresholdMs)
                         break;
 
-                    if (next.StartTime >= data.StartTime + StrainConstants.LnEndThresholdMs)
+                    if (next.StartTime < data.StartTime + StrainConstants.LnEndThresholdMs)
+                        continue;
+
+                    // Target hitobject's LN ends after current hitobject's LN end.
+                    if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
                     {
-                        // Target hitobject's LN ends after current hitobject's LN end.
-                        if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
+                        foreach (var k in data.HitObjects)
                         {
-                            foreach (var k in data.HitObjects)
-                            {
-                                k.LnLayerType = LnLayerType.OutsideRelease;
-                                k.LnStrainMultiplier *= StrainConstants.LnReleaseAfterMultiplier;
-                            }
+                            k.LnLayerType = LnLayerType.OutsideRelease;
+                            k.LnStrainDifficulty *= StrainConstants.LnReleaseAfterMultiplier;
                         }
+                    }
 
-                        // Target hitobject's LN ends before current hitobject's LN end
-                        else if (next.EndTime > 0)
+                    // Target hitobject's LN ends before current hitobject's LN end
+                    else if (next.EndTime > 0)
+                    {
+                        foreach (var k in data.HitObjects)
                         {
-                            foreach (var k in data.HitObjects)
-                            {
-                                k.LnLayerType = LnLayerType.InsideRelease;
-                                k.LnStrainMultiplier *= StrainConstants.LnReleaseBeforeMultiplier;
-                            }
+                            k.LnLayerType = LnLayerType.InsideRelease;
+                            k.LnStrainDifficulty *= StrainConstants.LnReleaseBeforeMultiplier;
                         }
+                    }
 
-                        // Target hitobject is not an LN
-                        else
+                    // Target hitobject is not an LN
+                    else
+                    {
+                        foreach (var k in data.HitObjects)
                         {
-                            foreach (var k in data.HitObjects)
-                            {
-                                k.LnLayerType = LnLayerType.InsideTap;
-                                k.LnStrainMultiplier *= StrainConstants.LnTapMultiplier;
-                            }
+                            k.LnLayerType = LnLayerType.InsideTap;
+                            k.LnStrainDifficulty *= StrainConstants.LnTapMultiplier;
                         }
                     }
                 }

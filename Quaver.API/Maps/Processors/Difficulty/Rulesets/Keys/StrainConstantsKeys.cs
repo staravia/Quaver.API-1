@@ -64,6 +64,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
         // LN
         public float LnBaseMultiplier { get; }
+        public float LnBaseValue { get; }
         public float LnDifficultSizeThresholdMs { get; }
         public float LnReleaseAfterMultiplier { get; }
         public float LnReleaseBeforeMultiplier { get; }
@@ -112,7 +113,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             BracketCurveExponential = NewConstant("BracketCurveExponential", 1.13f);
 
             // LN
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 0.2f);
+            LnBaseValue = NewConstant("LnBaseValue", 5.5f);
+            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 5f);
             LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 500f);
             LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.5f);
             LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.15f);
