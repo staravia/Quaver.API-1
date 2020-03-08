@@ -97,26 +97,26 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Simple Jack
             SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 40);
             SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);
-            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 61);
-            SJackCurveExponential = NewConstant("SJackCurveExponential", 1.17f);
+            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 57);
+            SJackCurveExponential = NewConstant("SJackCurveExponential", 1.26f);
 
             // Tech Jack
             TJackLowerBoundaryMs = NewConstant("TJackLowerBoundaryMs", 40);
             TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 340);
             TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 63);
-            TJackCurveExponential = NewConstant("TJackCurveExponential", 1.14f);
+            TJackCurveExponential = NewConstant("TJackCurveExponential", 1.31f);
 
             // Roll/Trill
             RollLowerBoundaryMs = NewConstant("RollLowerBoundaryMs", 30);
             RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 230);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 48);
-            RollCurveExponential = NewConstant("RollCurveExponential", 1.13f);
+            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 51);
+            RollCurveExponential = NewConstant("RollCurveExponential", 1.24f);
 
             // Bracket
             BracketLowerBoundaryMs = NewConstant("BracketLowerBoundaryMs", 30);
             BracketUpperBoundaryMs = NewConstant("BracketUpperBoundaryMs", 230);
             BracketMaxStrainValue = NewConstant("BracketMaxStrainValue", 57);
-            BracketCurveExponential = NewConstant("BracketCurveExponential", 1.13f);
+            BracketCurveExponential = NewConstant("BracketCurveExponential", 1.23f);
 
             // LN
             LnBaseValue = NewConstant("LnBaseValue", 5.5f);
