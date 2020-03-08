@@ -1,5 +1,4 @@
 megatrook - collective subconscious [instincts]	34.01611
-Rabbit House - Have A Party Time! [anti-'s 7K Party]	51.86188
 Rabbit House - Have A Party Time! [neyoru's 4K Easy]	7.479653
 Rabbit House - Have A Party Time! [neyoru's 4K Expert]	34.22921
 Rabbit House - Have A Party Time! [neyoru's 4K Hard]	22.85994
@@ -39,11 +38,6 @@ Komiya Mao - (can you) understand me? [4K Hard?]	20.93587
 Komiya Mao - (can you) understand me? [4K Normal?]	13.80972
 Komiya Mao - (can you) understand me? [Adri's 4K Insane?]	22.83312
 Komiya Mao - (can you) understand me? [Scarlet's 4K Expert?]	29.61704
-Komiya Mao - (can you) understand me? [Scarlet's 7k Easy?]	13.62341
-Komiya Mao - (can you) understand me? [Scarlet's 7k Normal?]	19.45032
-Komiya Mao - (can you) understand me? [cindsa's 7k Expert?]	34.39265
-Komiya Mao - (can you) understand me? [cindsa's 7k Hard?]	30.48389
-Komiya Mao - (can you) understand me? [cindsa's 7k Insane?]	32.04589
 Infected Mushroom - Never Mind [Infected Mushrathon]	25.07766
 Drop - Dancer of Saramandora [Crimson Dance]	32.08399
 A Day to Remember - I'm Made of Wax, Larry, What Are You Made Of? [I'm made of Dump, Larry, What Are You Made Of?]	28.11577
@@ -82,12 +76,7 @@ Camellia - Exit This Earth's Atomosphere [9.8 m/s]	8.023213
 Camellia - Quaoar [50,000th Star]	26.91679
 100-200-400 - Fascination MAXX [4K Beginner]	7.77774
 100-200-400 - Fascination MAXX [4K Light]	13.45883
-100-200-400 - Fascination MAXX [7K Beginner]	12.47711
-100-200-400 - Fascination MAXX [7K Heavy]	36.88384
-100-200-400 - Fascination MAXX [7K Light]	22.21524
-100-200-400 - Fascination MAXX [MEGA's 7K Fascination]	39.49173
 100-200-400 - Fascination MAXX [MrDorian's 4K Standard]	19.97513
-100-200-400 - Fascination MAXX [SitekX's 7K Standard]	25.89458
 100-200-400 - Fascination MAXX [_UJ's 4K Fascination]	32.60211
 100-200-400 - Fascination MAXX [_UJ's 4K Heavy]	28.51432
 P*Light - NINJA IS DEAD IIDX ver. [Hard]	18.28517
@@ -114,8 +103,6 @@ Camellia ft. Nanahira - Tsukitourou (Lite Show Magic Remix) [Insane]	27.21481
 Camellia ft. Nanahira - Tsukitourou (Lite Show Magic Remix) [Normal]	6.775736
 Dunderpatrullen - Interlude (Fantasy Friendship Forever) [4K Easy]	4.347291
 Dunderpatrullen - Interlude (Fantasy Friendship Forever) [4K Normal]	7.401533
-Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Easy]	6.01233
-Dunderpatrullen - Interlude (Fantasy Friendship Forever) [7K Normal]	12.95464
 Camellia ft. Yukacco - Be Wild [Gone Wild]	29.78958
 Autopilot Off- - Make a Sound [Tachyon's Insane]	34.49311
 Autopilot Off- - Make a Sound [Scarlet's Hard]	29.09465
@@ -187,7 +174,6 @@ HyuN - Princess of Winter [4k Insane]	25.8076
 HyuN - Princess of Winter [4k Normal]	9.125105
 HyuN - Princess of Winter [4k  Easy]	5.887896
 HyuN - Princess of Winter [4k Beginner]	2.911918
-HyuN - Princess of Winter [7k ?? (wip)]	41.23613
 HyuN - CrossOver (feat. LyuU) [Staravia's LN]	32.02719
 PianoLuigi ft. Text to Speech - Why You Should Play Quaver [Not Sponsored]	34.18958
 zetoban - Csikos Post [Insane]	24.83039
@@ -240,42 +226,128 @@ Caravan Palace - Lone Digger [Jack Digger]	31.24366
 wa. remixed celas - Crystal World ~Fracture~ [Another]	30.7436
 wa. remixed celas - Crystal World ~Fracture~ [Hyper]	27.92014
 wa. remixed celas - Crystal World ~Fracture~ [Normal]	13.38515
+Kola Kid - spaceman [astral]	32.28592
 Camellia - Bangin' Burst [EXHAUST Lv.16]	33.27344
 Camellia - Bangin' Burst [KK's ADVANCED Lv.14]	23.63703
 Camellia - Bangin' Burst [S.Star's NOVICE Lv.9]	17.41931
 Camellia - Bangin' Burst [victorica's Extra Lv.15]	31.19542
+SyndraSound - Cafecore 2018 [Invigorating]	31.4108
+DJ Sharpnel - Pants [yeah]	33.2931
 Billx - Equinox [Hard]	22.99298
 Billx - Equinox [Insane]	28.87536
 Billx - Equinox [Moskas' Easy]	8.609063
 Billx - Equinox [Normal]	11.64721
 Camellia - Shun no Shifudo o Ikashita Kare Fumi Paeria [Giant Pacific Octopus]	36.35423
 Camellia - Shun no Shifudo o Ikashita Kare Fumi Paeria [Giant PaSVic Octopus]	36.35423
+hyi - misery [decompose]	25.10652
+LukHash - GHOST TOWN [Easy]	7.637064
+LukHash - GHOST TOWN [Hard]	17.59577
+LukHash - GHOST TOWN [Normal]	9.964665
+LukHash - GHOST TOWN [SitekX's Insane]	19.24754
 Camellia - Exit This Earth's Atomosphere Remix [Exosphere]	41.5194
 t+pazolite - You Are the Miserable [Hard]	20.37893
+Dev/Null - Zombie Sunset [Apocalypse]	31.88614
+Soko ni Naru - Tenohira de Odoru [Sweaty Palms]	26.8148
 Yooh - MariannE [Mania 4K Collab]	28.01257
-Yooh - MariannE [Mania 7K Collab]	35.18296
+Camellia - Jingle (Metal Arrange / Cover) [Memories]	32.12357
 ALiCE'S EMOTiON - Dark Flight Dreamer [Dell's NM]	9.408584
 ALiCE'S EMOTiON - Dark Flight Dreamer [HD]	20.14976
 ALiCE'S EMOTiON - Dark Flight Dreamer [MX]	25.93712
+Amatsuki - Chiisana Koi no Uta [Love Letter]	33.63332
 HyuN - CrossOver (feat. LyuU) [Staravia's LN]	32.02719
+Evoluutiomies - Suklaapallit [Chocolate]	30.84719
+Evoluutiomies - Suklaapallit [Beginner]	3.496426
+Evoluutiomies - Suklaapallit [Easy]	5.175707
+Evoluutiomies - Suklaapallit [Normal]	7.882357
+Evoluutiomies - Suklaapallit [Hard]	22.09292
+Camellia ft. Hatsune Miku - Extraterrestrial [Out Of This World]	31.50764
 antiPLUR - Speed of Link [SP33D]	31.66792
+Susumu Hirasawa - SWITCHED-ON LOTUS [Black Lotus]	35.14548
+SoldatRacer - Good Day from Rain [Beginner]	4.582438
+SoldatRacer - Good Day from Rain [Normal]	8.386183
+SoldatRacer - Good Day from Rain [FAMoss's Easy]	6.097241
 LIQU@ - NANAIRO [4k fun]	32.6863
+DJ Sharpnel - WE LUV LAMA [Delay]	35.09807
+GARNiDELiA - SPEED STAR [Akary's Blue Cocytus]	23.57488
+GARNiDELiA - SPEED STAR [Easy]	8.322283
+GARNiDELiA - SPEED STAR [Hard]	18.29109
+GARNiDELiA - SPEED STAR [Normal]	11.84933
+GARNiDELiA - SPEED STAR [Beginner]	6.296689
+The Algorithm - Trojans (Hard Mode) [Virus]	30.0455
+Virtual Self - EON BREAK [Aeon]	25.93247
+Virtual Self - EON BREAK [Hard]	15.60535
+Virtual Self - EON BREAK [N1ckn1ght's Insane]	23.43579
+Virtual Self - EON BREAK [Normal]	9.208523
+Virtual Self - EON BREAK [Easy]	7.167418
+Virtual Self - EON BREAK [N1ckn1ght's Beginner]	4.783869
+Auratus - Vorota [Collapse]	29.42131
+Auratus - Vorota [Hard]	17.46783
+Auratus - Vorota [Moskas' Normal]	14.45153
+Auratus - Vorota [qqq's Insane]	26.29274
+Porter Robinson & Madeon - Shelter [Home]	30.34101
 OxT - Clattanoia [anime]	33.82362
 Rokina - Icicle Stinger [Beginner]	33.56821
 P90x - Endurance/Accuracy Training [Chords] [XY&Z 2]	37.33316
 P90x - Endurance/Accuracy Training [Chords] [[123bpm] Harder, Better, Faster, Stronger]	15.38776
 P90x - Endurance/Accuracy Training [Chords] [[184bpm] Honey Come!!]	27.5771
-Hatsuki Yura - Izayoi Warabeuta [HD]	28.68817
 P90x - Endurance/Accuracy Training [Chords] [[220bpm] Toumei Elegy]	32.88827
-Hatsuki Yura - Izayoi Warabeuta [NM]	15.38276
 P90x - Endurance/Accuracy Training [Chords] [[254bpm] XY&Z]	38.22884
 DJ Myosuke & Noizenecio - Architecture [Mat's 4k DEATH]	36.13003
+Camellia - Kamah (Scythe) [Reaper]	36.626
+Shiraishi - Shinsekai [Insane]	29.98174
+Shiraishi - Shinsekai [Hard]	25.41719
+Shiraishi - Shinsekai [Normal]	15.58947
+Shiraishi - Shinsekai [Easy]	6.142855
+Shiraishi - Shinsekai [Beginner]	4.307692
+Shiraishi - Shinsekai [Supernova]	33.43127
 Porter Robinson & Madeon - Shelter [4K DUMP]	31.62169
+Fractal Dreamers - Defiance [Rebelion]	21.48059
+ETIA. vs MMSequence - DISCHARGE RUSH [Beginner]	3.787462
+ETIA. vs MMSequence - DISCHARGE RUSH [Easy]	6.427845
+ETIA. vs MMSequence - DISCHARGE RUSH [Expert]	36.16684
+ETIA. vs MMSequence - DISCHARGE RUSH [Hard]	23.32787
+ETIA. vs MMSequence - DISCHARGE RUSH [Insane]	31.37119
+ETIA. vs MMSequence - DISCHARGE RUSH [Maximum Overload]	38.47382
+ETIA. vs MMSequence - DISCHARGE RUSH [Normal]	16.43562
+t+pazolite feat. Rizna - Unlimited Spark! (remake) [Everlasting Happiness]	34.10021
+Ryuno - nyalone [Insane]	28.76087
+Ryuno - nyalone [Easy]	8.144253
+Ryuno - nyalone [quit w's Hard]	19.34449
+Ryuno - nyalone [Beginner]	5.285085
+Ryuno - nyalone [frootti's Normal]	10.90834
 m1dy - Kiranger [kiiroi tishatsu]	37.8179
-Parks, Squares and Alley - In Your House [Sunshine]	25.77572
+UNDEAD CORPORATION - Everything will freeze [Extreme]	41.01482
+UNDEAD CORPORATION - Everything will freeze [Easy]	11.10348
+UNDEAD CORPORATION - Everything will freeze [Expert]	34.38988
+UNDEAD CORPORATION - Everything will freeze [Normal]	16.21449
+UNDEAD CORPORATION - Everything will freeze [Hard]	22.93948
+UNDEAD CORPORATION - Everything will freeze [Swan's Insane]	32.3535
+Igorrr - Pavor Nocturnus [Easy]	7.328438
+Igorrr - Pavor Nocturnus [Hard]	20.39389
+Igorrr - Pavor Nocturnus [Lie's Insane]	29.39693
+Igorrr - Pavor Nocturnus [OWJI's Normal]	11.91901
+Igorrr - Pavor Nocturnus [Parasomnia]	30.58243
+Camellia feat. Nanahira - Bassdrop Freaks (2018 "Redrop" ver.) [Hard]	20.89384
+Camellia feat. Nanahira - Bassdrop Freaks (2018 "Redrop" ver.) [Insane]	27.46275
+Camellia feat. Nanahira - Bassdrop Freaks (2018 "Redrop" ver.) [Re-Drop!]	30.25226
+Camellia ft. Nanahira - Amor De Verao [Hard]	15.29187
+Camellia ft. Nanahira - Amor De Verao [Normal]	8.446979
+Camellia ft. Nanahira - Amor De Verao [Easy]	5.718448
+Camellia ft. Nanahira - Amor De Verao [Beginner]	3.35116
+Camellia ft. Nanahira - Amor De Verao [Extra]	32.61846
+Camellia ft. Nanahira - Amor De Verao [Insane]	22.87677
+Camellia ft. Nanahira - Amor De Verao [Expert]	27.09066
 Holder - Crash Bandicoot Theme Trap Remix [k]	35.80992
+Ryu* ft. kradness remixed by Quarks - CRITICAL LINE (Quarks Remix) [EXTRA]	31.9036
+Ryu* ft. kradness remixed by Quarks - CRITICAL LINE (Quarks Remix) [INSANE]	29.84706
+lapix - Labyrinth [Gangster!!]	31.16363
+lapix - Labyrinth [Hard]	19.69812
+lapix - Labyrinth [Insane]	28.74173
 Yooh - Road To The LegenD, [Road To The [L]ege[N]D,]	37.75566
+Camellia & Nanahira - senpai, notice me! [Senpai!!]	30.76513
 Smooth McGroove - Guile Theme Acapella [usa]	35.64172
+Camellia - Bassline Yatteru? w [Line~ Line~ Line~]	26.54198
+Camellia ft. Nanahira - Sleep! [Unconscious]	30.41121
 Various Artists - LN fun pack [Flow - GO!!!]	29.7093
 Various Artists - LN fun pack [HHHxMMxST - Oboro]	31.68932
 Various Artists - LN fun pack [ISHIDA YOKO - Ashita no Tsubasa]	32.89762
@@ -283,6 +355,14 @@ Various Artists - LN fun pack [Lozareena - Good Night Mare]	26.13525
 Various Artists - LN fun pack [Machico - TOMORROW]	29.04486
 Various Artists - LN fun pack [Reol - +Danshi]	36.09503
 Various Artists - LN fun pack [fhana - Aozora no Rhapsody]	28.7382
+Halogen - U Got That [Insane]	16.73627
+Halogen - U Got That [Hard]	10.44808
+Halogen - U Got That [Normal]	4.535631
+Camellia ft. Nanahira - Force!  FULL ALBUM [Nanathon]	28.23122
+HyuN - Illusion of Inflict [Insane]	28.12632
+HyuN - Illusion of Inflict [Hard]	22.46771
+HyuN - Illusion of Inflict [Easy]	8.571221
+HyuN - Illusion of Inflict [Normal]	10.40331
 Billx - LA MD [Marathon]	32.74706
 Various Artists - 4k Speed Training Pack Vol.4 [(Marathon)]	2
 Various Artists - 4k Speed Training Pack Vol.4 [Camellia - ANOMALY]	38.10725
@@ -302,18 +382,43 @@ Various Artists - Vibro Pack 4 [Vibro Days]	31.44643
 Various Artists - Vibro Pack 4 [Coolest Vibro]	34.03827
 Various Artists - Vibro Pack 4 [FUBUKI]	28.56877
 Various Artists - Vibro Pack 4 [Killy Killy Vibro (Arpia/Staravia Collab)]	32.72089
+Tatsuya Yano - Yatte Miyou! [Hard]	16.27767
+Tatsuya Yano - Yatte Miyou! [Insane]	22.61933
+Tatsuya Yano - Yatte Miyou! [Normal]	11.21802
+Tatsuya Yano - Yatte Miyou! [Easy]	10.44857
+Greemotion - Over the Snow [Beginner]	4.572022
+Greemotion - Over the Snow [Easy]	6.640558
+Greemotion - Over the Snow [Normal]	8.686341
+Greemotion - Over the Snow [Janko's Hard]	9.432605
+JOYRYDE - IM GONE [gone]	33.53587
+Camellia - d:for the DELTA (Camellia's "PLANETARY//DUBSTEP" Remix) [Culmination]	32.50191
 HyuN - Triple Cross [loafusofbread's Trinity]	32.45732
 Alex c. feat. Yasmin K. - Angel Of Darkness [Challenge]	30.42079
 Alex c. feat. Yasmin K. - Angel Of Darkness [Hard]	28.11418
+Imperial Circus Dead Decadence - Yomi yori Kikoyu, Koukoku no Tou to Honoo no Shoujo. [Uragiri]	33.40395
+PSYQUI - Hysteric Night Girl feat. Such (android52 Edit) [flaky]	22.32879
+DragonForce - Symphony of the Night [Gateway to Darkness - Insane]	23.3422
+DragonForce - Symphony of the Night [Melody of the Darkness  - Extreme]	30.33986
+Rin - Kishinjou set 07 ~ Magical Storm [Stormy Praetor]	26.68379
+SoraMafuUraSaka - Role-Playing Game [Game Start!]	24.38743
+Camellia - Fastest Crash ('Camellia's ''paroxysmal'' Energetic Hitech Remix) [_freeze]	37.92029
 Couple N & Miraie - Endear [Easy]	10.4485
 Couple N & Miraie - Endear [Falling From The Sky]	28.68295
 Couple N & Miraie - Endear [Hard]	22.10269
 Couple N & Miraie - Endear [Normal]	13.77703
 Kobaryo - Northern Limit [KH_Supernova's UltRa!!!]	38.55302
-osu!mania 7K Dan Course - LN Dan Phase I [0th Dan (Marathon)]	18.88544
-osu!mania 7K Dan Course - LN Dan Phase I [1st Dan (Marathon)]	17.79774
-osu!mania 7K Dan Course - LN Dan Phase I [2nd Dan (Marathon)]	27.05756
-osu!mania 7K Dan Course - LN Dan Phase I [3rd Dan (Marathon)]	35.11055
+Brian Wade, Oswin Falquero, Tony Cliff - Give It All You've Got [Easy]	6.018901
+Brian Wade, Oswin Falquero, Tony Cliff - Give It All You've Got [Beginner]	6.290998
+Brian Wade, Oswin Falquero, Tony Cliff - Give It All You've Got [Normal]	7.856915
+Two Steps From Hell - Star Sky [Ethereal]	36.12111
+Manuel - Gas Gas Gas [Fumes]	29.24546
+Pellek ft. Dragonforce - Shape of you [Force!!!]	35.79998
+POSHLAYA MOLLY - SHKOLA NE NUZHNA [EASY]	7.675036
+POSHLAYA MOLLY - SHKOLA NE NUZHNA [NORMAL]	14.34471
+POSHLAYA MOLLY - SHKOLA NE NUZHNA [Nick's BEGINNER]	9.403368
+POSHLAYA MOLLY - SHKOLA NE NUZHNA [Nick's HARD]	20.19744
+POSHLAYA MOLLY - SHKOLA NE NUZHNA [SCHOOL BREAK]	32.30533
+PSYQUI feat. Such - Hysteric Night Girl (Awakening) [Sunrise]	27.95061
 P90x - Endurance/Accuracy Training [Chords] [[123bpm] Harder, Better, Faster, Stronger]	15.38776
 P90x - Endurance/Accuracy Training [Chords] [[184bpm] Honey Come!!]	27.5771
 P90x - Endurance/Accuracy Training [Chords] [[190bpm] X Gon Give It To Ya]	29.58384
@@ -344,13 +449,54 @@ Various Artist - Stepmania Pack [To Dimension(Icyworld)]	30.93687
 Various Artist - Stepmania Pack [Toilet Story 5(Guilhermeziat)]	35.80818
 Various Artist - Stepmania Pack [Torero(Kaiten)]	36.10976
 Various Artist - Stepmania Pack [Trapce(Golgo)]	35.53137
+Camellia feat. Nanahira - Kansoku Eisei [Extra]	29.08862
 Lon - Yuru Fuwa Jukai Girl [Wh1teh's k]	35.13775
+Culprate & Frequent - Drifting [abstrac  t]	28.51795
+Camellia - {albus} [{normal}]	8.447188
+Camellia - {albus} [{insane}]	31.67321
+Camellia - {albus} [{master}]	26.34312
+Camellia - {albus} [{hard}]	15.77547
+Camellia - {albus} [{redo}]	33.71598
+Camellia - {albus} [{easy}]	6.132334
+Camellia - Syzygia [Hard | Falling Sky]	18.95316
+Camellia - Syzygia [Normal | Starry Sea]	10.1051
 HyuN feat. Yuri - Disorder [xouross's Chaotic]	32.40836
+ACE+ - Mechanical Rhythm [Bionis]	38.56731
+ACE+ - Mechanical Rhythm [Mechonis]	36.16115
+ACE+ - Mechanical Rhythm [Hard]	22.47635
+ACE+ - Mechanical Rhythm [Insane]	31.44455
+ACE+ - Mechanical Rhythm [Normal]	13.3594
+ACE+ - Mechanical Rhythm [Extra]	34.16937
+Erio o Kamattechan - os-Uchuujin(Asterisk Makina Remix) [Azure Identity]	31.27784
+MISATO - Necro Fantasia [Dreams of Seamless Handstreams]	29.68654
+Helblinde - A Reyvateil's Curse [Expert]	35.0289
+Helblinde - A Reyvateil's Curse [Insane]	29.17633
+Helblinde - A Reyvateil's Curse [Hard]	25.9908
 Caravan Palace - Lone Digger [XeoStyle's Jack Digger]	31.24366
 megatrook - internet personas [hard]	26.13145
 megatrook - internet personas [normal]	23.37263
 megatrook - internet personas [hiding]	30.37046
+ginkiha - EOS (Presti remix) [starlit sky]	31.07012
+Neil Cicierega - Bustin [Feel Good]	32.67592
+Camellia ft. Nanahira - We Love Hardcore [This Is The Party!!]	28.27732
+Camellia ft. Nanahira - EDM Jumpers ({E+H}DM Reboot) [({3+2+1}Jump!)]	31.6038
+Ekcle - To Give Credence [//]	30.60806
+Senpi- - The First Part of Touhou EX Boss Rush!! [Lunatic]	30.99851
+TEKKEN 7 - Infinite Azure (Moonsiders 1st) [Insane]	31.71512
+TEKKEN 7 - Infinite Azure (Moonsiders 1st) [Beginner]	4.942904
+TEKKEN 7 - Infinite Azure (Moonsiders 1st) [Easy]	10.22723
+TEKKEN 7 - Infinite Azure (Moonsiders 1st) [Normal]	13.71209
+TEKKEN 7 - Infinite Azure (Moonsiders 1st) [Hard]	21.39901
 BeautifulDay - Christmas Memories [Christmas Day]	37.96711
+Ryo Nakamura - Futurity [Easy]	7.569204
+Ryo Nakamura - Futurity [Normal]	9.24886
+Ryo Nakamura - Futurity [Hard]	15.52207
+Camellia ft. Nanahira - Toureika [Psychro]	36.09155
+Camellia ft. Nanahira - Toureika [Expert]	31.68465
+Camellia ft. Nanahira - Toureika [Insane]	24.51712
+Camellia ft. Nanahira - Toureika [Hard]	16.87839
+KARUT a.k.a Triplebullets - Anata Dake Kiku Koto Ga Dekiru Chiisana Boryoumu De [Hard]	17.2956
+KARUT a.k.a Triplebullets - Anata Dake Kiku Koto Ga Dekiru Chiisana Boryoumu De [Renai]	26.92039
 Camellia - K.Y.A.F.A. [C.H.I.C.K.E.N.]	33.93312
 Camellia - K.Y.A.F.A. [DomaUMR0's Extra]	30.11397
 Camellia - K.Y.A.F.A. [Insane]	23.98127
@@ -360,8 +506,51 @@ Camellia - K.Y.A.F.A. [Song Hana's Hard]	22.12899
 Camellia - K.Y.A.F.A. [Ultimate]	32.07515
 Power Of Nature - Tadoru Kimi wo Koete [Wanderer]	36.52061
 Jigokuguruma Nakamura & Yasushi Asada - Slash [Easy]	8.192797
+wowaka - Two-Faced Lovers [Expert]	28.4034
+wowaka - Two-Faced Lovers [Hard]	17.21104
+wowaka - Two-Faced Lovers [Insane]	22.48207
+wowaka - Two-Faced Lovers [Normal]	7.476481
+Camellia - KillerBeast [hunter]	27.94132
+Hydelic feat. Kate Brady - Connected (Yours Forever) [Forever]	13.11051
 nitro - [line:ε] [difficulty:normal]	13.20317
+Camellia - NUCLEAR-STAR [SUPERNOVA]	33.21587
+Johann Strauss II - Always Smiling [Normal]	8.441117
+Johann Strauss II - Always Smiling [Always SmiLiNg]	30.90454
+Johann Strauss II - Always Smiling [Easy]	8.341178
+Johann Strauss II - Always Smiling [foxibun's Beginner]	4.340717
+Johann Strauss II - Always Smiling [foxibun's Hard]	15.29595
+Johann Strauss II - Always Smiling [Insane]	24.37251
+eicateve feat. tonishina - itsuka [beginner]	4.623959
+eicateve feat. tonishina - itsuka [easy]	6.783245
+eicateve feat. tonishina - itsuka [normal]	10.64926
+eicateve feat. tonishina - itsuka [hard]	19.50695
+Toromaru - Enigma II [Expert]	34.77917
+Toromaru - Enigma II [Insane]	28.80077
+Camellia - Welcome To The Cyphisonia [Aspect]	22.67981
+Camellia - Welcome To The Cyphisonia [Horizon]	29.9143
+Camellia ft. Nanahira - [HQ] Magical Energy makes the Craziest Strongest Quality! Magical-Audio No.1! (128kbps) [777 Kbps]	32.56134
 Plum - LOG_IN [Staravia's 4K Normal]	18.26444
+Mr.Kitty - After Dark [4K Hard]	15.19757
+Mr.Kitty - After Dark [4K Normal]	10.21085
+Mr.Kitty - After Dark [4K Beginner]	5.048704
+Mr.Kitty - After Dark [4K Easy]	5.752733
+TheFatRat - Never Be Alone [Will I always be alone?]	15.38102
+Mameyudoufu - Vintage Computers [Normal]	10.83593
+Mameyudoufu - Vintage Computers [Virtual Rebirth]	20.10041
+NOMA - Strength [Disconcerting]	22.92233
+penoreri - Preserved Valkyria [Hard]	20.35183
+penoreri - Preserved Valkyria [Normal]	9.341267
+penoreri - Preserved Valkyria [Insane]	26.74596
+penoreri - Preserved Valkyria [Extra]	30.64614
+penoreri - Preserved Valkyria [Advanced]	15.69513
+penoreri - Preserved Valkyria [SRacer's Easy]	7.302084
+sakuzyo - Rainbow Night Sky Highway [Beginner]	7.065569
+sakuzyo - Rainbow Night Sky Highway [Insane]	24.38275
+sakuzyo - Rainbow Night Sky Highway [Normal]	13.65836
+sakuzyo - Rainbow Night Sky Highway [Rave's Easy]	10.22503
+sakuzyo - Rainbow Night Sky Highway [SRacer's Easy]	8.809901
+sakuzyo - Rainbow Night Sky Highway [Starlight]	30.47468
+sakuzyo - Rainbow Night Sky Highway [jk's Hard]	19.62403
 Silentroom - Nhelv [Hard]	19.65978
 Silentroom - Nhelv [Insane]	29.66184
 Silentroom - Nhelv [Insane+]	32.43962
@@ -369,14 +558,108 @@ Silentroom - Nhelv [Easy]	7.072132
 Silentroom - Nhelv [Hard+]	25.33189
 Silentroom - Nhelv [Extra]	36.35202
 Silentroom - Nhelv [Normal]	11.04483
+Camellia - Clouds in the Blue [Hard]	20.26903
+Camellia - Clouds in the Blue [Insane]	25.17411
+Camellia - Clouds in the Blue [Normal]	10.68088
+Camellia - Clouds in the Blue [Skyward]	30.23158
+Polcka - Enter The World [Escape The Reality]	32.58826
+Chloe Adams - Last Christmas (Speed Up Ver.) [Easy]	7.105366
+Chloe Adams - Last Christmas (Speed Up Ver.) [Hard]	18.65074
+Chloe Adams - Last Christmas (Speed Up Ver.) [Insane]	24.17638
+Chloe Adams - Last Christmas (Speed Up Ver.) [Normal]	13.01109
+P4koo - 8th:Planet (Guitar Ver. feat. BlueArpeggio) [Insane]	23.33973
+P4koo - 8th:Planet (Guitar Ver. feat. BlueArpeggio) [Hard]	19.49753
+P4koo - 8th:Planet (Guitar Ver. feat. BlueArpeggio) [Neptune]	29.33014
+P4koo - 8th:Planet (Guitar Ver. feat. BlueArpeggio) [Normal]	10.76051
+P4koo - 8th:Planet (Guitar Ver. feat. BlueArpeggio) [Easy]	6.308539
+Reizoko Cj - Cosmos / The R Machine [Ultimate]	36.2951
+Feryquitous - Vend [Surveillance]	37.74188
+Nanahira - Ookamihime ha yume wo miru [Expert]	34.97121
+Nanahira - Ookamihime ha yume wo miru [Hard]	19.54057
+Nanahira - Ookamihime ha yume wo miru [Insane]	24.29218
+Cardboard Box - The Limit Does Not Exist [Advanced]	17.51632
+Cardboard Box - The Limit Does Not Exist [Easy]	5.374268
+Cardboard Box - The Limit Does Not Exist [Extra]	37.27437
+Cardboard Box - The Limit Does Not Exist [Hard]	24.40482
+Cardboard Box - The Limit Does Not Exist [Insane]	31.80635
+Cardboard Box - The Limit Does Not Exist [Limitless]	38.85488
+Cardboard Box - The Limit Does Not Exist [Normal]	12.24726
+Rita - Dream Walker [Elysian]	30.11225
+Camellia feat. Nanahira - EDM Jumpers [Bassdrop Maniacs]	31.81901
+xi - Bad Elixir [Advanced]	15.51078
+xi - Bad Elixir [Insane]	29.91651
+xi - Bad Elixir [Extra]	33.29368
+xi - Bad Elixir [Hard]	25.38671
+xi - Bad Elixir [Easy]	9.899402
+xi - Bad Elixir [Normal]	12.08069
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Insane]	28.62193
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Expert]	32.22131
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Beginner]	6.09992
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Easy]	9.94621
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Normal]	13.97861
+Jackie Cruz - La Hora Loca (Speed Up Ver.) [Hard]	17.15276
+Masayoshi Minoshima ft. nomico - Bad Apple!! (Camellia’s “Bad Psy!!” Remix) [Can't Break Free]	34.17809
+Neko Hacker ft. Nanahira - Shuwa*Shuwa Parfait [Hard*Hard]	15.69879
+Neko Hacker ft. Nanahira - Shuwa*Shuwa Parfait [Normal*Normal]	8.522661
+Neko Hacker ft. Nanahira - Shuwa*Shuwa Parfait [Easy*Easy]	6.196632
+Neko Hacker ft. Nanahira - Shuwa*Shuwa Parfait [Beginner*Beginner]	3.38242
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Advanced]	14.91912
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Easy]	7.464552
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Hard]	16.96325
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Hyper]	20.50718
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Insane]	25.2864
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Normal]	10.52402
+orangentle / Yu_Asahina - HAELEQUINZ -the clown of 24stairs- [Split Personality]	28.62936
+tofubeats - Positive feat. Dream Ami (Moe Shop Mix) [huh?]	17.9609
 Tomoya Ohtani ft. Douglas Robb - Fist Bump (Null Space) [Hard]	19.31147
 Tomoya Ohtani ft. Douglas Robb - Fist Bump (Null Space) [Advanced]	14.60596
 Tomoya Ohtani ft. Douglas Robb - Fist Bump (Null Space) [Normal]	11.56594
 Tomoya Ohtani ft. Douglas Robb - Fist Bump (Null Space) [Easy]	7.770842
 Tomoya Ohtani ft. Douglas Robb - Fist Bump (Null Space) [Beginner]	6.546026
+ParagonX9 - Chaoz Fantasy [Easy]	7.726325
+ParagonX9 - Chaoz Fantasy [Fantasy]	26.58764
+ParagonX9 - Chaoz Fantasy [Hard]	15.26872
+ParagonX9 - Chaoz Fantasy [Normal]	10.4436
+ParagonX9 - Chaoz Fantasy [yahweh's Insane]	21.12238
+ParagonX9 - Chaoz Fantasy [foxibun's Insane]	21.44007
+Mantis & Rekoil - Trauma [Nervous]	25.18599
+Hatsune Miku - Atama no Taisou [Miku Fiku]	21.90379
 Lemon Demon - Super Hey Ya (OutKast Remix) [EXPONENTIALMEGABOUNCE]	31.3759
+mmry - Lunar Arrow [Full Moon (Insane)]	28.45352
+mmry - Lunar Arrow [Quarter Moon (Hlimak's Normal)]	12.17934
+mmry - Lunar Arrow [Half Moon (Hard)]	23.49635
+mmry - Lunar Arrow [New Moon (Easy)]	8.322525
+MYUKKE. - Shakariki Hopping [Jump!]	23.37538
+Camellia - NUCLEAR-STAR [Imagination]	28.88179
+Cam Meekins - Rain [Expert]	35.27903
+Cam Meekins - Rain [Insane]	28.84291
 Camellia ft. Nanahira - Versus! [Expert!]	33.97193
 Camellia ft. Nanahira - Versus! [Insane!]	24.61041
+I SEE MONSTAS - Holdin On (Skrillex and Nero Remix) [Easy]	9.091621
+I SEE MONSTAS - Holdin On (Skrillex and Nero Remix) [Normal]	12.41069
+I SEE MONSTAS - Holdin On (Skrillex and Nero Remix) [Tails' Hard]	20.12112
+I SEE MONSTAS - Holdin On (Skrillex and Nero Remix) [Unstoppable Force]	24.28728
+Jacob Tillberg - Caffeine Rush [Another Thrill]	26.34183
+Jacob Tillberg - Caffeine Rush [Hard]	17.73579
+Jacob Tillberg - Caffeine Rush [Normal]	12.24522
+Kamex - Collapse Remix [Easy]	8.204116
+Kamex - Collapse Remix [Hard]	21.04684
+Kamex - Collapse Remix [Insane]	28.96698
+Kamex - Collapse Remix [Tails' Normal]	10.85055
+Kamex - Collapse Remix [The Light of Truth]	29.51696
+WEAVER - S.O.S. (TV Size) [Beginner]	6.292044
+WEAVER - S.O.S. (TV Size) [Easy]	9.489286
+WEAVER - S.O.S. (TV Size) [Hard]	18.54859
+WEAVER - S.O.S. (TV Size) [Normal]	12.29468
+WEAVER - S.O.S. (TV Size) [Poco!]	26.03204
+void - Just Hold On (To All Fighters) [With You]	35.47059
+Tech N9ne ft. Busta Rhymes, Yelawolf, Twisted Insane, Ceza, JL, Twista, U$O, & D-Loc - Worldwide Choppers [Yo]	37.0675
+xi - Fiat Lux [Advanced]	17.29061
+xi - Fiat Lux [Hard]	23.18307
+xi - Fiat Lux [Extra]	33.56182
+xi - Fiat Lux [Insane]	28.15869
+xi - Fiat Lux [Normal]	11.09949
+xi - Fiat Lux [Easy]	8.947188
 Tamura Yukari - MERRY MERRY MERRY MENU... Ne! [Hard]	26.58977
 Tamura Yukari - MERRY MERRY MERRY MENU... Ne! [Insane]	33.06125
 Tamura Yukari - MERRY MERRY MERRY MENU... Ne! [Normal]	21.32927
@@ -385,73 +668,100 @@ TrySail - High Free Spirits (TV Size) [Fleet]	29.33095
 TrySail - High Free Spirits (TV Size) [Hard]	16.63279
 TrySail - High Free Spirits (TV Size) [Insane]	25.00426
 TrySail - High Free Spirits (TV Size) [Normal]	12.86542
+GYARI - Seyana. [Soyana.]	23.41807
+Camellia - put' l'da [Absolute Zero]	36.81384
 t+pazolite & android52 - Mr.Werewolf [Normal]	13.31662
 t+pazolite & android52 - Mr.Werewolf [Easy]	9.274086
 t+pazolite & android52 - Mr.Werewolf [Easy+]	9.905838
+Gram vs. Camellia - Ragnarok [Cataclysmic Destruction ]	39.70529
+Camellia - We Could Get More Machinegun Psystyle! (And More Genre Switches) [FREAKING JUMPING  BEANS!]	36.76959
+GameChops & VOIA - Voia's Medley (Undertale Remix) [Four Years of DETERMINATION]	21.23855
+Camellia ft. Nanahira - I'm not interested in Christmas [Insane]	18.00458
+Camellia ft. Nanahira - I'm not interested in Christmas [Hard]	11.44038
+mustie=DC feat.Hanon - Merry Snowy Fantasy [Normal]	13.83019
+mustie=DC feat.Hanon - Merry Snowy Fantasy [Special Night]	26.27794
+mustie=DC feat.Hanon - Merry Snowy Fantasy [yahweh's Hard]	19.51543
+Clams Casino - I'm God [Angelic]	35.24397
+Tokyo Machine - JINGLE BELLS (Short Ver.) [Hard]	13.59751
+Tokyo Machine - JINGLE BELLS (Short Ver.) [Normal]	9.900414
+Tokyo Machine - JINGLE BELLS (Short Ver.) [Easy]	5.363181
+Tokyo Machine - JINGLE BELLS (Short Ver.) [Beginner]	4.127799
+Cosmograph - ULTIMATUM [final decision]	35.36698
+Cosmograph - ULTIMATUM [insane]	30.39507
+Rabbit House - Ad astra per aspera [Lude's 4K Expert]	34.21928
 Tomofumi Tanizawa - Sawakaze [cindsa's Warming Smile]	25.77161
 Tomofumi Tanizawa - Sawakaze [Hard]	18.53265
 Tomofumi Tanizawa - Sawakaze [Normal]	9.197224
 Tomofumi Tanizawa - Sawakaze [Easy]	6.256198
 Tomofumi Tanizawa - Sawakaze [Beginner]	4.069883
+Camellia ft. Nanahira - Saikyou Mushiba Koujishi Kussaku Chu☆ [Insane]	18.68989
 Gram - Sigmund [Leggendaria]	36.73534
+D-WHY - Good Will Stunting [Expert]	34.39816
+D-WHY - Good Will Stunting [Beginner]	5.088171
+D-WHY - Good Will Stunting [Easy]	6.118697
+Acreix - Visions [Imagination]	21.3528
+Camellia - Luin of Celtchar [Antori's Gamer Moment]	31.29109
+HYDE - AFTER LIGHT [Ama's Insane]	26.53015
+HYDE - AFTER LIGHT [Extra]	33.11599
+BlackY - AA BlackY mix [Hard]	17.73133
+BlackY - AA BlackY mix [Easy]	5.704803
+BlackY - AA BlackY mix [Insane]	25.97653
+BlackY - AA BlackY mix [Normal]	10.32762
+Camellia - Speedrun [Any%]	33.34625
 RJD2 - Ghostwriter [Breeze]	20.2149
+Camellia ft. Nanahira - Replay! [Expert!]	32.8512
 Camellia ft. Nanahira x Koko - Toho-Assisted-Speedrun!!! [Expert!!!]	33.34349
+Camellia - Tojita Sekai [Closed World]	27.82335
 Lil Pump - gucci gang [would you gay would you gay would you gay would you gay would you gay (nut)]	13.58981
 Lil Pump - gucci gang [would you gay would you gay would you gay would you gay would you gay]	14.02021
+Yunomi - Mentai Cosmic  (short ver.) [Insane]	26.32274
+Yunomi - Mentai Cosmic (short ver.) [Hard]	13.91934
+Billain - Specialist [Unnatural]	42.75739
 Expensive Dispenser - Thank You, Everybody! [Heart to Heart]	13.33217
+Horie Yui - True Truly Love [Passion]	24.49989
+Sangatsu no Phantasia - Pastel Rain [Twilight]	21.7818
 Buta-Otome - Mesen [Valley of Grace]	28.08204
+MAZARE - Mazare Party [Oriental Blossom]	32.17354
+HyuN - Grin [Croco's Hard]	23.32376
+HyuN - Grin [Croco's Sweet Summer Smile]	28.4697
+cosMo@BousouP - Oceanus [Croco's Hard]	25.47692
+cosMo@BousouP - Oceanus [Croco's Secret of the Waters]	29.95389
+*namirin - Kanzen Shouri*Esper Girl [Ash's Insane]	26.78302
+*namirin - Kanzen Shouri*Esper Girl [Ash's Normal]	12.97946
+*namirin - Kanzen Shouri*Esper Girl [Hard]	21.70901
+*namirin - Kanzen Shouri*Esper Girl [Insane]	27.6915
 android52 - Reactive Factory (Work It Out) [Futurity]	16.06145
-5argon vs. encX - Exargon [Beginner]	8.162146
-5argon vs. encX - Exargon [Easy+]	10.26544
-5argon vs. encX - Exargon [Easy]	9.035518
-ARForest - The Last Page [final words]	41.61362
-ARForest - The Last Page [yahweh's final path]	41.68481
+TrySail - Adrenaline!!! [Expert]	35.21179
+PSYQUI - Education [Have you studied your LNs?]	29.86963
 Ata - Euphoria [A Journey Through Time]	35.23801
 fiend - Morrissey [Another]	31.15824
 fiend - Morrissey [Hard]	21.01398
 fiend - Morrissey [Insane]	27.77588
 fiend - Morrissey [Normal]	13.38954
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [Easy]	13.17545
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [SUPEROMEGAHYPERBEGINNER]	9.200489
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [beginner]	13.82803
-Gareth Coker ft. Aeralie Brighton - Ori, Lost In The Storm [the suffocating feeling of eternal loneliness]	13.69831
-DJ Sharpnel - Moonearth [Cut ver.] [Lunar Anomaly]	45.5267
-Dormir - Sayonara Trip [Easy]	10.47193
-Dormir - Sayonara Trip [Extra]	34.38416
-Dormir - Sayonara Trip [Hard]	20.66005
-Dormir - Sayonara Trip [Insane]	13.53982
-Dormir - Sayonara Trip [Normal]	8.996953
-Dormir - Sayonara Trip [SUPEROMEGAHYPERBEGINNER]	8.373674
-Dormir - Sayonara Trip [Beginner]	8.104965
+Sisato with Na+ - CG901B [Expert]	39.38779
 KOTONHOUSE ft. Nanahira - Midnight, Starlight [Stargazing]	15.4746
-M83 - Midnight City [High Life]	29.07301
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Beginner]	4.970684
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Easy]	5.706626
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Normal]	11.09276
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Insane]	27.62066
 Noname ft. Ravyn Lenae & Joseph Chilliams - Forever [Expert]	34.22346
 dj TAKA - quaver [The Game]	27.862
+Petit Rabbit's - Daydream cafe [Expert]	30.67937
 Mie Sonozaki - It's been a long time since we passed through space-time! Vocal Version [Memories]	20.18794
 Nekomata Master - Avalon no Oka [Expert]	33.38141
 Nekomata Master - Avalon no Oka [Insane]	22.49708
 Majima Junji, Kobayashi Yuusuke, Tomita Miyu - Hanabira Ondo (TV Size) [Hard]	15.79245
 Majima Junji, Kobayashi Yuusuke, Tomita Miyu - Hanabira Ondo (TV Size) [Normal]	8.310749
 YUKIYANAGI - You [do you ever feel lonely]	29.88522
-Neokontrol Feat. Dustvoxx & Laur - FIRELIGHT [IGNITION]	50.96641
-technoplanet - Redshift [Tabi]	50.69559
-LUZE & Emew. - Unmeiron [Tachyon]	51.13053
 Gekidan Hitotos - A E I U E O Ao! [Expert]	40.51006
-xi - FREEDOM DiVE (Dear Mr.X Remix) [NAKANO DiVE]	56.0032
-Frantic Noise - Forgotten Language [Psychedelic]	50.07627
-Noah [Vocal. Ozera Ai] - Rebirth -the end- [-finale-]	50.0864
 Jack Stauber - Milk [Hard]	18.69935
 Jack Stauber - Milk [Insane]	24.19984
 Jack Stauber - Milk [Normal]	12.02028
 Jack Stauber - Milk [yahweh's Beginner]	6.440799
 Jack Stauber - Milk [yahweh's Easy]	6.514433
 Jack Stauber - Milk [yahweh's long gone]	30.53222
-JYOCHO - 365 [as it comes to a stop]	30.67524
-The Weeknd ft. Daft Punk - Starboy [motherfuckin star boy]	27.85683
+DJ Sharkey & Arkitech - Quadraphinix [Moonbeam]	38.54416
+Mili - world.execute(me); [bool tabbyCat = true;]	20.71437
 Ludwig van Beethoven - Sonata no. 8 "Pathetique" mvt. 3 [Allegro]	25.61924
 Ludwig van Beethoven - Sonata no. 8 "Pathetique" mvt. 3 [Moderato]	22.71103
 Aether Realm - The Sun, The Moon, The Star [Gaze at the Fading Light]	33.69785
@@ -459,35 +769,22 @@ Mikuni Yukinaka ft. Nanahira - Arukidasu Mirai [Insane]	21.55042
 Mikuni Yukinaka ft. Nanahira - Arukidasu Mirai [Hard]	16.54268
 Mikuni Yukinaka ft. Nanahira - Arukidasu Mirai [Normal]	11.16752
 Mikuni Yukinaka ft. Nanahira - Arukidasu Mirai [Easy]	6.972705
+Silentroom - Angel Echo [distortion]	25.84272
 Frums - aerostorm [tempest]	36.17959
 Frums - aerostorm [downpour]	34.95504
 Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Hard]	16.00878
 Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Normal]	8.995209
 Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Easy]	5.582887
 Hachikuji Mayoi (CV: Katou Emiri) - Kaerimichi (TV Size) [Beginner]	4.309612
-KRUX - Illusion of Inflict [7K Hyper]	34.93433
-KRUX - Illusion of Inflict [7K Kruxified]	42.44578
-KRUX - Illusion of Inflict [7K Normal]	20.95728
 KRUX - Illusion of Inflict [CS' 4K Illusionist]	30.77251
 KRUX - Illusion of Inflict [Fontes' 4K Easy]	8.675024
-KRUX - Illusion of Inflict [Kawawa's 7K Another]	39.96456
 KRUX - Illusion of Inflict [Lude's 4K Another]	28.7333
-KRUX - Illusion of Inflict [Ramuchi's 7K Easy]	15.29218
 KRUX - Illusion of Inflict [Rem's 4K Normal]	13.56904
 KRUX - Illusion of Inflict [Wonki's 4K Hyper]	23.26385
-Kaneko Chiharu - WHITEOUT [ADVANCED]	33.60331
-Kaneko Chiharu - WHITEOUT [BASIC]	11.16778
-Kaneko Chiharu - WHITEOUT [GRAVITY]	46.42543
-Kaneko Chiharu - WHITEOUT [NOVICE]	19.94464
-Kaneko Chiharu - WHITEOUT [Rem's EXHAUST]	46.63551
-Kaneko Chiharu - WHITEOUT [SILVERKADS' HEAVENLY]	47.62112
-Kaneko Chiharu - WHITEOUT [Wonki's MAXIMUM]	44.44258
-Risk Junk - quaver [Another]	34.89021
-Risk Junk - quaver [Black Another]	40.67228
-Risk Junk - quaver [Kawawa's Hyper]	24.43362
-Risk Junk - quaver [Kawawa's Normal]	14.48036
-Red Velvet - Power Up [Blue Lemonade]	42.33973
 Kucchi- - Remilia ~Kyuuketsuki no Tame no Kyousoukyoku [Expert]	26.7631
+Himeringo - Idola no Circus [RA TA TA TAI]	35.418
+Seiryu - AO-INFINITY [Extra]	28.70869
+Halozy ft. Nanahira - Monosugoi Live de Cirno ga Sokohaka to Naku Monosugoi Uta [Expert]	32.995
 Yooh - Cy-Bird [ADVANCED]	24.98807
 Yooh - Cy-Bird [EXHAUST]	30.87967
 Yooh - Cy-Bird [NOVICE]	19.13936
@@ -508,47 +805,12 @@ Various Artists - 4K LN Dan Courses v2 - Level 3 - [9th Dan (Marathon)]	34.49812
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [11th Dan - Yoake (Marathon)]	38.72386
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [12th Dan - Yuugure (Marathon)]	39.87546
 Various Artists - 4K LN Dan Courses v2 - Extra Level - [13th Dan - Yoru (Marathon)]	41.36292
-osu!mania 7K Dan Course - LN Dan Phase II [4th Dan]	36.58961
-osu!mania 7K Dan Course - LN Dan Phase II [5th Dan]	39.14566
-osu!mania 7K Dan Course - LN Dan Phase II [6th Dan]	42.94726
-osu!mania 7K Dan Course - LN Dan Phase II [7th Dan]	43.1519
-osu!mania 7K Dan Course - LN Dan Phase II [8th Dan]	46.01385
-Various Artists - Chordjack Pack #2 [Gokuraku Jodo 1.15x]	40.58033
-Various Artists - Chordjack Pack #2 [Gokuraku Jodo 1.25x]	42.13807
-Various Artists - Chordjack Pack #2 [Gokuraku Jodo 1.2x]	41.42953
-Various Artists - Chordjack Pack #2 [Guile Theme Acapella 1.35x]	43.07172
-Various Artists - Chordjack Pack #2 [Guile Theme Acapella 1.3x]	42.21801
-Various Artists - Chordjack Pack #2 [Guile Theme Acapella 1.4x]	43.97909
-Various Artists - Chordjack Pack #2 [Gympie Gympe 1.45x]	42.19537
-Various Artists - Chordjack Pack #2 [Gympie Gympe 1.4x]	41.47553
-Various Artists - Chordjack Pack #2 [Gympie Gympe 1.5x]	42.98846
-Various Artists - Chordjack Pack #2 [Heaven Above 1.15x]	41.3952
-Various Artists - Chordjack Pack #2 [Heaven Above 1.1x]	40.40081
-Various Artists - Chordjack Pack #2 [Heaven Above 1.2x]	42.32954
-Various Artists - Chordjack Pack #2 [Honey Come!! 1.65x]	42.14402
-Various Artists - Chordjack Pack #2 [Honey Come!! 1.75x]	43.51668
-Various Artists - Chordjack Pack #2 [Honey Come!! 1.7x]	42.84655
-Various Artists - Chordjack Pack #2 [Knew day 1.05x]	38.62693
-Various Artists - Chordjack Pack #2 [Knew day 1.15x]	40.69693
-Various Artists - Chordjack Pack #2 [Knew day 1.1x]	39.68083
-Various Artists - Chordjack Pack #2 [Memory of Snow 1.15x]	40.05468
-Various Artists - Chordjack Pack #2 [Memory of Snow 1.1x]	39.2012
-Various Artists - Chordjack Pack #2 [Memory of Snow 1.2x]	41.08013
-Various Artists - Chordjack Pack #2 [monochrome 1.15x]	40.16953
-Various Artists - Chordjack Pack #2 [monochrome 1.25x]	42.07698
-Various Artists - Chordjack Pack #2 [monochrome 1.2x]	41.13248
-Various Artists - Chordjack Pack #2 [New Windy Paradise 1.25x]	39.51823
-Various Artists - Chordjack Pack #2 [New Windy Paradise 1.2x]	38.64017
-Various Artists - Chordjack Pack #2 [New Windy Paradise 1.3x]	40.34532
-Various Artists - Chordjack Pack #2 [only my railgun 1.15x]	38.03934
-Various Artists - Chordjack Pack #2 [only my railgun 1.25x]	39.9271
-Various Artists - Chordjack Pack #2 [only my railgun 1.2x]	39.0399
-Various Artists - Chordjack Pack #2 [Planet Pulsation 1.15x]	40.84743
-Various Artists - Chordjack Pack #2 [Planet Pulsation 1.25x]	42.83134
-Various Artists - Chordjack Pack #2 [Planet Pulsation 1.2x]	41.85804
+Venetian Snares - Frictional Nevada [Another]	31.74529
+Kobaryo - Eternal Ending (aran Remix) [Epilogue]	30.92982
 aaaa - Accumula Town (BMS Remix) [4k fun x1.2]	36.6483
 aaaa - Accumula Town (BMS Remix) [4k fun x1.3]	38.6428
 aaaa - Accumula Town (BMS Remix) [Easy]	31.43665
+BABYMETAL - Starlight [Hope]	24.09714
 aaaa - Accumula Town (BMS Remix) [furret walk]	31.34966
 BLiSS - The Skeleton Dance [Spooky Scary Skellys]	34.86789
 HyuN - unknown [QuaverLN]	20.96465
