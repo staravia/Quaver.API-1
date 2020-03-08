@@ -14,6 +14,7 @@ namespace Quaver.Tools
     {
         internal static void Main(string[] args)
         {
+            /*
             if (args.Length == 0)
             {
                 Console.WriteLine($"Welcome to the Quaver.API test bench.\n" +
@@ -66,7 +67,9 @@ namespace Quaver.Tools
                     break;
                 default:
                     throw new ArgumentException();
-            }
+            }*/
+
+            new CalcFolderCommand(new []{"-calcdiff", "E:\\Steam\\steamapps\\common\\Quaver\\Songs", "None"}).Execute();
         }
     }
 }

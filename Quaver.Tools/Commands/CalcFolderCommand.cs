@@ -1,7 +1,7 @@
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * Copyright (c) 2017-2018 Swan & The Quaver Team <support@quavergame.com>.
 */
 
@@ -26,9 +26,9 @@ namespace Quaver.Tools.Commands
         public string BaseFolder { get; }
 
         /// <summary>
-        ///     
+        ///
         /// </summary>
-        public ModIdentifier Mods { get; } 
+        public ModIdentifier Mods { get; }
 
         /// <summary>
         /// </summary>
@@ -39,13 +39,14 @@ namespace Quaver.Tools.Commands
             Mods = (ModIdentifier)Enum.Parse(typeof(ModIdentifier), args[2]);
         }
 
-        /// <summary> 
+        /// <summary>
         /// </summary>
         public override void Execute()
         {
             var files = Directory.GetFiles(BaseFolder, "*.qua", SearchOption.AllDirectories).ToList();
             files.AddRange(Directory.GetFiles(BaseFolder, "*.osu", SearchOption.AllDirectories));
 
+            var output = "";
             var calculatedMaps = new List<Tuple<int, string, string>>();
 
             for (var i = 0; i < files.Count; i++)
@@ -66,7 +67,9 @@ namespace Quaver.Tools.Commands
 
                     var diffCalc = map.SolveDifficulty();
 
-                    Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
+                    Console.WriteLine(files.Count - i);
+                    //Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
+                    output += $"{diffCalc.OverallDifficulty}\n";
                     calculatedMaps.Add(Tuple.Create(i, map.ToString(), diffCalc.OverallDifficulty.ToString(CultureInfo.InvariantCulture)));
                 }
                 catch (Exception e)
@@ -78,7 +81,7 @@ namespace Quaver.Tools.Commands
             var table = calculatedMaps.ToStringTable(new[] {"Id", "Map", "Difficulty"}, a => a.Item1, a => a.Item2, a => a.Item3);
             Console.WriteLine(table);
 
-            File.WriteAllText("./diff-calc.txt", table);
+            File.WriteAllText("./old-diff-calc.txt", output);
         }
     }
 }
