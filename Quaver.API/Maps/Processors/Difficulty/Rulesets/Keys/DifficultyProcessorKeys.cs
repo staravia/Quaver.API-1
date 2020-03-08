@@ -453,48 +453,54 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             foreach (var data in StrainSolverData)
             {
                 // Check if data is LN
-                if (data.EndTime > data.StartTime)
+                if (data.EndTime <= data.StartTime)
+                    continue;
+
+                var durationValue = Math.Min(1, Math.Max(0, ( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs));
+                var baseMultiplier = 1 + durationValue * StrainConstants.LnBaseMultiplier;
+
+                foreach (var k in data.HitObjects)
+                    k.LnStrainMultiplier = baseMultiplier;
+
+                // Loop through all strain solver data on the current hand until the LN is finished
+                var next = data;
+                while (next.NextStrainSolverDataOnCurrentHand != null)
                 {
-                    var durationValue = 1 - Math.Min(1, Math.Max(0, ((StrainConstants.LnLayerThresholdMs + StrainConstants.LnLayerToleranceMs) - (data.EndTime - data.StartTime)) / StrainConstants.LnLayerToleranceMs));
-                    var baseMultiplier = 1 + (float)((1 - durationValue) * StrainConstants.LnBaseMultiplier);
-                    foreach (var k in data.HitObjects)
-                        k.LnStrainMultiplier = baseMultiplier;
+                    next = next.NextStrainSolverDataOnCurrentHand;
 
-                    // Check if next data point exists on current hand
-                    var next = data.NextStrainSolverDataOnCurrentHand;
-                    if (next != null)
+                    if (next.StartTime >= data.EndTime - StrainConstants.LnEndThresholdMs)
+                        break;
 
-                    // Check to see if the target hitobject is layered inside the current LN
-                    if (next.StartTime < data.EndTime - StrainConstants.LnEndThresholdMs)
                     if (next.StartTime >= data.StartTime + StrainConstants.LnEndThresholdMs)
-
-                    // Target hitobject's LN ends after current hitobject's LN end.
-                    if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
                     {
-                        foreach (var k in data.HitObjects)
+                        // Target hitobject's LN ends after current hitobject's LN end.
+                        if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
                         {
-                            k.LnLayerType = LnLayerType.OutsideRelease;
-                            k.LnStrainMultiplier *= StrainConstants.LnReleaseAfterMultiplier;
+                            foreach (var k in data.HitObjects)
+                            {
+                                k.LnLayerType = LnLayerType.OutsideRelease;
+                                k.LnStrainMultiplier *= StrainConstants.LnReleaseAfterMultiplier;
+                            }
                         }
-                    }
 
-                    // Target hitobject's LN ends before current hitobject's LN end
-                    else if (next.EndTime > 0)
-                    {
-                        foreach (var k in data.HitObjects)
+                        // Target hitobject's LN ends before current hitobject's LN end
+                        else if (next.EndTime > 0)
                         {
-                            k.LnLayerType = LnLayerType.InsideRelease;
-                            k.LnStrainMultiplier *= StrainConstants.LnReleaseBeforeMultiplier;
+                            foreach (var k in data.HitObjects)
+                            {
+                                k.LnLayerType = LnLayerType.InsideRelease;
+                                k.LnStrainMultiplier *= StrainConstants.LnReleaseBeforeMultiplier;
+                            }
                         }
-                    }
 
-                    // Target hitobject is not an LN
-                    else
-                    {
-                        foreach (var k in data.HitObjects)
+                        // Target hitobject is not an LN
+                        else
                         {
-                            k.LnLayerType = LnLayerType.InsideTap;
-                            k.LnStrainMultiplier *= StrainConstants.LnTapMultiplier;
+                            foreach (var k in data.HitObjects)
+                            {
+                                k.LnLayerType = LnLayerType.InsideTap;
+                                k.LnStrainMultiplier *= StrainConstants.LnTapMultiplier;
+                            }
                         }
                     }
                 }
@@ -568,7 +574,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private float GetCoefficientValue(float duration, float xMin, float xMax, float strainMax, float exp)
         {
-            // todo: temp. Linear for now
             // todo: apply cosine curve
             const float lowestDifficulty = 1;
 

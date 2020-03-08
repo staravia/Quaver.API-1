@@ -1,7 +1,7 @@
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * Copyright (c) 2017-2018 Swan & The Quaver Team <support@quavergame.com>.
 */
 
@@ -18,70 +18,69 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         ///     When Long Notes start/end after this threshold, it will be considered for a specific multiplier.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>
-        public float LnEndThresholdMs { get; set; } = 42;
+        public float LnEndThresholdMs { get; } = 42;
 
         /// <summary>
         ///     When seperate notes are under this threshold, it will count as a chord.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>
-        public float ChordClumpToleranceMs { get; set; } = 8;
+        public float ChordClumpToleranceMs { get; } = 8;
 
         /// <summary>
         ///     Size of each graph partition in miliseconds.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>
-        public int GraphIntervalSizeMs { get; set; } = 500;
+        public int GraphIntervalSizeMs { get; } = 500;
 
         /// <summary>
         ///     Offset between each graph partition in miliseconds.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>
-        public int GraphIntervalOffsetMs { get; set; } = 100;
+        public int GraphIntervalOffsetMs { get; } = 100;
 
         // Simple Jacks
-        public float SJackLowerBoundaryMs { get; private set; }
-        public float SJackUpperBoundaryMs { get; private set; }
-        public float SJackMaxStrainValue { get; private set; }
-        public float SJackCurveExponential { get; private set; }
+        public float SJackLowerBoundaryMs { get; }
+        public float SJackUpperBoundaryMs { get; }
+        public float SJackMaxStrainValue { get; }
+        public float SJackCurveExponential { get; }
 
         // Tech Jacks
-        public float TJackLowerBoundaryMs { get; private set; }
-        public float TJackUpperBoundaryMs { get; private set; }
-        public float TJackMaxStrainValue { get; private set; }
-        public float TJackCurveExponential { get; private set; }
+        public float TJackLowerBoundaryMs { get; }
+        public float TJackUpperBoundaryMs { get; }
+        public float TJackMaxStrainValue { get; }
+        public float TJackCurveExponential { get; }
 
         // Rolls
-        public float RollLowerBoundaryMs { get; private set; }
-        public float RollUpperBoundaryMs { get; private set; }
-        public float RollMaxStrainValue { get; private set; }
-        public float RollCurveExponential { get; private set; }
+        public float RollLowerBoundaryMs { get; }
+        public float RollUpperBoundaryMs { get; }
+        public float RollMaxStrainValue { get; }
+        public float RollCurveExponential { get; }
 
         // Brackets
-        public float BracketLowerBoundaryMs { get; private set; }
-        public float BracketUpperBoundaryMs { get; private set; }
-        public float BracketMaxStrainValue { get; private set; }
-        public float BracketCurveExponential { get; private set; }
+        public float BracketLowerBoundaryMs { get; }
+        public float BracketUpperBoundaryMs { get; }
+        public float BracketMaxStrainValue { get; }
+        public float BracketCurveExponential { get; }
 
         // LN
-        public float LnBaseMultiplier { get; private set; }
-        public float LnLayerToleranceMs { get; private set; }
-        public float LnLayerThresholdMs { get; private set; }
-        public float LnReleaseAfterMultiplier { get; private set; }
-        public float LnReleaseBeforeMultiplier { get; private set; }
-        public float LnTapMultiplier { get; private set; }
+        public float LnBaseMultiplier { get; }
+        public float LnDifficultSizeThresholdMs { get; }
+        public float LnReleaseAfterMultiplier { get; }
+        public float LnReleaseBeforeMultiplier { get; }
+        public float LnTapMultiplier { get; }
 
         // LongJack Manipulation
-        public float VibroActionDurationMs { get; set; }
-        public float VibroActionToleranceMs { get; set; }
-        public float VibroMultiplier { get; set; }
-        public float VibroLengthMultiplier { get; set; }
-        public float VibroMaxLength { get; set; }
+        public float VibroActionDurationMs { get; }
+        public float VibroActionToleranceMs { get; }
+        public float VibroMultiplier { get; }
+        public float VibroLengthMultiplier { get; }
+        public float VibroMaxLength { get; }
 
         // Roll Manipulation
-        public float RollRatioToleranceMs { get; set; }
-        public float RollRatioMultiplier { get; set; }
-        public float RollLengthMultiplier { get; set; }
-        public float RollMaxLength { get; set; }
+        public float RollRatioToleranceMs { get; }
+        public float RollRatioMultiplier { get; }
+        public float RollLengthMultiplier { get; }
+        public float RollMaxLength { get; }
 
         /// <summary>
         ///     Constructor. Create default strain constant values.
@@ -113,11 +112,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             BracketCurveExponential = NewConstant("BracketCurveExponential", 1.13f);
 
             // LN
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 0.6f);
-            LnLayerToleranceMs = NewConstant("LnLayerToleranceMs", 40f);
-            LnLayerThresholdMs = NewConstant("LnLayerThresholdMs", 93.7f);
-            LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.75f);
-            LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.35f);
+            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 0.2f);
+            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 500f);
+            LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.5f);
+            LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.15f);
             LnTapMultiplier = NewConstant("LnTapMultiplier", 1.05f);
 
             // LongJack Manipulation
