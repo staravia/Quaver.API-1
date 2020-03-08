@@ -524,23 +524,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
+            const float weightOffset = 50f;
             float weightedDiff = 0;
-            float averageDiff = 0;
             float weight = 0;
 
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
             {
                 data.CalculateStrainValue();
-                weightedDiff += data.TotalStrainValue * data.TotalStrainValue;
-                weight += data.TotalStrainValue;
-                averageDiff += data.TotalStrainValue;
+                weightedDiff += data.TotalStrainValue * ( data.TotalStrainValue + weightOffset );
+                weight += data.TotalStrainValue + weightOffset;
             }
 
             // Calculate the overall difficulty with given weights and values
             weightedDiff /= weight;
-            averageDiff /= StrainSolverData.Count;
-            return (weightedDiff + averageDiff) / 2f;
+            return weightedDiff;
         }
 
         /// <summary>
