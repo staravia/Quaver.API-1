@@ -69,7 +69,7 @@ namespace Quaver.Tools
                     throw new ArgumentException();
             }*/
 
-            new CalcFolderCommand(new []{"-calcdiff", "E:\\osu!\\Songs", "None"}).Execute();
+            new CalcFolderCommand(new []{"-calcdiff", "E:\\Steam\\steamapps\\common\\Quaver\\Songs", "None"}).Execute();
         }
     }
 }

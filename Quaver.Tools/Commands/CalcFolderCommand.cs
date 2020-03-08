@@ -49,6 +49,8 @@ namespace Quaver.Tools.Commands
             var calculatedMaps = new List<Tuple<int, string, string>>();
             var startTime = DateTime.Now;
 
+            var output = "";
+
             for (var i = 0; i < files.Count; i++)
             {
                 var file = files[i];
@@ -69,6 +71,7 @@ namespace Quaver.Tools.Commands
 
                     Console.WriteLine($"{files.Count - i}");
                     //Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
+                    output += $"{map}\t{diffCalc.OverallDifficulty}\n";
                     calculatedMaps.Add(Tuple.Create(i, map.ToString(), diffCalc.OverallDifficulty.ToString(CultureInfo.InvariantCulture)));
                 }
                 catch (Exception e)
@@ -80,7 +83,7 @@ namespace Quaver.Tools.Commands
             var table = calculatedMaps.ToStringTable(new[] {"Id", "Map", "Difficulty"}, a => a.Item1, a => a.Item2, a => a.Item3);
             Console.WriteLine($"Time Elasped: { (DateTime.Now - startTime).TotalMilliseconds}ms\nOutput Directory: {Directory.GetCurrentDirectory()}");
 
-            File.WriteAllText("./diff-calc.txt", table);
+            File.WriteAllText("./diff-calc.txt", output);
         }
     }
 }

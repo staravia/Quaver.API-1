@@ -26,7 +26,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <summary>
         ///     The version of the processor.
         /// </summary>
-        public static string Version { get; } = "0.0.1";
+        public static string Version { get; } = "0.2.0";
 
         /// <summary>
         ///     Constants used for solving
@@ -165,7 +165,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeBaseStrainStates(rate, assumeHand);
             ComputeForChords();
             ComputeForFingerActions();
-            // todo: use ComputeForActionPatterns();
             ComputeForRollManipulation();
             ComputeForJackManipulation();
             ComputeForLnMultiplier();
@@ -342,22 +341,13 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         }
 
         /// <summary>
-        ///     Scans every finger action and compute a pattern multiplier.
-        ///     Pattern manipulation, and inflated patterns are factored into calculation.
-        /// </summary>
-        /// <param name="qssData"></param>
-        private void ComputeForActionPatterns()
-        {
-
-        }
-
-        /// <summary>
         ///     Scans for roll manipulation. "Roll Manipulation" is definced as notes in sequence "A -> B -> A" with one action at least twice as long as the other.
         /// </summary>
         private void ComputeForRollManipulation()
         {
             var manipulationIndex = 0;
 
+            // todo: refactor this so that it works for 7k rolls
             foreach (var data in StrainSolverData)
             {
                 // Reset manipulation found
@@ -529,31 +519,23 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
-            float calculatedDiff = 0;
+            float weightedDiff = 0;
+            float averageDiff = 0;
+            float weight = 0;
 
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
+            {
                 data.CalculateStrainValue();
-
-            // left hand
-            foreach (var data in StrainSolverData)
-            {
-                if (data.Hand == Hand.Left)
-                    calculatedDiff += data.TotalStrainValue;
+                weightedDiff += data.TotalStrainValue * data.TotalStrainValue;
+                weight += data.TotalStrainValue;
+                averageDiff += data.TotalStrainValue;
             }
 
-            // right hand
-            foreach (var data in StrainSolverData)
-            {
-                if (data.Hand == Hand.Right)
-                    calculatedDiff += data.TotalStrainValue;
-            }
-
-            // Calculate overall 4k difficulty
-            calculatedDiff /= StrainSolverData.Count;
-
-            // Get Overall 4k difficulty
-            return calculatedDiff;
+            // Calculate the overall difficulty with given weights and values
+            weightedDiff /= weight;
+            averageDiff /= StrainSolverData.Count;
+            return (weightedDiff + averageDiff) / 2f;
         }
 
         /// <summary>
@@ -575,15 +557,15 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private float GetCoefficientValue(float duration, float xMin, float xMax, float strainMax, float exp)
         {
-            // todo: apply cosine curve
             const float lowestDifficulty = 1;
 
             // calculate ratio between min and max value
+            var densityBonus = Math.Min(5, 2000 / duration);
             var ratio = Math.Max(0, (duration - xMin) / (xMax - xMin));
-                ratio = 1 - Math.Min(1, ratio);
+            ratio = 1 - Math.Min(1, ratio);
 
             // compute for difficulty
-            return lowestDifficulty + (strainMax - lowestDifficulty) * (float)Math.Pow(ratio, exp);
+            return lowestDifficulty + densityBonus + (strainMax - lowestDifficulty) * (float)Math.Pow(ratio, exp);
         }
     }
 }
