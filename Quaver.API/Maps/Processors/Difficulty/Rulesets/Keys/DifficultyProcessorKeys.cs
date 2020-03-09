@@ -245,11 +245,15 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
                             // Remove un-needed data point because it has been merged with the current point
                             StrainSolverData.RemoveAt(j);
+                            j--;
                         }
-                    }
-                    else
-                    {
-                        StrainSolverData[i].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
+
+                        // Apply a chord multiplier if the other hand is chorded the current hand
+                        else
+                        {
+                            StrainSolverData[i].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
+                            StrainSolverData[j].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
+                        }
                     }
                 }
             }

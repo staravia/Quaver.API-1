@@ -98,18 +98,18 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 40);
             SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);
             SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 57);
-            SJackCurveExponential = NewConstant("SJackCurveExponential", 1.26f);
+            SJackCurveExponential = NewConstant("SJackCurveExponential", 1.31f);
 
             // Tech Jack
             TJackLowerBoundaryMs = NewConstant("TJackLowerBoundaryMs", 40);
             TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 340);
             TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 63);
-            TJackCurveExponential = NewConstant("TJackCurveExponential", 1.31f);
+            TJackCurveExponential = NewConstant("TJackCurveExponential", 1.39f);
 
             // Roll/Trill
             RollLowerBoundaryMs = NewConstant("RollLowerBoundaryMs", 30);
             RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 230);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 51);
+            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 55);
             RollCurveExponential = NewConstant("RollCurveExponential", 1.24f);
 
             // Bracket
