@@ -21,6 +21,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float LnEndThresholdMs { get; } = 42;
 
         /// <summary>
+        ///     How tolerant vibro will be detected with given delta.
+        /// Non-Dyanmic Constant. Do not use for optimization.
+        /// </summary>
+        public float VibroDeltaToleranceMs { get; } = 30;
+
+        /// <summary>
         ///     When seperate notes are under this threshold, it will count as a chord.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>

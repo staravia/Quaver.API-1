@@ -354,49 +354,61 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private void ComputeForRollManipulation()
         {
-            var manipulationIndex = 0;
+            var manipulationCount = new Dictionary<Hand, int>
+            {
+                {Hand.Left, 0},
+                {Hand.Right, 0}
+            };
+
+            var manipulationFound = new Dictionary<Hand, bool>
+            {
+                {Hand.Left, false},
+                {Hand.Right, false}
+            };
 
             // todo: refactor this so that it works for 7k rolls
             foreach (var data in StrainSolverData)
             {
-                // Reset manipulation found
-                var manipulationFound = false;
+                // subtract manipulation index if manipulation was not found
+                if (!manipulationFound[data.Hand])
+                    manipulationCount[data.Hand] = 0;
+
+                // Reset manipulation detection for current hand
+                manipulationFound[data.Hand] = false;
 
                 // Check to see if the current data point has two other following points
-                if (data.NextStrainSolverDataOnCurrentHand != null && data.NextStrainSolverDataOnCurrentHand.NextStrainSolverDataOnCurrentHand != null)
+                if (data.NextStrainSolverDataOnCurrentHand == null || data.NextStrainSolverDataOnCurrentHand.NextStrainSolverDataOnCurrentHand == null)
+                    continue;
+
+                var middle = data.NextStrainSolverDataOnCurrentHand;
+                var last = data.NextStrainSolverDataOnCurrentHand.NextStrainSolverDataOnCurrentHand;
+
+                // Check to see if both data and middle points are rolls
+                if (data.FingerAction != FingerAction.Roll || middle.FingerAction == FingerAction.Roll)
+                    continue;
+
+                // Make sure the first and last finger states are identical
+                if (data.FingerState != last.FingerState)
+                    continue;
+
+                // Get action duration ratio from both actions
+                var durationRatio = Math.Max(data.FingerActionDurationMs / middle.FingerActionDurationMs, middle.FingerActionDurationMs / data.FingerActionDurationMs);
+
+                // If the ratio is above this threshold, count it as a roll manipulation
+                if (durationRatio >= StrainConstants.RollRatioToleranceMs)
                 {
-                    var middle = data.NextStrainSolverDataOnCurrentHand;
-                    var last = data.NextStrainSolverDataOnCurrentHand.NextStrainSolverDataOnCurrentHand;
+                    // Apply multiplier
+                    // todo: catch possible arithmetic error (division by 0)
+                    var durationMultiplier = 1 / (1 + ((durationRatio - 1) * StrainConstants.RollRatioMultiplier));
+                    var manipulationFoundRatio = 1 - ((manipulationCount[data.Hand] / StrainConstants.RollMaxLength) * (1 - StrainConstants.RollLengthMultiplier));
+                    data.RollManipulationStrainMultiplier = durationMultiplier * manipulationFoundRatio;
 
-                    if (data.FingerAction == FingerAction.Roll && middle.FingerAction == FingerAction.Roll)
-                    {
-                        if (data.FingerState == last.FingerState)
-                        {
-                            // Get action duration ratio from both actions
-                            var durationRatio = Math.Max(data.FingerActionDurationMs / middle.FingerActionDurationMs, middle.FingerActionDurationMs / data.FingerActionDurationMs);
-
-                            // If the ratio is above this threshold, count it as a roll manipulation
-                            if (durationRatio >= StrainConstants.RollRatioToleranceMs)
-                            {
-                                // Apply multiplier
-                                // todo: catch possible arithmetic error (division by 0)
-                                var durationMultiplier = 1 / (1 + ((durationRatio - 1) * StrainConstants.RollRatioMultiplier));
-                                var manipulationFoundRatio = 1 - ((manipulationIndex / StrainConstants.RollMaxLength) * (1 - StrainConstants.RollLengthMultiplier));
-                                data.RollManipulationStrainMultiplier = durationMultiplier * manipulationFoundRatio;
-
-                                // Count manipulation
-                                manipulationFound = true;
-                                RollInaccuracyConfidence++;
-                                if (manipulationIndex < StrainConstants.RollMaxLength)
-                                    manipulationIndex++;
-                            }
-                        }
-                    }
+                    // Count manipulation
+                    manipulationFound[data.Hand] = true;
+                    RollInaccuracyConfidence++;
+                    if (manipulationCount[data.Hand] < StrainConstants.RollMaxLength)
+                        manipulationCount[data.Hand]++;
                 }
-
-                // subtract manipulation index if manipulation was not found
-                if (!manipulationFound && manipulationIndex > 0)
-                    manipulationIndex--;
             }
         }
 
@@ -405,18 +417,29 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private void ComputeForJackManipulation()
         {
-            var longJackSize = 0;
+            var prevActionDuration = 0f;
+            var manipulationFound = new Dictionary<Hand, bool>
+            {
+                {Hand.Left, false},
+                {Hand.Right, false}
+            };
+
+            var manipulationCount = new Dictionary<Hand, int>
+            {
+                {Hand.Left, 0},
+                {Hand.Right, 0}
+            };
 
             foreach (var data in StrainSolverData)
             {
-                // Reset manipulation found
-                var manipulationFound = false;
+                // Reset manipulation detection for current hand
+                manipulationFound[data.Hand] = false;
 
                 // Check to see if the current data point has a following data point
                 if (data.NextStrainSolverDataOnCurrentHand != null )
                 {
                     var next = data.NextStrainSolverDataOnCurrentHand;
-                    if (data.FingerAction == FingerAction.SimpleJack && next.FingerAction == FingerAction.SimpleJack)
+                    if (data.FingerAction == FingerAction.SimpleJack && next.FingerAction == FingerAction.SimpleJack && data.FingerActionDurationMs < StrainConstants.VibroDeltaToleranceMs + prevActionDuration)
                     {
                         // Apply multiplier
                         // todo: catch possible arithmetic error (division by 0)
@@ -425,22 +448,24 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         //          93.7ms = 160bpm 1/4 vibro
 
                         // 35f = 35ms tolerance before hitting vibro point (88.2ms, 170bpm vibro)
-                        var durationValue = (((StrainConstants.VibroActionDurationMs + StrainConstants.VibroActionToleranceMs) - data.FingerActionDurationMs) / StrainConstants.VibroActionToleranceMs).Clamp(0, 1);
+                        var durationValue = ((StrainConstants.VibroActionDurationMs + StrainConstants.VibroActionToleranceMs - data.FingerActionDurationMs) / StrainConstants.VibroActionToleranceMs).Clamp(0, 1);
                         var durationMultiplier = 1 - (durationValue * (1 - StrainConstants.VibroMultiplier));
-                        var manipulationFoundRatio = 1 - ((longJackSize / StrainConstants.VibroMaxLength) * (1 - StrainConstants.VibroLengthMultiplier));
+                        var manipulationFoundRatio = 1 - ((manipulationCount[data.Hand] / StrainConstants.VibroMaxLength) * (1 - StrainConstants.VibroLengthMultiplier));
                         data.RollManipulationStrainMultiplier = durationMultiplier * manipulationFoundRatio;
 
                         // Count manipulation
-                        manipulationFound = true;
+                        manipulationFound[data.Hand] = true;
                         VibroInaccuracyConfidence++;
-                        if (longJackSize < StrainConstants.VibroMaxLength)
-                            longJackSize++;
+                        if (manipulationCount[data.Hand] < StrainConstants.VibroMaxLength)
+                            manipulationCount[data.Hand]++;
                     }
+
+                    prevActionDuration = data.FingerActionDurationMs;
                 }
 
                 // Reset manipulation count if manipulation was not found
-                if (!manipulationFound)
-                    longJackSize = 0;
+                if (!manipulationFound[data.Hand])
+                    manipulationCount[data.Hand] = 0;
             }
         }
 
