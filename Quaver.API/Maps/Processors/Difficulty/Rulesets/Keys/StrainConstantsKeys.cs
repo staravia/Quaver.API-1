@@ -38,6 +38,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         public int GraphIntervalOffsetMs { get; } = 100;
 
+        // Stamina
+        public float StaminaIncreaseVelocity { get; }
+        public float StaminaDecreaseVelocity { get; }
+
         // Chords
         public float BothHandChordedMultiplier { get; }
 
@@ -91,6 +95,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         public StrainConstantsKeys()
         {
+            // Stamina
+            StaminaIncreaseVelocity = NewConstant("", 3.6f);
+            StaminaDecreaseVelocity = NewConstant("", -0.4f);
+
             // Chords
             BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.9f);
 

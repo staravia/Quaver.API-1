@@ -168,7 +168,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeForRollManipulation();
             ComputeForJackManipulation();
             ComputeForLnMultiplier();
-            return CalculateOverallDifficulty();
+            return ComputeForStrainDifficulty();
         }
 
         /// <summary>
@@ -425,7 +425,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         //          93.7ms = 160bpm 1/4 vibro
 
                         // 35f = 35ms tolerance before hitting vibro point (88.2ms, 170bpm vibro)
-                        var durationValue = Math.Min(1, Math.Max(0, ((StrainConstants.VibroActionDurationMs + StrainConstants.VibroActionToleranceMs) - data.FingerActionDurationMs) / StrainConstants.VibroActionToleranceMs));
+                        var durationValue = (((StrainConstants.VibroActionDurationMs + StrainConstants.VibroActionToleranceMs) - data.FingerActionDurationMs) / StrainConstants.VibroActionToleranceMs).Clamp(0, 1);
                         var durationMultiplier = 1 - (durationValue * (1 - StrainConstants.VibroMultiplier));
                         var manipulationFoundRatio = 1 - ((longJackSize / StrainConstants.VibroMaxLength) * (1 - StrainConstants.VibroLengthMultiplier));
                         data.RollManipulationStrainMultiplier = durationMultiplier * manipulationFoundRatio;
@@ -455,7 +455,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.EndTime <= data.StartTime)
                     continue;
 
-                var durationValue = Math.Min(1, Math.Max(0, ( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs));
+                var durationValue = (( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs).Clamp(0, 1);;
                 var baseDifficulty = StrainConstants.LnBaseValue + durationValue * StrainConstants.LnBaseMultiplier;
 
                 foreach (var k in data.HitObjects)
@@ -526,7 +526,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         /// <param name="rate"></param>
         /// <returns></returns>
-        private float CalculateOverallDifficulty()
+        private float ComputeForStrainDifficulty()
         {
             const float weightOffset = 50f;
             float weightedDiff = 0;
@@ -543,6 +543,33 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Calculate the overall difficulty with given weights and values
             weightedDiff /= weight;
             return weightedDiff;
+        }
+
+        /// <summary>
+        ///     This will Handle stamina-related calculations
+        /// </summary>
+        private void ComputeForStamina()
+        {
+            float leftDiff = 0;
+            float leftPos = 0;
+            float rightDiff = 0;
+            float rightPos = 0;
+
+            foreach (var data in StrainSolverData)
+            {
+                switch (data.Hand)
+                {
+                    case Hand.Left:
+                        var increment = data.TotalStrainValue > leftDiff
+                            ? StrainConstants.StaminaIncreaseVelocity
+                            : StrainConstants.StaminaDecreaseVelocity;
+                        leftDiff = leftDiff + increment * ( data.StartTime - leftPos );
+                        break;
+
+                    case Hand.Right:
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -568,8 +595,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
             // calculate ratio between min and max value
             var densityBonus = Math.Min(5, 2000 / duration);
-            var ratio = Math.Max(0, (duration - xMin) / (xMax - xMin));
-            ratio = 1 - Math.Min(1, ratio);
+            var ratio = Math.Max(0, 1 - (duration - xMin) / (xMax - xMin));
 
             // compute for difficulty
             return lowestDifficulty + densityBonus + (strainMax - lowestDifficulty) * (float)Math.Pow(ratio, exp);
