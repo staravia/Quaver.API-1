@@ -165,8 +165,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeBaseStrainStates(rate, assumeHand);
             ComputeForChords();
             ComputeForFingerActions();
-            ComputeForRollManipulation();
-            ComputeForJackManipulation();
+            //ComputeForRollManipulation();
+            //ComputeForJackManipulation();
             ComputeForLnMultiplier();
             return ComputeForStrainDifficulty();
         }
