@@ -168,7 +168,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             //ComputeForRollManipulation();
             //ComputeForJackManipulation();
             ComputeForLnMultiplier();
-            return ComputeForStrainDifficulty();
+            ComputeForStamina();
+            return CalculateOverallDifficulty();
         }
 
         /// <summary>
@@ -349,9 +350,16 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             }
         }
 
+        private void ComputeForWristManipulation()
+        {
+
+        }
+
+        # region OLD
+
         /// <summary>
         ///     Scans for roll manipulation. "Roll Manipulation" is definced as notes in sequence "A -> B -> A" with one action at least twice as long as the other.
-        /// </summary>
+        [ObsoleteAttribute]
         private void ComputeForRollManipulation()
         {
             var manipulationCount = new Dictionary<Hand, int>
@@ -415,6 +423,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <summary>
         ///     Scans for jack manipulation. "Jack Manipulation" is defined as a succession of simple jacks. ("A -> A -> A")
         /// </summary>
+        [ObsoleteAttribute]
         private void ComputeForJackManipulation()
         {
             var prevActionDuration = 0f;
@@ -468,6 +477,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     manipulationCount[data.Hand] = 0;
             }
         }
+
+        #endregion
 
         /// <summary>
         ///     Scans for LN layering and applies a multiplier
@@ -547,11 +558,39 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         }
 
         /// <summary>
-        ///     Calculate the general difficulty of the given map
+        ///     This will Handle stamina-related calculations
+        /// </summary>
+        private void ComputeForStamina()
+        {
+            var diff = new Dictionary<Hand, float>()
+            {
+                {Hand.Left, 0},
+                {Hand.Right, 0}
+            };
+
+            // Compute for stamina values
+            foreach (var data in StrainSolverData)
+            {
+                if (data.NextStrainSolverDataOnCurrentHand == null)
+                    continue;
+
+                data.CalculateStrainValue();
+                var curDiff = diff[data.Hand];
+                var increment = data.TotalStrainValue < curDiff
+                    ? StrainConstants.StaminaIncreaseVelocity
+                    : -StrainConstants.StaminaDecreaseVelocity;
+                curDiff = (curDiff + increment * (data.StartTime - data.NextStrainSolverDataOnCurrentHand.StartTime) / 1000f).Clamp(1, data.TotalStrainValue);
+                data.StaminaStrainValue = curDiff;
+                diff[data.Hand] = curDiff;
+            }
+        }
+
+        /// <summary>
+        ///     Calculate the overall difficulty of the given map
         /// </summary>
         /// <param name="rate"></param>
         /// <returns></returns>
-        private float ComputeForStrainDifficulty()
+        private float CalculateOverallDifficulty()
         {
             const float weightOffset = 50f;
             float weightedDiff = 0;
@@ -561,40 +600,13 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             foreach (var data in StrainSolverData)
             {
                 data.CalculateStrainValue();
-                weightedDiff += data.TotalStrainValue * ( data.TotalStrainValue + weightOffset );
-                weight += data.TotalStrainValue + weightOffset;
+                weightedDiff += data.StaminaStrainValue * ( data.StaminaStrainValue + weightOffset );
+                weight += data.StaminaStrainValue + weightOffset;
             }
 
             // Calculate the overall difficulty with given weights and values
             weightedDiff /= weight;
             return weightedDiff;
-        }
-
-        /// <summary>
-        ///     This will Handle stamina-related calculations
-        /// </summary>
-        private void ComputeForStamina()
-        {
-            float leftDiff = 0;
-            float leftPos = 0;
-            float rightDiff = 0;
-            float rightPos = 0;
-
-            foreach (var data in StrainSolverData)
-            {
-                switch (data.Hand)
-                {
-                    case Hand.Left:
-                        var increment = data.TotalStrainValue > leftDiff
-                            ? StrainConstants.StaminaIncreaseVelocity
-                            : StrainConstants.StaminaDecreaseVelocity;
-                        leftDiff = leftDiff + increment * ( data.StartTime - leftPos );
-                        break;
-
-                    case Hand.Right:
-                        break;
-                }
-            }
         }
 
         /// <summary>
@@ -619,7 +631,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             const float lowestDifficulty = 1;
 
             // calculate ratio between min and max value
-            var densityBonus = Math.Min(5, 2000 / duration);
+            var densityBonus = Math.Min(StrainConstants.MaxDensityBonus, StrainConstants.DensityBonusDuration / duration);
             var ratio = Math.Max(0, 1 - (duration - xMin) / (xMax - xMin));
 
             // compute for difficulty

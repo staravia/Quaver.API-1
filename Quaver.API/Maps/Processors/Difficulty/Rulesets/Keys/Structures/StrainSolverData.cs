@@ -72,6 +72,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         public float TotalStrainValue { get; private set; } = 0;
 
         /// <summary>
+        ///     Total difficulty of this data point applied after stamina
+        /// </summary>
+        public float StaminaStrainValue { get; set; }
+
+        /// <summary>
         ///     Hand that this data point represents
         /// </summary>
         public Hand Hand { get; set; }
