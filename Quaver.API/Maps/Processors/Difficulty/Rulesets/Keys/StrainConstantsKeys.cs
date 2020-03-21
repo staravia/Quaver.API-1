@@ -44,9 +44,18 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         public int GraphIntervalOffsetMs { get; } = 100;
 
+        // Overall Difficulty
+        public float StrainWeightOffset { get; }
+
+        // Density Multiplier
+        public float MaxDensityBonus { get; }
+        public float DensityBonusDuration { get; }
+
         // Stamina
         public float StaminaIncreaseVelocity { get; }
         public float StaminaDecreaseVelocity { get; }
+
+        public float StaminaReliefThreshold { get; }
 
         // Chords
         public float BothHandChordedMultiplier { get; }
@@ -96,43 +105,43 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float RollLengthMultiplier { get; }
         public float RollMaxLength { get; }
 
-        // Density Multiplier
-        public float MaxDensityBonus { get; }
-        public float DensityBonusDuration { get; }
-
         /// <summary>
         ///     Constructor. Create default strain constant values.
         /// </summary>
         public StrainConstantsKeys()
         {
+            // Overall Difficulty
+            StrainWeightOffset = NewConstant("StrainWeightOffset", 30f);
+
             // Density Multiplier
             MaxDensityBonus = NewConstant("MaxDensityBonus", 3.5f);
             DensityBonusDuration = NewConstant("DensityBonusDuration", 1000);
 
             // Stamina
             StaminaIncreaseVelocity = NewConstant("StaminaIncreaseVelocity", 2.8f);
-            StaminaDecreaseVelocity = NewConstant("StaminaDecreaseVelocity", 2.4f);
+            StaminaDecreaseVelocity = NewConstant("StaminaDecreaseVelocity", 4.12f);
+            StaminaReliefThreshold = NewConstant("StaminaReliefThreshold", 10f);
 
             // Chords
-            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.88f);
+            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.91f);
 
             // Simple Jack
-            SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 40);
+            SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 30);
             SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);
-            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 57);
+            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 57.5f);
             SJackCurveExponential = NewConstant("SJackCurveExponential", 1.51f);
 
             // Tech Jack
-            TJackLowerBoundaryMs = NewConstant("TJackLowerBoundaryMs", 40);
+            TJackLowerBoundaryMs = NewConstant("TJackLowerBoundaryMs", 30);
             TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 340);
-            TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 63);
+            TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 58.5f);
             TJackCurveExponential = NewConstant("TJackCurveExponential", 1.59f);
 
             // Roll/Trill
             RollLowerBoundaryMs = NewConstant("RollLowerBoundaryMs", 30);
-            RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 230);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 55);
-            RollCurveExponential = NewConstant("RollCurveExponential", 1.44f);
+            RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 280);
+            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 57.5f);
+            RollCurveExponential = NewConstant("RollCurveExponential", 1.84f);
 
             // Bracket
             BracketLowerBoundaryMs = NewConstant("BracketLowerBoundaryMs", 30);
@@ -142,8 +151,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
             // LN
             LnBaseValue = NewConstant("LnBaseValue", 5.5f);
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 5f);
-            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 500f);
+            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 4f);
+            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 700f);
             LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.5f);
             LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.15f);
             LnTapMultiplier = NewConstant("LnTapMultiplier", 1.05f);

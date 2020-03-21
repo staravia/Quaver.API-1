@@ -568,6 +568,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 {Hand.Right, 0}
             };
 
+            var relief = new Dictionary<Hand, int>()
+            {
+                {Hand.Left, 0},
+                {Hand.Right, 0}
+            };
+
             // Compute for stamina values
             foreach (var data in StrainSolverData)
             {
@@ -575,13 +581,23 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     continue;
 
                 data.CalculateStrainValue();
+
                 var curDiff = diff[data.Hand];
-                var increment = data.TotalStrainValue < curDiff
+                var curRelief = relief[data.Hand];
+                var increment = data.TotalStrainValue > curDiff
                     ? StrainConstants.StaminaIncreaseVelocity
                     : -StrainConstants.StaminaDecreaseVelocity;
-                curDiff = (curDiff + increment * (data.StartTime - data.NextStrainSolverDataOnCurrentHand.StartTime) / 1000f).Clamp(1, data.TotalStrainValue);
-                data.StaminaStrainValue = curDiff;
-                diff[data.Hand] = curDiff;
+
+                curRelief = increment < 0 ? relief[data.Hand] + 1 : 0;
+                increment *= increment < 0 ? curRelief / StrainConstants.StaminaReliefThreshold : 1;
+                curDiff = curDiff + increment *
+                            ( data.NextStrainSolverDataOnCurrentHand.StartTime - data.StartTime ) /
+                            SECONDS_TO_MILLISECONDS;
+
+                data.StaminaStrainValue = curDiff; //curDiff.Clamp(1, data.TotalStrainValue);
+                //Console.WriteLine(curDiff);
+                diff[data.Hand] = data.StaminaStrainValue;
+                relief[data.Hand] = curRelief;
             }
         }
 
@@ -592,7 +608,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
-            const float weightOffset = 50f;
             float weightedDiff = 0;
             float weight = 0;
 
@@ -600,8 +615,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             foreach (var data in StrainSolverData)
             {
                 data.CalculateStrainValue();
-                weightedDiff += data.StaminaStrainValue * ( data.StaminaStrainValue + weightOffset );
-                weight += data.StaminaStrainValue + weightOffset;
+                weightedDiff += data.StaminaStrainValue * ( data.StaminaStrainValue + StrainConstants.StrainWeightOffset );
+                weight += data.StaminaStrainValue + StrainConstants.StrainWeightOffset;
             }
 
             // Calculate the overall difficulty with given weights and values
