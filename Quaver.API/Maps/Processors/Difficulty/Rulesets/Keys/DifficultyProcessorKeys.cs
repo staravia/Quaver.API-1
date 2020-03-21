@@ -614,7 +614,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
             {
-                data.CalculateStrainValue();
                 weightedDiff += data.StaminaStrainValue * ( data.StaminaStrainValue + StrainConstants.StrainWeightOffset );
                 weight += data.StaminaStrainValue + StrainConstants.StrainWeightOffset;
             }

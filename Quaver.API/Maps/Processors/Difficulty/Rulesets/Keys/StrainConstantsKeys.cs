@@ -111,7 +111,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public StrainConstantsKeys()
         {
             // Overall Difficulty
-            StrainWeightOffset = NewConstant("StrainWeightOffset", 30f);
+            StrainWeightOffset = NewConstant("StrainWeightOffset", 1f);
 
             // Density Multiplier
             MaxDensityBonus = NewConstant("MaxDensityBonus", 3.5f);
@@ -140,8 +140,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Roll/Trill
             RollLowerBoundaryMs = NewConstant("RollLowerBoundaryMs", 30);
             RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 280);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 57.5f);
-            RollCurveExponential = NewConstant("RollCurveExponential", 1.84f);
+            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 54.5f);
+            RollCurveExponential = NewConstant("RollCurveExponential", 1.74f);
 
             // Bracket
             BracketLowerBoundaryMs = NewConstant("BracketLowerBoundaryMs", 30);
