@@ -31,6 +31,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// </summary>
         public StrainSolverData NextStrainSolverDataOnCurrentHand { get; set; }
 
+        public StrainSolverData NextStrainSolverDataAfterWristUp { get; set; }
+
         /// <summary>
         ///     When the current action/pattern starts
         /// </summary>
@@ -89,11 +91,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         public Hand Hand { get; set; }
 
         /// <summary>
-        ///     The direction that the wrist is moving in to complete this action
-        /// </summary>
-        public WristDirection WristDirection { get; set; }
-
-        /// <summary>
         ///     Finger Action that this data point represents
         /// </summary>
         public FingerAction FingerAction { get; set; } = FingerAction.None;
@@ -111,7 +108,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// <summary>
         ///     Is determined by if the wrist manipulation for this object was already solved
         /// </summary>
-        public bool WristManipulationSolved;
+        public FingerState WristState { get; set; } = FingerState.None;
 
         /// <summary>
         ///     Is an index value of this hand's finger state. (Determined by every finger's state)

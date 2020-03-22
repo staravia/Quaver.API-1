@@ -167,7 +167,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeForFingerActions();
             //ComputeForRollManipulation();
             //ComputeForJackManipulation();
-            ComputeForWrist();
+            ComputeForWristManipulation();
             ComputeForLnMultiplier();
             ComputeForStamina();
             return CalculateOverallDifficulty();
@@ -347,18 +347,22 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             }
         }
 
-        private void ComputeForWrist()
+        private void ComputeForWristManipulation()
         {
-            // Compute for wrist direction
-            foreach (var data in StrainSolverData)
+            var curWristState = new Dictionary<Hand, FingerState>()
             {
-                if (data.NextStrainSolverDataOnCurrentHand == null)
-                    continue;
+                {Hand.Left, FingerState.None},
+                {Hand.Right, FingerState.None}
+            };
 
-                data.NextStrainSolverDataOnCurrentHand.WristDirection = data.FingerAction == FingerAction.Trill
-                    ? WristDirection.Still
-                    : WristDirection.Down;
-            }
+            var count = new Dictionary<Hand, int>()
+            {
+                {Hand.Left, 0},
+                {Hand.Right, 0}
+            };
+
+            const float offset = 4;
+            const float multiplier = 0.5f;
 
             // Compute for wrist manipulation
             foreach (var data in StrainSolverData)
@@ -366,41 +370,101 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.NextStrainSolverDataOnCurrentHand == null)
                     continue;
 
-                if (data.WristManipulationSolved)
+                // Solve for wrist state
+                if (data.WristState == FingerState.None)
+                {
+                    var next = SolveForWristState(data, data.FingerState, 0, false);
+                    data.NextStrainSolverDataAfterWristUp = next == data ? data.NextStrainSolverDataOnCurrentHand : next;
+
+                    //if (next != null && next != data)
+                    //    SolveForWristState(next, next.FingerState, 0, false);
+                }
+            }
+
+            foreach (var data in StrainSolverData)
+            {
+                if (data.NextStrainSolverDataOnCurrentHand == null)
                     continue;
 
-                SolveForWristManipulation(data, data.FingerState, data.FingerActionDurationMs);
+                if (data.WristState == curWristState[data.Hand])
+                {
+                    count[data.Hand]++;
+                    Console.WriteLine($"{curWristState[data.Hand]}: {count[data.Hand]}");
+
+                    if (data.NextStrainSolverDataAfterWristUp != null)
+                    {
+                        Console.WriteLine("NEXT 1: " + data.NextStrainSolverDataAfterWristUp.WristState);
+                    }
+                    else
+                    {
+                        Console.WriteLine("ERROR 1");
+                    }
+                    continue;
+                }
+
+                count[data.Hand] = 0;
+                curWristState[data.Hand] = data.WristState;
+                Console.WriteLine($"{curWristState[data.Hand]}: {count[data.Hand]}");
+
+                if (data.NextStrainSolverDataAfterWristUp != null)
+                {
+                    Console.WriteLine("NEXT 2: " + data.NextStrainSolverDataAfterWristUp.WristState);
+                }
+                else
+                {
+                    Console.WriteLine("ERROR 2");
+                }
             }
         }
 
-        private StrainSolverData SolveForWristManipulation(StrainSolverData data, FingerState state, float duration)
+        // todo: this only works for 4k right now.
+        private StrainSolverData SolveForWristState(StrainSolverData data, FingerState state, float duration, bool inwards)
         {
             const float rollRatioTolerance = 1.9f;
 
+            // Check to see if there is another strain solver data point in the current hand
             if (data.NextStrainSolverDataOnCurrentHand == null)
-                return state > 0 ? data : null;
-
-            // Sort out which action is longer/shorter
-            var min = duration;
-            var max = data.FingerActionDurationMs;
-            if (min > max)
             {
-                var temp = max;
-                max = min;
-                min = temp;
+                data.WristState = state;
+                return data;
             }
 
-            if (data.NextStrainSolverDataOnCurrentHand.WristDirection != WristDirection.Still)
-                return max / min > rollRatioTolerance ? data : null;
-
+            // Check to see if the next data point is wrist-down
             if (( state & data.NextStrainSolverDataOnCurrentHand.FingerState ) != 0)
+            {
+                // If the current duration is too low, or if the chain is only a single note long, apply the wrist state to a single noe even when there's none.
+                if (duration < StrainConstants.ChordClumpToleranceMs || (state & (state - 1)) != 0 )
+                {
+                    data.WristState = state;
+                    data.NextStrainSolverDataAfterWristUp = data.NextStrainSolverDataOnCurrentHand;
+                    return null;
+                }
+
+                // Sort out which action is longer/shorter
+                var min = duration;
+                var max = data.FingerActionDurationMs;
+                if (min > max)
+                {
+                    var temp = max;
+                    max = min;
+                    min = temp;
+                }
+
+                // Check to see if this wrist state is actually a roll
+                if (max / min > rollRatioTolerance)
+                {
+                    data.WristState = state;
+                    data.NextStrainSolverDataAfterWristUp = data.NextStrainSolverDataOnCurrentHand;
+                    return data;
+                }
+
                 return null;
+            }
 
-            var next = SolveForWristManipulation(data.NextStrainSolverDataOnCurrentHand, state |= data.FingerState, data.FingerActionDurationMs);
-            if (next == null)
-                return next;
-
-            data.WristManipulationSolved = true;
+            // If the wrist state has not been solved yet, check the next data point and use the same wrist state as the next one.
+            var next = SolveForWristState(data.NextStrainSolverDataOnCurrentHand, state | data.FingerState, data.FingerActionDurationMs, false);
+            data.WristState = next == null ? state : next.WristState; //next?.WristState ?? state;
+            data.NextStrainSolverDataAfterWristUp = next == null ? data.NextStrainSolverDataOnCurrentHand : next.NextStrainSolverDataAfterWristUp;
 
             return next;
         }
