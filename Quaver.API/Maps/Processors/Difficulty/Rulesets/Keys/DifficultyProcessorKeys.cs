@@ -590,7 +590,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                             ( data.NextStrainSolverDataOnCurrentHand.StartTime - data.StartTime ) /
                             SECONDS_TO_MILLISECONDS;
 
-                data.StaminaStrainValue = curDiff; //curDiff.Clamp(1, data.TotalStrainValue);
+                data.StaminaStrainValue = Math.Max(1, curDiff); //curDiff.Clamp(1, data.TotalStrainValue);
                 //Console.WriteLine(curDiff);
                 diff[data.Hand] = data.StaminaStrainValue;
                 relief[data.Hand] = curRelief;
