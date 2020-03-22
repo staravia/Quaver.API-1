@@ -305,7 +305,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         {
                             curHitOb.FingerAction = FingerAction.Roll;
                             curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.RollLowerBoundaryMs,
                                 StrainConstants.RollUpperBoundaryMs,
                                 StrainConstants.RollMaxStrainValue,
                                 StrainConstants.RollCurveExponential);
@@ -316,7 +315,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         {
                             curHitOb.FingerAction = FingerAction.SimpleJack;
                             curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.SJackLowerBoundaryMs,
                                 StrainConstants.SJackUpperBoundaryMs,
                                 StrainConstants.SJackMaxStrainValue,
                                 StrainConstants.SJackCurveExponential);
@@ -327,7 +325,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         {
                             curHitOb.FingerAction = FingerAction.TechnicalJack;
                             curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.TJackLowerBoundaryMs,
                                 StrainConstants.TJackUpperBoundaryMs,
                                 StrainConstants.TJackMaxStrainValue,
                                 StrainConstants.TJackCurveExponential);
@@ -338,7 +335,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         {
                             curHitOb.FingerAction = FingerAction.Bracket;
                             curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.BracketLowerBoundaryMs,
                                 StrainConstants.BracketUpperBoundaryMs,
                                 StrainConstants.BracketMaxStrainValue,
                                 StrainConstants.BracketCurveExponential);
@@ -614,8 +610,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
             {
-                weightedDiff += data.StaminaStrainValue * ( data.StaminaStrainValue + StrainConstants.StrainWeightOffset );
-                weight += data.StaminaStrainValue + StrainConstants.StrainWeightOffset;
+                var delta = (float)Math.Pow(data.StaminaStrainValue + StrainConstants.StrainWeightOffset, StrainConstants.StrainWeightExponent);
+                weightedDiff += data.StaminaStrainValue * delta;
+                weight += delta;
             }
 
             // Calculate the overall difficulty with given weights and values
@@ -640,9 +637,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <summary>
         ///     Used to calculate Coefficient for Strain Difficulty
         /// </summary>
-        private float GetCoefficientValue(float duration, float xMin, float xMax, float strainMax, float exp)
+        private float GetCoefficientValue(float duration, float xMax, float strainMax, float exp)
         {
             const float lowestDifficulty = 1;
+            const float xMin = 20f;
 
             // calculate ratio between min and max value
             var densityBonus = Math.Min(StrainConstants.MaxDensityBonus, StrainConstants.DensityBonusDuration / duration);

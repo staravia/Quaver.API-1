@@ -46,6 +46,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
         // Overall Difficulty
         public float StrainWeightOffset { get; }
+        public float StrainWeightExponent { get; }
 
         // Density Multiplier
         public float MaxDensityBonus { get; }
@@ -61,25 +62,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float BothHandChordedMultiplier { get; }
 
         // Simple Jacks
-        public float SJackLowerBoundaryMs { get; }
         public float SJackUpperBoundaryMs { get; }
         public float SJackMaxStrainValue { get; }
         public float SJackCurveExponential { get; }
 
         // Tech Jacks
-        public float TJackLowerBoundaryMs { get; }
         public float TJackUpperBoundaryMs { get; }
         public float TJackMaxStrainValue { get; }
         public float TJackCurveExponential { get; }
 
         // Rolls
-        public float RollLowerBoundaryMs { get; }
         public float RollUpperBoundaryMs { get; }
         public float RollMaxStrainValue { get; }
         public float RollCurveExponential { get; }
 
         // Brackets
-        public float BracketLowerBoundaryMs { get; }
         public float BracketUpperBoundaryMs { get; }
         public float BracketMaxStrainValue { get; }
         public float BracketCurveExponential { get; }
@@ -111,7 +108,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public StrainConstantsKeys()
         {
             // Overall Difficulty
-            StrainWeightOffset = NewConstant("StrainWeightOffset", 1f);
+            StrainWeightOffset = NewConstant("StrainWeightOffset", 6f);
+            StrainWeightExponent = NewConstant("StrainWeightExponent", 4f);
 
             // Density Multiplier
             MaxDensityBonus = NewConstant("MaxDensityBonus", 3.5f);
@@ -126,25 +124,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.91f);
 
             // Simple Jack
-            SJackLowerBoundaryMs = NewConstant("SJackLowerBoundaryMs", 30);
             SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);
             SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 57.5f);
             SJackCurveExponential = NewConstant("SJackCurveExponential", 1.51f);
 
             // Tech Jack
-            TJackLowerBoundaryMs = NewConstant("TJackLowerBoundaryMs", 30);
             TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 340);
             TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 58.5f);
             TJackCurveExponential = NewConstant("TJackCurveExponential", 1.59f);
 
             // Roll/Trill
-            RollLowerBoundaryMs = NewConstant("RollLowerBoundaryMs", 30);
             RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 280);
             RollMaxStrainValue = NewConstant("RollMaxStrainValue", 54.5f);
             RollCurveExponential = NewConstant("RollCurveExponential", 1.74f);
 
             // Bracket
-            BracketLowerBoundaryMs = NewConstant("BracketLowerBoundaryMs", 30);
             BracketUpperBoundaryMs = NewConstant("BracketUpperBoundaryMs", 230);
             BracketMaxStrainValue = NewConstant("BracketMaxStrainValue", 57);
             BracketCurveExponential = NewConstant("BracketCurveExponential", 1.43f);
