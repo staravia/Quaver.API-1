@@ -374,10 +374,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.WristState == FingerState.None)
                 {
                     var next = SolveForWristState(data, data.FingerState, 0, false);
-                    data.NextStrainSolverDataAfterWristUp = next == data ? data.NextStrainSolverDataOnCurrentHand : next;
-
-                    //if (next != null && next != data)
-                    //    SolveForWristState(next, next.FingerState, 0, false);
+                    data.WristState = data.FingerState;
+                    data.NextStrainSolverDataAfterWristUp = next == data || next == null ? data.NextStrainSolverDataOnCurrentHand : next.NextStrainSolverDataAfterWristUp;
                 }
             }
 
@@ -389,31 +387,13 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.WristState == curWristState[data.Hand])
                 {
                     count[data.Hand]++;
-                    Console.WriteLine($"{curWristState[data.Hand]}: {count[data.Hand]}");
-
-                    if (data.NextStrainSolverDataAfterWristUp != null)
-                    {
-                        Console.WriteLine("NEXT 1: " + data.NextStrainSolverDataAfterWristUp.WristState);
-                    }
-                    else
-                    {
-                        Console.WriteLine("ERROR 1");
-                    }
+                    Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}");
                     continue;
                 }
 
                 count[data.Hand] = 0;
                 curWristState[data.Hand] = data.WristState;
-                Console.WriteLine($"{curWristState[data.Hand]}: {count[data.Hand]}");
-
-                if (data.NextStrainSolverDataAfterWristUp != null)
-                {
-                    Console.WriteLine("NEXT 2: " + data.NextStrainSolverDataAfterWristUp.WristState);
-                }
-                else
-                {
-                    Console.WriteLine("ERROR 2");
-                }
+                Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}" + " " + data.StartTime);
             }
         }
 
@@ -463,8 +443,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
             // If the wrist state has not been solved yet, check the next data point and use the same wrist state as the next one.
             var next = SolveForWristState(data.NextStrainSolverDataOnCurrentHand, state | data.FingerState, data.FingerActionDurationMs, false);
-            data.WristState = next == null ? state : next.WristState; //next?.WristState ?? state;
-            data.NextStrainSolverDataAfterWristUp = next == null ? data.NextStrainSolverDataOnCurrentHand : next.NextStrainSolverDataAfterWristUp;
+
+            //if (next != null)
+            {
+                data.WristState = next == null ? state : next.WristState; //next?.WristState ?? state;
+                data.NextStrainSolverDataAfterWristUp = next == null ? data.NextStrainSolverDataOnCurrentHand : next.NextStrainSolverDataAfterWristUp;
+            }
 
             return next;
         }
