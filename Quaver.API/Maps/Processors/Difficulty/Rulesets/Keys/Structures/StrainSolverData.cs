@@ -59,12 +59,19 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// <summary>
         ///     Multiplier that gets added to any pattern that could be manipulated via rolls.
         /// </summary>
+        [Obsolete]
         public float RollManipulationStrainMultiplier { get; set; } = 1;
 
         /// <summary>
         ///     Multiplier that gets applied to any pattern that could be manipulated via long jacks.
         /// </summary>
+        [Obsolete]
         public float JackManipulationStrainMultiplier { get; set; } = 1;
+
+        /// <summary>
+        ///     Multiplier that gets applied to any pattern that could be manipulated via wrist.
+        /// </summary>
+        public float WristManipulationMultiplier { get; set; } = 1;
 
         /// <summary>
         ///     Total strain value for this data point
@@ -82,6 +89,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         public Hand Hand { get; set; }
 
         /// <summary>
+        ///     The direction that the wrist is moving in to complete this action
+        /// </summary>
+        public WristDirection WristDirection { get; set; }
+
+        /// <summary>
         ///     Finger Action that this data point represents
         /// </summary>
         public FingerAction FingerAction { get; set; } = FingerAction.None;
@@ -92,15 +104,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         public float FingerActionDurationMs { get; set; }
 
         /// <summary>
-        ///     Pattern that this data point represents.
-        ///     TODO: replace with enum
-        /// </summary>
-        public string Pattern { get; set; }
-
-        /// <summary>
         ///     Is determined by if this data point has more than one hit object (per hand)
         /// </summary>
         public bool HandChord => HitObjects.Count > 1;
+
+        /// <summary>
+        ///     Is determined by if the wrist manipulation for this object was already solved
+        /// </summary>
+        public bool WristManipulationSolved;
 
         /// <summary>
         ///     Is an index value of this hand's finger state. (Determined by every finger's state)
@@ -127,7 +138,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
             // Calculate the strain value of each individual object and add to total
             foreach (var hitOb in HitObjects)
             {
-                hitOb.StrainValue = ActionStrainCoefficient * ChordMultiplier * PatternStrainMultiplier * RollManipulationStrainMultiplier * JackManipulationStrainMultiplier + hitOb.LnStrainDifficulty;
+                hitOb.StrainValue = ActionStrainCoefficient * WristManipulationMultiplier * ChordMultiplier * PatternStrainMultiplier * RollManipulationStrainMultiplier * JackManipulationStrainMultiplier + hitOb.LnStrainDifficulty;
                 TotalStrainValue += hitOb.StrainValue;
             }
 

@@ -21,7 +21,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         None,
         SimpleJack,
         TechnicalJack,
-        Roll,
+        Trill,
         Bracket
     }
 }

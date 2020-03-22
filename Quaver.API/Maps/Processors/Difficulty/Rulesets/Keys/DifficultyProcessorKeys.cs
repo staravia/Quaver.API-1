@@ -167,6 +167,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeForFingerActions();
             //ComputeForRollManipulation();
             //ComputeForJackManipulation();
+            ComputeForWrist();
             ComputeForLnMultiplier();
             ComputeForStamina();
             return CalculateOverallDifficulty();
@@ -303,7 +304,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         // Trill/Roll
                         if (!actionChordFound && !actionSameState)
                         {
-                            curHitOb.FingerAction = FingerAction.Roll;
+                            curHitOb.FingerAction = FingerAction.Trill;
                             curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
                                 StrainConstants.RollUpperBoundaryMs,
                                 StrainConstants.RollMaxStrainValue,
@@ -346,9 +347,62 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             }
         }
 
-        private void ComputeForWristManipulation()
+        private void ComputeForWrist()
         {
+            // Compute for wrist direction
+            foreach (var data in StrainSolverData)
+            {
+                if (data.NextStrainSolverDataOnCurrentHand == null)
+                    continue;
 
+                data.NextStrainSolverDataOnCurrentHand.WristDirection = data.FingerAction == FingerAction.Trill
+                    ? WristDirection.Still
+                    : WristDirection.Down;
+            }
+
+            // Compute for wrist manipulation
+            foreach (var data in StrainSolverData)
+            {
+                if (data.NextStrainSolverDataOnCurrentHand == null)
+                    continue;
+
+                if (data.WristManipulationSolved)
+                    continue;
+
+                SolveForWristManipulation(data, data.FingerState, data.FingerActionDurationMs);
+            }
+        }
+
+        private StrainSolverData SolveForWristManipulation(StrainSolverData data, FingerState state, float duration)
+        {
+            const float rollRatioTolerance = 1.9f;
+
+            if (data.NextStrainSolverDataOnCurrentHand == null)
+                return state > 0 ? data : null;
+
+            // Sort out which action is longer/shorter
+            var min = duration;
+            var max = data.FingerActionDurationMs;
+            if (min > max)
+            {
+                var temp = max;
+                max = min;
+                min = temp;
+            }
+
+            if (data.NextStrainSolverDataOnCurrentHand.WristDirection != WristDirection.Still)
+                return max / min > rollRatioTolerance ? data : null;
+
+            if (( state & data.NextStrainSolverDataOnCurrentHand.FingerState ) != 0)
+                return null;
+
+            var next = SolveForWristManipulation(data.NextStrainSolverDataOnCurrentHand, state |= data.FingerState, data.FingerActionDurationMs);
+            if (next == null)
+                return next;
+
+            data.WristManipulationSolved = true;
+
+            return next;
         }
 
         # region OLD
@@ -388,7 +442,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 var last = data.NextStrainSolverDataOnCurrentHand.NextStrainSolverDataOnCurrentHand;
 
                 // Check to see if both data and middle points are rolls
-                if (data.FingerAction != FingerAction.Roll || middle.FingerAction == FingerAction.Roll)
+                if (data.FingerAction != FingerAction.Trill || middle.FingerAction == FingerAction.Trill)
                     continue;
 
                 // Make sure the first and last finger states are identical
@@ -558,6 +612,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private void ComputeForStamina()
         {
+            // This is used to cache temporary stamina variables
             var diff = new Dictionary<Hand, float>()
             {
                 {Hand.Left, 0},
@@ -586,12 +641,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
                 curRelief = increment < 0 ? relief[data.Hand] + 1 : 0;
                 increment *= increment < 0 ? curRelief / StrainConstants.StaminaReliefThreshold : 1;
-                curDiff = curDiff + increment *
-                            ( data.NextStrainSolverDataOnCurrentHand.StartTime - data.StartTime ) /
-                            SECONDS_TO_MILLISECONDS;
-
+                curDiff = curDiff + increment * data.FingerActionDurationMs / SECONDS_TO_MILLISECONDS;
                 data.StaminaStrainValue = Math.Max(1, curDiff); //curDiff.Clamp(1, data.TotalStrainValue);
-                //Console.WriteLine(curDiff);
+
+                // Update temp. cache
                 diff[data.Hand] = data.StaminaStrainValue;
                 relief[data.Hand] = curRelief;
             }
