@@ -31,12 +31,18 @@ namespace Quaver.Tools.Commands
         public ModIdentifier Mods { get; }
 
         /// <summary>
+        ///
+        /// </summary>
+        private string FileName;
+
+        /// <summary>
         /// </summary>
         /// <param name="args"></param>
         public CalcFolderCommand(string[] args) : base(args)
         {
             BaseFolder = args[1];
             Mods = (ModIdentifier)Enum.Parse(typeof(ModIdentifier), args[2]);
+            FileName = args[3];
         }
 
         /// <summary>
@@ -86,7 +92,7 @@ namespace Quaver.Tools.Commands
             var table = calculatedMaps.ToStringTable(new[] {"Id", "Map", "Difficulty"}, a => a.Item1, a => a.Item2, a => a.Item3);
             Console.WriteLine($"Time Elasped: { (DateTime.Now - startTime).TotalMilliseconds}ms\nOutput Directory: {Directory.GetCurrentDirectory()}");
 
-            File.WriteAllText("./diff-calc.txt", output);
+            File.WriteAllText($"./{FileName}.txt", output);
         }
     }
 }

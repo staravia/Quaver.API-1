@@ -112,8 +112,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             StrainWeightExponent = NewConstant("StrainWeightExponent", 4f);
 
             // Density Multiplier
-            MaxDensityBonus = NewConstant("MaxDensityBonus", 3.5f);
-            DensityBonusDuration = NewConstant("DensityBonusDuration", 1000);
+            MaxDensityBonus = NewConstant("MaxDensityBonus", 3.7f);
+            DensityBonusDuration = NewConstant("DensityBonusDuration", 200);
 
             // Stamina
             StaminaIncreaseVelocity = NewConstant("StaminaIncreaseVelocity", 2.8f);
@@ -121,21 +121,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             StaminaReliefThreshold = NewConstant("StaminaReliefThreshold", 10f);
 
             // Chords
-            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.91f);
+            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.88f);
 
             // Simple Jack
-            SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 330);
-            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 59.5f);
+            SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 310);
+            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 69.5f);
             SJackCurveExponential = NewConstant("SJackCurveExponential", 1.51f);
 
             // Tech Jack
-            TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 340);
-            TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 60.5f);
+            TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 330);
+            TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 72.5f);
             TJackCurveExponential = NewConstant("TJackCurveExponential", 1.59f);
 
             // Roll/Trill
-            RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 280);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 52.5f);
+            RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 250);
+            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 66.5f);
             RollCurveExponential = NewConstant("RollCurveExponential", 2.09f);
 
             // Bracket
@@ -144,9 +144,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             BracketCurveExponential = NewConstant("BracketCurveExponential", 1.43f);
 
             // LN
-            LnBaseValue = NewConstant("LnBaseValue", 5.5f);
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 4f);
-            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 700f);
+            LnBaseValue = NewConstant("LnBaseValue", 2.7f);
+            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 4.65f);
+            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 250f);
             LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.5f);
             LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.15f);
             LnTapMultiplier = NewConstant("LnTapMultiplier", 1.05f);

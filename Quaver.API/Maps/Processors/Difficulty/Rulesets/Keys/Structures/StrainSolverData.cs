@@ -132,10 +132,15 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// </summary>
         public void CalculateStrainValue()
         {
+            // Wrist Manipulation and Chord multipliers should approach 1 as the action gets easier
+            var easyMultiplier = Math.Min(1, 150f / ( FingerActionDurationMs + 1 ));
+            WristManipulationMultiplier = SolveForEasyMultiplier(WristManipulationMultiplier, easyMultiplier);
+            ChordMultiplier = SolveForEasyMultiplier(ChordMultiplier, easyMultiplier);
+
             // Calculate the strain value of each individual object and add to total
             foreach (var hitOb in HitObjects)
             {
-                hitOb.StrainValue = ActionStrainCoefficient * WristManipulationMultiplier * ChordMultiplier * PatternStrainMultiplier * RollManipulationStrainMultiplier * JackManipulationStrainMultiplier + hitOb.LnStrainDifficulty;
+                hitOb.StrainValue = ActionStrainCoefficient * WristManipulationMultiplier * ChordMultiplier * PatternStrainMultiplier + hitOb.LnStrainDifficulty;
                 TotalStrainValue += hitOb.StrainValue;
             }
 
@@ -148,5 +153,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
             foreach (var hitOb in HitObjects)
                 FingerState |= hitOb.FingerState;
         }
+
+        private float SolveForEasyMultiplier(float diff, float multiplier) => 1 - (1 - diff) * multiplier;
     }
 }

@@ -364,13 +364,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             const float offset = 4;
             const float multiplier = 0.5f;
 
-            // Compute for wrist manipulation
+            // Compute for wrist state
             foreach (var data in StrainSolverData)
             {
                 if (data.NextStrainSolverDataOnCurrentHand == null)
                     continue;
 
-                // Solve for wrist state
                 if (data.WristState == FingerState.None)
                 {
                     var next = SolveForWristState(data, data.FingerState, 0, false);
@@ -379,6 +378,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 }
             }
 
+            // Compute for wrist manipulation
             foreach (var data in StrainSolverData)
             {
                 if (data.NextStrainSolverDataOnCurrentHand == null)
@@ -387,17 +387,18 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.WristState == curWristState[data.Hand])
                 {
                     count[data.Hand]++;
-                    Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}");
+                    //Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}");
+                    data.WristManipulationMultiplier = (1 - multiplier) + multiplier * offset / ( count[data.Hand] + offset );
                     continue;
                 }
 
                 count[data.Hand] = 0;
                 curWristState[data.Hand] = data.WristState;
-                Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}" + " " + data.StartTime);
+                //Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}" + " " + data.StartTime);
             }
         }
 
-        // todo: this only works for 4k right now.
+        // todo: this only works for 4k right now. It doesn't detect roll direction.
         private StrainSolverData SolveForWristState(StrainSolverData data, FingerState state, float duration, bool inwards)
         {
             const float rollRatioTolerance = 1.9f;
@@ -444,10 +445,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // If the wrist state has not been solved yet, check the next data point and use the same wrist state as the next one.
             var next = SolveForWristState(data.NextStrainSolverDataOnCurrentHand, state | data.FingerState, data.FingerActionDurationMs, false);
 
-            //if (next != null)
+            if (next != null)
             {
-                data.WristState = next == null ? state : next.WristState; //next?.WristState ?? state;
-                data.NextStrainSolverDataAfterWristUp = next == null ? data.NextStrainSolverDataOnCurrentHand : next.NextStrainSolverDataAfterWristUp;
+                data.WristState = next.WristState;
+                data.NextStrainSolverDataAfterWristUp = next.NextStrainSolverDataAfterWristUp;
             }
 
             return next;
@@ -676,6 +677,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Compute for stamina values
             foreach (var data in StrainSolverData)
             {
+                const float staminaResetDurationMs = 2000f;
                 if (data.NextStrainSolverDataOnCurrentHand == null)
                     continue;
 
@@ -689,7 +691,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
                 curRelief = increment < 0 ? relief[data.Hand] + 1 : 0;
                 increment *= increment < 0 ? curRelief / StrainConstants.StaminaReliefThreshold : 1;
-                curDiff = curDiff + increment * data.FingerActionDurationMs / SECONDS_TO_MILLISECONDS;
+                increment = Math.Min(increment, StrainConstants.StaminaIncreaseVelocity);
+                curDiff = data.FingerActionDurationMs > staminaResetDurationMs ? data.TotalStrainValue : curDiff + increment * data.FingerActionDurationMs / SECONDS_TO_MILLISECONDS;
                 data.StaminaStrainValue = Math.Max(1, curDiff); //curDiff.Clamp(1, data.TotalStrainValue);
 
                 // Update temp. cache
