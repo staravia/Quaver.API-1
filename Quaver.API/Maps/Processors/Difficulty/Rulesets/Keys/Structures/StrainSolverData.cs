@@ -140,6 +140,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
             // Calculate the strain value of each individual object and add to total
             foreach (var hitOb in HitObjects)
             {
+                hitOb.LnStrainDifficulty = easyMultiplier * hitOb.LnStrainDifficulty;
                 hitOb.StrainValue = ActionStrainCoefficient * WristManipulationMultiplier * ChordMultiplier * PatternStrainMultiplier + hitOb.LnStrainDifficulty;
                 TotalStrainValue += hitOb.StrainValue;
             }

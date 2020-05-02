@@ -1,34 +1,29 @@
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
- * Copyright (c) 2017-2018 Swan & The Quaver Team <support@quavergame.com>.
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * Copyright (c) 2017-2020 Swan & The Quaver Team <support@quavergame.com>.
 */
-
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Quaver.API.Maps.Processors.Difficulty.Optimization
 {
     /// <summary>
-    ///     This class is used to represent a constant variable for difficutly calculation.
-    ///     It is also used for optimization. 
+    /// This is used as a constant for the difficulty processors. Having it as a struct allows new constants if it's used for optimization.
     /// </summary>
-    public class ConstantVariable
+    public struct ConstantVariable
     {
         /// <summary>
-        ///     Name of this constant
+        /// Value of the const variable
         /// </summary>
-        public string Name { get; set; }
+        public float Value { get; }
 
         /// <summary>
-        ///     Value of this constant
+        /// Name of the const variable
         /// </summary>
-        public float Value { get; set; }
+        public string Name { get; }
 
         /// <summary>
-        ///     Const
+        /// Constructor. Initialize a new constant variable with parameters.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
@@ -37,11 +32,5 @@ namespace Quaver.API.Maps.Processors.Difficulty.Optimization
             Name = name;
             Value = value;
         }
-
-        /// <summary>
-        ///     Returns string "(name) = (value)". Mainly used for debugging and optimizing.
-        /// </summary>
-        /// <returns></returns>
-        public string GetVariableInfo() => Name + " " + Value;
     }
 }

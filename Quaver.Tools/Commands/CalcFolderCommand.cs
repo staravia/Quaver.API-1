@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Quaver.API.Enums;
+using Quaver.API.Helpers;
 using Quaver.API.Maps;
 using Quaver.API.Maps.Parsers;
 using Quaver.Tools.Helpers;
@@ -35,6 +36,10 @@ namespace Quaver.Tools.Commands
         /// </summary>
         private string FileName;
 
+        private float Rate;
+
+        public string Output;
+
         /// <summary>
         /// </summary>
         /// <param name="args"></param>
@@ -42,7 +47,36 @@ namespace Quaver.Tools.Commands
         {
             BaseFolder = args[1];
             Mods = (ModIdentifier)Enum.Parse(typeof(ModIdentifier), args[2]);
+            Rate = ModHelper.GetRateFromMods(Mods);
             FileName = args[3];
+
+            string[] rates =
+            {
+                //"None",
+                "Speed11X",
+                "Speed12X",
+                "Speed13X",
+                "Speed14X",
+                "Speed15X",
+                "Speed09X",
+                "Speed08X",
+                "Speed07X",
+                "Speed06X",
+                "Speed05X"
+            };
+
+            if (Rate != 1)
+            {
+                foreach (var rate in rates)
+                {
+                    Mods = (ModIdentifier)Enum.Parse(typeof(ModIdentifier), rate);
+                    Rate = ModHelper.GetRateFromMods(Mods);
+                    Console.WriteLine($"RATE: {Rate}");
+                    Execute();
+                }
+
+                File.WriteAllText($"./diff-calc-rates.txt", Output);
+            }
         }
 
         /// <summary>
@@ -63,12 +97,17 @@ namespace Quaver.Tools.Commands
 
                 try
                 {
+                    var diff = -1f;
                     Qua map = null;
 
                     if (file.EndsWith(".qua"))
                         map = Qua.Parse(file);
                     else if (file.EndsWith(".osu"))
-                        map = new OsuBeatmap(file).ToQua();
+                    {
+                        var osu = new OsuBeatmap(file);
+                        map = osu.ToQua();
+                        diff = osu.HitObjects.Count / Math.Max(1, (osu.HitObjects[osu.HitObjects.Count - 1].StartTime - osu.HitObjects[0].StartTime) / 1000f);
+                    }
 
                     if (map == null)
                         continue;
@@ -76,11 +115,15 @@ namespace Quaver.Tools.Commands
                     if (map.GetKeyCount() != 4)
                         continue;
 
-                    var diffCalc = map.SolveDifficulty();
+                    var diffCalc = map.SolveDifficulty(Mods);
 
                     Console.WriteLine($"{files.Count - i}");
                     //Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
-                    output += $"{map}\t{diffCalc.OverallDifficulty}\n";
+                    output += $"({Rate:#.#}x) {map}\t{Rate:#.#}\t{map.MapId}\t{diffCalc.OverallDifficulty}";
+                    if (diff >= 0) output += $"\t{diff:##.##}";
+                    output += "\n";
+
+                    //Console.WriteLine(output);
                     calculatedMaps.Add(Tuple.Create(i, map.ToString(), diffCalc.OverallDifficulty.ToString(CultureInfo.InvariantCulture)));
                 }
                 catch (Exception e)
@@ -90,6 +133,7 @@ namespace Quaver.Tools.Commands
             }
 
             var table = calculatedMaps.ToStringTable(new[] {"Id", "Map", "Difficulty"}, a => a.Item1, a => a.Item2, a => a.Item3);
+            Output += output;
             Console.WriteLine($"Time Elasped: { (DateTime.Now - startTime).TotalMilliseconds}ms\nOutput Directory: {Directory.GetCurrentDirectory()}");
 
             File.WriteAllText($"./{FileName}.txt", output);

@@ -45,12 +45,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public int GraphIntervalOffsetMs { get; } = 100;
 
         // Overall Difficulty
-        public float StrainWeightOffset { get; }
-        public float StrainWeightExponent { get; }
+        public float StrainWeightOffset { get; } = 6f;
+        public float StrainWeightExponent { get; } = 4f;
 
         // Density Multiplier
-        public float MaxDensityBonus { get; }
-        public float DensityBonusDuration { get; }
+        public float MaxDensityBonus { get; } = 3.7f;
+        public float DensityBonusDuration { get; } = 200;
 
         // Stamina
         public float StaminaIncreaseVelocity { get; }
@@ -105,64 +105,137 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <summary>
         ///     Constructor. Create default strain constant values.
         /// </summary>
-        public StrainConstantsKeys()
+        public StrainConstantsKeys(float[] input = null)
         {
+            // Defaults
+            var defaultConstants = new List<ConstantVariable>()
+            {
+                // Overall Difficulty
+                new ConstantVariable("StrainWeightOffset", 2.8f),
+                new ConstantVariable("StrainWeightExponent", 4f),
+
+                // Density Multiplier
+                new ConstantVariable("MaxDensityBonus", 3.7f),
+                new ConstantVariable("DensityBonusDuration", 200),
+
+                // Stamina
+                new ConstantVariable("StaminaIncreaseVelocity", 2.8f),
+                new ConstantVariable("StaminaDecreaseVelocity", 4.12f),
+                new ConstantVariable("StaminaReliefThreshold", 10f),
+
+                // Chords
+                new ConstantVariable("BothHandChordedMultiplier", 0.88f),
+
+                // Simple Jack
+                new ConstantVariable("SJackUpperBoundaryMs", 310),
+                new ConstantVariable("SJackMaxStrainValue", 72.5f),
+                new ConstantVariable("SJackCurveExponential", 1.51f),
+
+                // Tech Jack
+                new ConstantVariable("TJackUpperBoundaryMs", 330),
+                new ConstantVariable("TJackMaxStrainValue", 76.5f),
+                new ConstantVariable("TJackCurveExponential", 1.59f),
+
+                // Roll/Trill
+                new ConstantVariable("RollUpperBoundaryMs", 250),
+                new ConstantVariable("RollMaxStrainValue", 66.5f),
+                new ConstantVariable("RollCurveExponential", 2.09f),
+
+                // Bracket
+                new ConstantVariable("BracketUpperBoundaryMs", 230),
+                new ConstantVariable("BracketMaxStrainValue", 60),
+                new ConstantVariable("BracketCurveExponential", 1.43f),
+
+                // LN
+                new ConstantVariable("LnBaseValue", 5.7f),
+                new ConstantVariable("LnBaseMultiplier", 5.25f),
+                new ConstantVariable("LnDifficultSizeThresholdMs", 250f),
+                new ConstantVariable("LnReleaseAfterMultiplier", 1.5f),
+                new ConstantVariable("LnReleaseBeforeMultiplier", 1.15f),
+                new ConstantVariable("LnTapMultiplier", 1.05f),
+
+                // LongJack Manipulation
+                new ConstantVariable("VibroActionDurationMs", 88.2f),
+                new ConstantVariable("VibroActionToleranceMs", 22f),
+                new ConstantVariable("VibroMultiplier", 0.48f),
+                new ConstantVariable("VibroLengthMultiplier", 0.3f),
+                new ConstantVariable("VibroMaxLength", 6),
+
+                // Roll Manipulation
+                new ConstantVariable("RollRatioToleranceMs", 2),
+                new ConstantVariable("RollRatioMultiplier", 0.25f),
+                new ConstantVariable("RollLengthMultiplier", 0.6f),
+                new ConstantVariable("RollMaxLength", 14)
+            };
+
+            // If there's no input, use default constants
+            if (input == null)
+            {
+                input = new float[defaultConstants.Count];
+
+                for (var i = 0; i < defaultConstants.Count; i++)
+                {
+                    input[i] = defaultConstants[i].Value;
+                }
+            }
+
+            // Set constant variables
             // Overall Difficulty
-            StrainWeightOffset = NewConstant("StrainWeightOffset", 6f);
-            StrainWeightExponent = NewConstant("StrainWeightExponent", 4f);
+            StrainWeightOffset = NewConstant(defaultConstants[0].Name, input[0]);
+            StrainWeightExponent = NewConstant(defaultConstants[1].Name, input[1]);
 
             // Density Multiplier
-            MaxDensityBonus = NewConstant("MaxDensityBonus", 3.7f);
-            DensityBonusDuration = NewConstant("DensityBonusDuration", 200);
+            MaxDensityBonus = NewConstant(defaultConstants[2].Name, input[2]);
+            DensityBonusDuration = NewConstant(defaultConstants[3].Name, input[3]);
 
             // Stamina
-            StaminaIncreaseVelocity = NewConstant("StaminaIncreaseVelocity", 2.8f);
-            StaminaDecreaseVelocity = NewConstant("StaminaDecreaseVelocity", 4.12f);
-            StaminaReliefThreshold = NewConstant("StaminaReliefThreshold", 10f);
+            StaminaIncreaseVelocity = NewConstant(defaultConstants[4].Name, input[4]);
+            StaminaDecreaseVelocity = NewConstant(defaultConstants[5].Name, input[5]);
+            StaminaReliefThreshold = NewConstant(defaultConstants[6].Name, input[6]);
 
             // Chords
-            BothHandChordedMultiplier = NewConstant("BothHandChordedMultiplier", 0.88f);
+            BothHandChordedMultiplier = NewConstant(defaultConstants[7].Name, input[7]);
 
-            // Simple Jack
-            SJackUpperBoundaryMs = NewConstant("SJackUpperBoundaryMs", 310);
-            SJackMaxStrainValue = NewConstant("SJackMaxStrainValue", 69.5f);
-            SJackCurveExponential = NewConstant("SJackCurveExponential", 1.51f);
+            // Simple Jacks
+            SJackUpperBoundaryMs = NewConstant(defaultConstants[8].Name, input[8]);
+            SJackMaxStrainValue = NewConstant(defaultConstants[9].Name, input[9]);
+            SJackCurveExponential = NewConstant(defaultConstants[10].Name, input[10]);
 
-            // Tech Jack
-            TJackUpperBoundaryMs = NewConstant("TJackUpperBoundaryMs", 330);
-            TJackMaxStrainValue = NewConstant("TJackMaxStrainValue", 72.5f);
-            TJackCurveExponential = NewConstant("TJackCurveExponential", 1.59f);
+            // Tech Jacks
+            TJackUpperBoundaryMs = NewConstant(defaultConstants[11].Name, input[11]);
+            TJackMaxStrainValue = NewConstant(defaultConstants[12].Name, input[12]);
+            TJackCurveExponential = NewConstant(defaultConstants[13].Name, input[13]);
 
-            // Roll/Trill
-            RollUpperBoundaryMs = NewConstant("RollUpperBoundaryMs", 250);
-            RollMaxStrainValue = NewConstant("RollMaxStrainValue", 66.5f);
-            RollCurveExponential = NewConstant("RollCurveExponential", 2.09f);
+            // Rolls
+            RollUpperBoundaryMs = NewConstant(defaultConstants[14].Name, input[14]);
+            RollMaxStrainValue = NewConstant(defaultConstants[15].Name, input[15]);
+            RollCurveExponential = NewConstant(defaultConstants[16].Name, input[16]);
 
-            // Bracket
-            BracketUpperBoundaryMs = NewConstant("BracketUpperBoundaryMs", 230);
-            BracketMaxStrainValue = NewConstant("BracketMaxStrainValue", 60);
-            BracketCurveExponential = NewConstant("BracketCurveExponential", 1.43f);
+            // Brackets
+            BracketUpperBoundaryMs = NewConstant(defaultConstants[17].Name, input[17]);
+            BracketMaxStrainValue = NewConstant(defaultConstants[18].Name, input[18]);
+            BracketCurveExponential = NewConstant(defaultConstants[19].Name, input[19]);
 
             // LN
-            LnBaseValue = NewConstant("LnBaseValue", 2.7f);
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 4.65f);
-            LnDifficultSizeThresholdMs = NewConstant("LnDifficultSizeThresholdMs", 250f);
-            LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.5f);
-            LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.15f);
-            LnTapMultiplier = NewConstant("LnTapMultiplier", 1.05f);
+            LnBaseMultiplier = NewConstant(defaultConstants[20].Name, input[20]);
+            LnBaseValue = NewConstant(defaultConstants[21].Name, input[21]);
+            LnDifficultSizeThresholdMs = NewConstant(defaultConstants[22].Name, input[22]);
+            LnReleaseAfterMultiplier = NewConstant(defaultConstants[23].Name, input[23]);
+            LnReleaseBeforeMultiplier = NewConstant(defaultConstants[24].Name, input[24]);
+            LnTapMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
 
             // LongJack Manipulation
-            VibroActionDurationMs = NewConstant("VibroActionDurationMs", 88.2f);
-            VibroActionToleranceMs = NewConstant("VibroActionToleranceMs", 22f);
-            VibroMultiplier = NewConstant("VibroMultiplier", 0.48f);
-            VibroLengthMultiplier = NewConstant("VibroLengthMultiplier", 0.3f);
-            VibroMaxLength = NewConstant("VibroMaxLength", 6);
+            VibroActionDurationMs = NewConstant(defaultConstants[26].Name, input[26]);
+            VibroActionToleranceMs = NewConstant(defaultConstants[27].Name, input[27]);
+            VibroMultiplier = NewConstant(defaultConstants[28].Name, input[28]);
+            VibroLengthMultiplier = NewConstant(defaultConstants[29].Name, input[29]);
+            VibroMaxLength = NewConstant(defaultConstants[30].Name, input[30]);
 
             // Roll Manipulation
-            RollRatioToleranceMs = NewConstant("RollRatioToleranceMs", 2);
-            RollRatioMultiplier = NewConstant("RollRatioMultiplier", 0.25f);
-            RollLengthMultiplier = NewConstant("RollLengthMultiplier", 0.6f);
-            RollMaxLength = NewConstant("RollMaxLength", 14);
+            RollRatioToleranceMs = NewConstant(defaultConstants[31].Name, input[31]);
+            RollRatioMultiplier = NewConstant(defaultConstants[32].Name, input[32]);
+            RollLengthMultiplier = NewConstant(defaultConstants[33].Name, input[33]);
+            RollMaxLength = NewConstant(defaultConstants[34].Name, input[34]);
         }
     }
 }
