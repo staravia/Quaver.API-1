@@ -19,7 +19,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Optimization
         /// <summary>
         ///     List of Constant Variables for the current Solver.
         /// </summary>
-        public List<ConstantVariable> ConstantVariables { get; private set; }
+        public List<ConstantVariable> ConstantVariables { get; } = new List<ConstantVariable>();
 
         /// <summary>
         ///     Create a new constant variable for difficulty calculation and optimization.
