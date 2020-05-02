@@ -17,6 +17,7 @@ using MonoGame.Extended.Collections;
 using Quaver.API.Enums;
 using Quaver.API.Maps.Parsers;
 using Quaver.API.Maps.Processors.Difficulty;
+using Quaver.API.Maps.Processors.Difficulty.Optimization;
 using Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys;
 using Quaver.API.Maps.Processors.Scoring;
 using Quaver.API.Maps.Structures;
@@ -517,14 +518,14 @@ namespace Quaver.API.Maps
         /// </summary>
         /// <param name="mods"></param>
         /// <returns></returns>
-        public DifficultyProcessor SolveDifficulty(ModIdentifier mods = ModIdentifier.None)
+        public DifficultyProcessor SolveDifficulty(ModIdentifier mods = ModIdentifier.None, StrainConstants constants = null)
         {
             switch (Mode)
             {
                 case GameMode.Keys4:
-                    return new DifficultyProcessorKeys(this, new StrainConstantsKeys(), mods);
                 case GameMode.Keys7:
-                    return new DifficultyProcessorKeys(this, new StrainConstantsKeys(), mods);
+                    var constantsKeys = constants == null ? new StrainConstantsKeys() : (StrainConstantsKeys)constants;
+                    return new DifficultyProcessorKeys(this, constantsKeys, mods);
                 default:
                     throw new InvalidEnumArgumentException();
             }
