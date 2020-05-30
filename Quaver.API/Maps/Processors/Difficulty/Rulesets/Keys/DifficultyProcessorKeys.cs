@@ -364,7 +364,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 {Hand.Right, 0}
             };
 
-            const float offset = 4;
+            const float offset = 8;
             const float multiplier = 0.5f;
 
             // Compute for wrist state
