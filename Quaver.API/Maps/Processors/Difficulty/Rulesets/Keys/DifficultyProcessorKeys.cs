@@ -364,9 +364,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 {Hand.Right, 0}
             };
 
-            const float offset = 8;
-            const float multiplier = 0.5f;
-
             // Compute for wrist state
             foreach (var data in StrainSolverData)
             {
@@ -390,14 +387,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.WristState == curWristState[data.Hand])
                 {
                     count[data.Hand]++;
-                    //Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}");
-                    data.WristManipulationMultiplier = (1 - multiplier) + multiplier * offset / ( count[data.Hand] + offset );
+                    data.WristManipulationMultiplier = (1 - StrainConstants.WristManipulationMultiplier) + StrainConstants.WristManipulationMultiplier * StrainConstants.WristManipulationOffset / ( count[data.Hand] + StrainConstants.WristManipulationOffset );
                     continue;
                 }
 
                 count[data.Hand] = 0;
                 curWristState[data.Hand] = data.WristState;
-                //Console.WriteLine($"{data.Hand} {curWristState[data.Hand]}: {count[data.Hand]}" + " " + data.StartTime);
             }
         }
 
@@ -459,6 +454,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
         # region OLD
 
+        /*
         /// <summary>
         ///     Scans for roll manipulation. "Roll Manipulation" is definced as notes in sequence "A -> B -> A" with one action at least twice as long as the other.
         [ObsoleteAttribute]
@@ -520,8 +516,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         manipulationCount[data.Hand]++;
                 }
             }
-        }
+        }*/
 
+        /*
         /// <summary>
         ///     Scans for jack manipulation. "Jack Manipulation" is defined as a succession of simple jacks. ("A -> A -> A")
         /// </summary>
@@ -578,7 +575,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (!manipulationFound[data.Hand])
                     manipulationCount[data.Hand] = 0;
             }
-        }
+        }*/
 
         #endregion
 

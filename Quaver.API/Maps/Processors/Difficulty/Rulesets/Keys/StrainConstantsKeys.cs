@@ -21,28 +21,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float LnEndThresholdMs { get; } = 42;
 
         /// <summary>
-        ///     How tolerant vibro will be detected with given delta.
-        /// Non-Dyanmic Constant. Do not use for optimization.
-        /// </summary>
-        public float VibroDeltaToleranceMs { get; } = 30;
-
-        /// <summary>
         ///     When seperate notes are under this threshold, it will count as a chord.
         ///     Non-Dyanmic Constant. Do not use for optimization.
         /// </summary>
         public float ChordClumpToleranceMs { get; } = 8;
-
-        /// <summary>
-        ///     Size of each graph partition in miliseconds.
-        ///     Non-Dyanmic Constant. Do not use for optimization.
-        /// </summary>
-        public int GraphIntervalSizeMs { get; } = 500;
-
-        /// <summary>
-        ///     Offset between each graph partition in miliseconds.
-        ///     Non-Dyanmic Constant. Do not use for optimization.
-        /// </summary>
-        public int GraphIntervalOffsetMs { get; } = 100;
 
         // Overall Difficulty
         public float StrainWeightOffset { get; } = 6f;
@@ -89,18 +71,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float LnReleaseBeforeMultiplier { get; }
         public float LnTapMultiplier { get; }
 
-        // LongJack Manipulation
-        public float VibroActionDurationMs { get; }
-        public float VibroActionToleranceMs { get; }
-        public float VibroMultiplier { get; }
-        public float VibroLengthMultiplier { get; }
-        public float VibroMaxLength { get; }
-
-        // Roll Manipulation
-        public float RollRatioToleranceMs { get; }
-        public float RollRatioMultiplier { get; }
-        public float RollLengthMultiplier { get; }
-        public float RollMaxLength { get; }
+        // Wrist Manipulatin
+        public float WristManipulationOffset { get; }
+        public float WristManipulationMultiplier { get; }
 
         /// <summary>
         ///     Constructor. Create default strain constant values.
@@ -169,62 +142,34 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("RollMaxLength", 14)
                 */
 
-                // Overall Difficulty
-                new ConstantVariable("StrainWeightOffset", 4.52f),
-                new ConstantVariable("StrainWeightExponent", 12.34f),
-
-                // Density Multiplier
-                new ConstantVariable("MaxDensityBonus", 3.80f),
-                new ConstantVariable("DensityBonusDuration", 226.43f),
-
-                // Stamina
-                new ConstantVariable("StaminaIncreaseValue", 0.043f),
-                new ConstantVariable("StaminaDecreaseVelocity", 0.14f),
-                new ConstantVariable("StaminaStrainMultiplier", 0.8f),
-
-                // Chords
-                new ConstantVariable("BothHandChordedMultiplier", 0.88f),
-
-                // Simple Jack
-                new ConstantVariable("SJackUpperBoundaryMs", 301.57f),
-                new ConstantVariable("SJackMaxStrainValue", 68.40f),
-                new ConstantVariable("SJackCurveExponential", 1.57f),
-
-                // Tech Jack
-                new ConstantVariable("TJackUpperBoundaryMs", 332.99f),
-                new ConstantVariable("TJackMaxStrainValue", 75.14f),
-                new ConstantVariable("TJackCurveExponential", 1.94f),
-
-                // Roll/Trill
-                new ConstantVariable("RollUpperBoundaryMs", 298.83f),
-                new ConstantVariable("RollMaxStrainValue", 56.75f),
-                new ConstantVariable("RollCurveExponential", 2.51f),
-
-                // Bracket
-                new ConstantVariable("BracketUpperBoundaryMs", 308.3f),
-                new ConstantVariable("BracketMaxStrainValue", 79.47f),
-                new ConstantVariable("BracketCurveExponential", 1.90f),
-
-                // LN
-                new ConstantVariable("LnBaseValue", 5.78f),
-                new ConstantVariable("LnBaseMultiplier", 8.29f),
-                new ConstantVariable("LnDifficultSizeThresholdMs", 281.88f),
-                new ConstantVariable("LnReleaseAfterMultiplier", 1.26f),
-                new ConstantVariable("LnReleaseBeforeMultiplier", 1.57f),
-                new ConstantVariable("LnTapMultiplier", 1.69f),
-
-                // LongJack Manipulation
-                new ConstantVariable("VibroActionDurationMs", 156.96f),
-                new ConstantVariable("VibroActionToleranceMs", 42.05f),
-                new ConstantVariable("VibroMultiplier", 1.35f),
-                new ConstantVariable("VibroLengthMultiplier", 0.80f),
-                new ConstantVariable("VibroMaxLength", 15.06f),
-
-                // Roll Manipulation
-                new ConstantVariable("RollRatioToleranceMs", 4.66f),
-                new ConstantVariable("RollRatioMultiplier", 0.54f),
-                new ConstantVariable("RollLengthMultiplier", 1.20f),
-                new ConstantVariable("RollMaxLength", 25.88f)
+                new ConstantVariable("StrainWeightOffset", 7.756092f),
+                new ConstantVariable("StrainWeightExponent", 9.568801f),
+                new ConstantVariable("MaxDensityBonus", 2.71981f),
+                new ConstantVariable("DensityBonusDuration", 252.4813f),
+                new ConstantVariable("StaminaIncreaseValue", 0.1506535f),
+                new ConstantVariable("StaminaDecreaseVelocity", 0.1088365f),
+                new ConstantVariable("StaminaStrainMultiplier", 1.007668f),
+                new ConstantVariable("BothHandChordedMultiplier", 0.9385247f),
+                new ConstantVariable("SJackUpperBoundaryMs", 360.3434f),
+                new ConstantVariable("SJackMaxStrainValue", 72.63215f),
+                new ConstantVariable("SJackCurveExponential", 2.572977f),
+                new ConstantVariable("TJackUpperBoundaryMs", 412.4349f),
+                new ConstantVariable("TJackMaxStrainValue", 49.52914f),
+                new ConstantVariable("TJackCurveExponential", 2.443963f),
+                new ConstantVariable("RollUpperBoundaryMs", 543.8318f),
+                new ConstantVariable("RollMaxStrainValue", 18.11797f),
+                new ConstantVariable("RollCurveExponential", 2.681812f),
+                new ConstantVariable("BracketUpperBoundaryMs", 472.7247f),
+                new ConstantVariable("BracketMaxStrainValue", 64.68554f),
+                new ConstantVariable("BracketCurveExponential", 2.814216f),
+                new ConstantVariable("LnBaseValue", 4.760906f),
+                new ConstantVariable("LnBaseMultiplier", 0.19956f),
+                new ConstantVariable("LnDifficultSizeThresholdMs", 411.0293f),
+                new ConstantVariable("LnReleaseAfterMultiplier", 3.22277f),
+                new ConstantVariable("LnReleaseBeforeMultiplier", 3.541371f),
+                new ConstantVariable("LnTapMultiplier", 2.10743f),
+                new ConstantVariable("WristManipulationOffset", 8f),
+                new ConstantVariable("WristManipulationMultiplier", 0.5f)
             };
 
             // If there's no input, use default constants
@@ -283,18 +228,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             LnReleaseBeforeMultiplier = NewConstant(defaultConstants[24].Name, input[24]);
             LnTapMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
 
-            // LongJack Manipulation
-            VibroActionDurationMs = NewConstant(defaultConstants[26].Name, input[26]);
-            VibroActionToleranceMs = NewConstant(defaultConstants[27].Name, input[27]);
-            VibroMultiplier = NewConstant(defaultConstants[28].Name, input[28]);
-            VibroLengthMultiplier = NewConstant(defaultConstants[29].Name, input[29]);
-            VibroMaxLength = NewConstant(defaultConstants[30].Name, input[30]);
-
-            // Roll Manipulation
-            RollRatioToleranceMs = NewConstant(defaultConstants[31].Name, input[31]);
-            RollRatioMultiplier = NewConstant(defaultConstants[32].Name, input[32]);
-            RollLengthMultiplier = NewConstant(defaultConstants[33].Name, input[33]);
-            RollMaxLength = NewConstant(defaultConstants[34].Name, input[34]);
+            // Wrist Manipulation
+            WristManipulationOffset = NewConstant(defaultConstants[26].Name, input[26]);
+            WristManipulationMultiplier = NewConstant(defaultConstants[27].Name, input[27]);
         }
     }
 }
