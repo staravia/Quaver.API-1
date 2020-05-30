@@ -40,6 +40,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
         public float StaminaStrainMultiplier { get; }
 
+        public float StaminaDifficulty { get; }
+
         // Chords
         public float BothHandChordedMultiplier { get; }
 
@@ -196,41 +198,42 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             StaminaIncreaseValue = NewConstant(defaultConstants[4].Name, input[4]);
             StaminaDecreaseVelocity = NewConstant(defaultConstants[5].Name, input[5]);
             StaminaStrainMultiplier = NewConstant(defaultConstants[6].Name, input[6]);
+            StaminaDifficulty = NewConstant(defaultConstants[7].Name, input[7]);
 
             // Chords
-            BothHandChordedMultiplier = NewConstant(defaultConstants[7].Name, input[7]);
+            BothHandChordedMultiplier = NewConstant(defaultConstants[8].Name, input[8]);
 
             // Simple Jacks
-            SJackUpperBoundaryMs = NewConstant(defaultConstants[8].Name, input[8]);
-            SJackMaxStrainValue = NewConstant(defaultConstants[9].Name, input[9]);
-            SJackCurveExponential = NewConstant(defaultConstants[10].Name, input[10]);
+            SJackUpperBoundaryMs = NewConstant(defaultConstants[9].Name, input[9]);
+            SJackMaxStrainValue = NewConstant(defaultConstants[10].Name, input[10]);
+            SJackCurveExponential = NewConstant(defaultConstants[11].Name, input[11]);
 
             // Tech Jacks
-            TJackUpperBoundaryMs = NewConstant(defaultConstants[11].Name, input[11]);
-            TJackMaxStrainValue = NewConstant(defaultConstants[12].Name, input[12]);
-            TJackCurveExponential = NewConstant(defaultConstants[13].Name, input[13]);
+            TJackUpperBoundaryMs = NewConstant(defaultConstants[12].Name, input[12]);
+            TJackMaxStrainValue = NewConstant(defaultConstants[13].Name, input[13]);
+            TJackCurveExponential = NewConstant(defaultConstants[14].Name, input[14]);
 
             // Rolls
-            RollUpperBoundaryMs = NewConstant(defaultConstants[14].Name, input[14]);
-            RollMaxStrainValue = NewConstant(defaultConstants[15].Name, input[15]);
-            RollCurveExponential = NewConstant(defaultConstants[16].Name, input[16]);
+            RollUpperBoundaryMs = NewConstant(defaultConstants[15].Name, input[15]);
+            RollMaxStrainValue = NewConstant(defaultConstants[16].Name, input[16]);
+            RollCurveExponential = NewConstant(defaultConstants[17].Name, input[17]);
 
             // Brackets
-            BracketUpperBoundaryMs = NewConstant(defaultConstants[17].Name, input[17]);
-            BracketMaxStrainValue = NewConstant(defaultConstants[18].Name, input[18]);
-            BracketCurveExponential = NewConstant(defaultConstants[19].Name, input[19]);
+            BracketUpperBoundaryMs = NewConstant(defaultConstants[18].Name, input[18]);
+            BracketMaxStrainValue = NewConstant(defaultConstants[19].Name, input[19]);
+            BracketCurveExponential = NewConstant(defaultConstants[20].Name, input[20]);
 
             // LN
-            LnBaseMultiplier = NewConstant(defaultConstants[20].Name, input[20]);
-            LnBaseValue = NewConstant(defaultConstants[21].Name, input[21]);
-            LnDifficultSizeThresholdMs = NewConstant(defaultConstants[22].Name, input[22]);
-            LnReleaseAfterMultiplier = NewConstant(defaultConstants[23].Name, input[23]);
-            LnReleaseBeforeMultiplier = NewConstant(defaultConstants[24].Name, input[24]);
-            LnTapMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
+            LnBaseMultiplier = NewConstant(defaultConstants[21].Name, input[21]);
+            LnBaseValue = NewConstant(defaultConstants[22].Name, input[22]);
+            LnDifficultSizeThresholdMs = NewConstant(defaultConstants[23].Name, input[23]);
+            LnReleaseAfterMultiplier = NewConstant(defaultConstants[24].Name, input[24]);
+            LnReleaseBeforeMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
+            LnTapMultiplier = NewConstant(defaultConstants[26].Name, input[26]);
 
             // Wrist Manipulation
-            WristManipulationOffset = NewConstant(defaultConstants[26].Name, input[26]);
-            WristManipulationMultiplier = NewConstant(defaultConstants[27].Name, input[27]);
+            WristManipulationOffset = NewConstant(defaultConstants[27].Name, input[27]);
+            WristManipulationMultiplier = NewConstant(defaultConstants[28].Name, input[28]);
         }
     }
 }

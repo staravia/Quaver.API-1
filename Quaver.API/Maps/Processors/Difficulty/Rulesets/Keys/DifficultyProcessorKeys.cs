@@ -165,8 +165,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeBaseStrainStates(rate, assumeHand);
             ComputeForChords();
             ComputeForFingerActions();
-            //ComputeForRollManipulation();
-            //ComputeForJackManipulation();
             ComputeForWristManipulation();
             ComputeForLnMultiplier();
             ComputeForStamina();
@@ -350,6 +348,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         private void ComputeForWristManipulation()
         {
             var curWristState = new Dictionary<Hand, FingerState>()
@@ -396,7 +397,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             }
         }
 
-        // todo: this only works for 4k right now. It doesn't detect roll direction.
+        /// <summary>
+        ///     todo: this only works for 4k right now. It doesn't detect roll direction.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="state"></param>
+        /// <param name="duration"></param>
+        /// <param name="inwards"></param>
+        /// <returns></returns>
         private StrainSolverData SolveForWristState(StrainSolverData data, FingerState state, float duration, bool inwards)
         {
             const float rollRatioTolerance = 1.9f;
@@ -662,7 +670,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         private void ComputeForStamina()
         {
             // Cached diff
-            const float staminaDiff = 18f;
+            const float staminaDiff = 11f;
             float curMultiplier = 0;
             float prevTime = 0;
 
