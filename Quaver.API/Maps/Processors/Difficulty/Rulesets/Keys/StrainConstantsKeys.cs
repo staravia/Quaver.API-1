@@ -40,7 +40,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
         public float StaminaStrainMultiplier { get; }
 
-        public float StaminaDifficulty { get; }
+        public float StaminaDifficultyValue { get; }
 
         // Chords
         public float BothHandChordedMultiplier { get; }
@@ -151,6 +151,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("StaminaIncreaseValue", 0.1506535f),
                 new ConstantVariable("StaminaDecreaseVelocity", 0.1088365f),
                 new ConstantVariable("StaminaStrainMultiplier", 1.007668f),
+                new ConstantVariable("StaminaDifficultyValue", 11f),
                 new ConstantVariable("BothHandChordedMultiplier", 0.9385247f),
                 new ConstantVariable("SJackUpperBoundaryMs", 360.3434f),
                 new ConstantVariable("SJackMaxStrainValue", 72.63215f),
@@ -198,7 +199,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             StaminaIncreaseValue = NewConstant(defaultConstants[4].Name, input[4]);
             StaminaDecreaseVelocity = NewConstant(defaultConstants[5].Name, input[5]);
             StaminaStrainMultiplier = NewConstant(defaultConstants[6].Name, input[6]);
-            StaminaDifficulty = NewConstant(defaultConstants[7].Name, input[7]);
+            StaminaDifficultyValue = NewConstant(defaultConstants[7].Name, input[7]);
 
             // Chords
             BothHandChordedMultiplier = NewConstant(defaultConstants[8].Name, input[8]);

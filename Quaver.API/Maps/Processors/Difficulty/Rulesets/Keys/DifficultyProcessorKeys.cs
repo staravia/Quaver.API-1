@@ -670,7 +670,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         private void ComputeForStamina()
         {
             // Cached diff
-            const float staminaDiff = 11f;
             float curMultiplier = 0;
             float prevTime = 0;
 
@@ -691,7 +690,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 prevTime = data.StartTime;
 
                 // Solve for stamina multiplier
-                curMultiplier += data.TotalStrainValue > staminaDiff
+                curMultiplier += data.TotalStrainValue > StrainConstants.StaminaDifficultyValue
                     ? StrainConstants.StaminaIncreaseValue
                     : -StrainConstants.StaminaDecreaseVelocity * delta;
 
