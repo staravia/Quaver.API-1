@@ -225,48 +225,48 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         break;
 
                     // Check if the next and current hit objects are chord-able
-                    if (Math.Abs(msDiff) <= StrainConstants.ChordClumpToleranceMs)
-                    {
-                        if (StrainSolverData[i].Hand == StrainSolverData[j].Hand)
-                        {
-                            // Search through every hit object for chords
-                            foreach (var k in StrainSolverData[j].HitObjects)
-                            {
-                                // Check if the current data point will have duplicate finger state to prevent stacked notes
-                                var sameStateFound = false;
-                                foreach (var l in StrainSolverData[i].HitObjects)
-                                {
-                                    if (l.FingerState == k.FingerState)
-                                    {
-                                        sameStateFound = true;
-                                        break;
-                                    }
-                                }
+                    if ( Math.Abs(msDiff) > StrainConstants.ChordClumpToleranceMs )
+                        continue;
 
-                                // Add hit object to chord list if its not stacked
-                                if (!sameStateFound)
-                                    StrainSolverData[i].HitObjects.Add(k);
+                    if (StrainSolverData[i].Hand == StrainSolverData[j].Hand)
+                    {
+                        // Search through every hit object for chords
+                        foreach (var k in StrainSolverData[j].HitObjects)
+                        {
+                            // Check if the current data point will have duplicate finger state to prevent stacked notes
+                            var sameStateFound = false;
+                            foreach (var l in StrainSolverData[i].HitObjects)
+                            {
+                                if (l.FingerState != k.FingerState)
+                                    continue;
+
+                                    sameStateFound = true;
+                                    break;
                             }
 
-                            // Remove un-needed data point because it has been merged with the current point
-                            StrainSolverData.RemoveAt(j);
-                            j--;
+                            // Add hit object to chord list if its not stacked
+                            if (!sameStateFound)
+                                StrainSolverData[i].HitObjects.Add(k);
                         }
 
-                        // Apply a chord multiplier if the other hand is chorded the current hand
-                        else
-                        {
-                            StrainSolverData[i].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
-                            StrainSolverData[j].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
-                        }
+                        // Remove un-needed data point because it has been merged with the current point
+                        StrainSolverData.RemoveAt(j);
+                        j--;
+                    }
+
+                    // Apply a chord multiplier if the other hand is chorded the current hand
+                    else
+                    {
+                        StrainSolverData[i].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
+                        StrainSolverData[j].ChordMultiplier = StrainConstants.BothHandChordedMultiplier;
                     }
                 }
             }
 
             // Solve finger state of every object once chords have been found and applied.
-            for (var i = 0; i < StrainSolverData.Count; i++)
+            foreach (var data in StrainSolverData)
             {
-                StrainSolverData[i].SolveFingerState();
+                data.SolveFingerState();
             }
         }
 
@@ -664,43 +664,37 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private void ComputeForStamina()
         {
-            // This is used to cache temporary stamina variables
-            var diff = new Dictionary<Hand, float>()
-            {
-                {Hand.Left, 0},
-                {Hand.Right, 0}
-            };
+            // Cached diff
+            const float staminaDiff = 18f;
+            float curMultiplier = 0;
+            float prevTime = 0;
 
-            var relief = new Dictionary<Hand, int>()
-            {
-                {Hand.Left, 0},
-                {Hand.Right, 0}
-            };
+            // Sort Data
+            SortDataByStartTime(true);
 
             // Compute for stamina values
             foreach (var data in StrainSolverData)
             {
-                const float staminaResetDurationMs = 2000f;
                 if (data.NextStrainSolverDataOnCurrentHand == null)
                     continue;
 
+                // Solve for difficulty without stamina multiplier
                 data.CalculateStrainValue();
 
-                var curDiff = diff[data.Hand];
-                var curRelief = relief[data.Hand];
-                var increment = data.TotalStrainValue > curDiff
-                    ? StrainConstants.StaminaIncreaseVelocity
-                    : -StrainConstants.StaminaDecreaseVelocity;
+                // Solve for delta
+                var delta = (data.StartTime - prevTime) / 1000f;
+                prevTime = data.StartTime;
 
-                curRelief = increment < 0 ? relief[data.Hand] + 1 : 0;
-                increment *= increment < 0 ? curRelief / StrainConstants.StaminaReliefThreshold : 1;
-                increment = Math.Min(increment, StrainConstants.StaminaIncreaseVelocity);
-                curDiff = data.FingerActionDurationMs > staminaResetDurationMs ? data.TotalStrainValue : curDiff + increment * data.FingerActionDurationMs / SECONDS_TO_MILLISECONDS;
-                data.StaminaStrainValue = Math.Max(1, curDiff); //curDiff.Clamp(1, data.TotalStrainValue);
+                // Solve for stamina multiplier
+                curMultiplier += data.TotalStrainValue > staminaDiff
+                    ? StrainConstants.StaminaIncreaseValue
+                    : -StrainConstants.StaminaDecreaseVelocity * delta;
 
-                // Update temp. cache
-                diff[data.Hand] = data.StaminaStrainValue;
-                relief[data.Hand] = curRelief;
+                curMultiplier = curMultiplier.Clamp(0, 1);
+                data.StaminaMultiplier = curMultiplier * StrainConstants.StaminaStrainMultiplier + (1 - StrainConstants.StaminaStrainMultiplier);
+
+                // Solve for data difficulty with stamina multiplier
+                data.CalculateStrainValue();
             }
         }
 
@@ -717,8 +711,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
             {
-                var delta = (float)Math.Pow(data.StaminaStrainValue + StrainConstants.StrainWeightOffset, StrainConstants.StrainWeightExponent);
-                weightedDiff += data.StaminaStrainValue * delta;
+                var delta = (float)Math.Pow(data.StaminaMultiplier + StrainConstants.StrainWeightOffset, StrainConstants.StrainWeightExponent);
+                weightedDiff += data.TotalStrainValue * delta;
                 weight += delta;
             }
 
@@ -755,6 +749,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 
             // compute for difficulty
             return lowestDifficulty + densityBonus + (strainMax - lowestDifficulty) * (float)Math.Pow(ratio, exp);
+        }
+
+        /// <summary>
+        ///     Will sort all the hit objects either in ascending or descending order
+        /// </summary>
+        /// <param name="ascending"></param>
+        private void SortDataByStartTime(bool ascending)
+        {
+            if (ascending)
+            {
+                StrainSolverData.Sort((a,b) => a.StartTime > b.StartTime ? 1 : - 1);
+                return;
+            }
+
+            StrainSolverData.Sort((a,b) => a.StartTime > b.StartTime ? -1 : 1);
         }
     }
 }

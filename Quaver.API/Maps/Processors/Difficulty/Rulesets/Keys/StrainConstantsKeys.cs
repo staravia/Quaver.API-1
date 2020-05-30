@@ -53,10 +53,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float DensityBonusDuration { get; } = 200;
 
         // Stamina
-        public float StaminaIncreaseVelocity { get; }
+        public float StaminaIncreaseValue { get; }
         public float StaminaDecreaseVelocity { get; }
 
-        public float StaminaReliefThreshold { get; }
+        public float StaminaStrainMultiplier { get; }
 
         // Chords
         public float BothHandChordedMultiplier { get; }
@@ -178,9 +178,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("DensityBonusDuration", 226.43f),
 
                 // Stamina
-                new ConstantVariable("StaminaIncreaseVelocity", 3.33f),
-                new ConstantVariable("StaminaDecreaseVelocity", 5.04f),
-                new ConstantVariable("StaminaReliefThreshold", 10.03f),
+                new ConstantVariable("StaminaIncreaseValue", 0.043f),
+                new ConstantVariable("StaminaDecreaseVelocity", 0.14f),
+                new ConstantVariable("StaminaStrainMultiplier", 0.8f),
 
                 // Chords
                 new ConstantVariable("BothHandChordedMultiplier", 0.88f),
@@ -209,8 +209,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("LnBaseValue", 5.78f),
                 new ConstantVariable("LnBaseMultiplier", 8.29f),
                 new ConstantVariable("LnDifficultSizeThresholdMs", 281.88f),
-                new ConstantVariable("LnReleaseAfterMultiplier", 4.26f),
-                new ConstantVariable("LnReleaseBeforeMultiplier", 2.57f),
+                new ConstantVariable("LnReleaseAfterMultiplier", 1.26f),
+                new ConstantVariable("LnReleaseBeforeMultiplier", 1.57f),
                 new ConstantVariable("LnTapMultiplier", 1.69f),
 
                 // LongJack Manipulation
@@ -248,9 +248,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             DensityBonusDuration = NewConstant(defaultConstants[3].Name, input[3]);
 
             // Stamina
-            StaminaIncreaseVelocity = NewConstant(defaultConstants[4].Name, input[4]);
+            StaminaIncreaseValue = NewConstant(defaultConstants[4].Name, input[4]);
             StaminaDecreaseVelocity = NewConstant(defaultConstants[5].Name, input[5]);
-            StaminaReliefThreshold = NewConstant(defaultConstants[6].Name, input[6]);
+            StaminaStrainMultiplier = NewConstant(defaultConstants[6].Name, input[6]);
 
             // Chords
             BothHandChordedMultiplier = NewConstant(defaultConstants[7].Name, input[7]);

@@ -117,8 +117,8 @@ namespace Quaver.Tools.Commands
 
                     var diffCalc = map.SolveDifficulty(Mods);
 
-                    Console.WriteLine($"{files.Count - i}");
-                    //Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
+                    //Console.WriteLine($"{files.Count - i}");
+                    Console.WriteLine($"[{i}] | {map} | {diffCalc.OverallDifficulty}");
                     output += $"({Rate:#.#}x) {map}\t{Rate:#.#}\t{map.MapId}\t{diffCalc.OverallDifficulty}";
                     if (diff >= 0) output += $"\t{diff:##.##}";
                     output += "\n";
