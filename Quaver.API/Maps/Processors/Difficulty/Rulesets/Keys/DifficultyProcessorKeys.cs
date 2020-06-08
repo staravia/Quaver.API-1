@@ -598,11 +598,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.EndTime <= data.StartTime)
                     continue;
 
-                var durationValue = (( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs).Clamp(0, 1);;
+                var durationValue = (( data.EndTime - data.StartTime ) / StrainConstants.LnDifficultSizeThresholdMs).Clamp(0, 1);
                 var baseDifficulty = StrainConstants.LnBaseValue + durationValue * StrainConstants.LnBaseMultiplier;
-
-                foreach (var k in data.HitObjects)
-                    k.LnStrainDifficulty = baseDifficulty;
 
                 // Loop through all strain solver data on the current hand until the LN is finished
                 var next = data;
@@ -622,8 +619,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     {
                         foreach (var k in data.HitObjects)
                         {
+                            if (k.LnLayerType != LnLayerType.None)
+                                continue;
+
                             k.LnLayerType = LnLayerType.OutsideRelease;
-                            k.LnStrainDifficulty *= StrainConstants.LnReleaseAfterMultiplier;
+                            k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnReleaseAfterMultiplier;
                         }
                     }
 
@@ -632,8 +632,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     {
                         foreach (var k in data.HitObjects)
                         {
+                            if (k.LnLayerType != LnLayerType.None)
+                                continue;
+
                             k.LnLayerType = LnLayerType.InsideRelease;
-                            k.LnStrainDifficulty *= StrainConstants.LnReleaseBeforeMultiplier;
+                            k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnReleaseBeforeMultiplier;
                         }
                     }
 
@@ -642,8 +645,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     {
                         foreach (var k in data.HitObjects)
                         {
+                            if (k.LnLayerType != LnLayerType.None)
+                                continue;
+
                             k.LnLayerType = LnLayerType.InsideTap;
-                            k.LnStrainDifficulty *= StrainConstants.LnTapMultiplier;
+                            k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnTapMultiplier;
                         }
                     }
                 }
