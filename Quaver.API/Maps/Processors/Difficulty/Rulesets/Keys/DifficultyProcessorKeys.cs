@@ -611,17 +611,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     if (next.StartTime >= data.EndTime - StrainConstants.LnEndThresholdMs)
                         break;
 
-                    if (next.StartTime < data.StartTime + StrainConstants.LnEndThresholdMs)
+                    if (next.StartTime < data.StartTime)
                         continue;
 
                     // Target hitobject's LN ends after current hitobject's LN end.
                     if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
                     {
-                        foreach (var k in data.HitObjects)
+                        foreach (var k in next.HitObjects)
                         {
-                            if (k.LnLayerType != LnLayerType.None)
-                                continue;
-
                             k.LnLayerType = LnLayerType.OutsideRelease;
                             k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnReleaseAfterMultiplier;
                         }
@@ -630,11 +627,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     // Target hitobject's LN ends before current hitobject's LN end
                     else if (next.EndTime > 0)
                     {
-                        foreach (var k in data.HitObjects)
+                        foreach (var k in next.HitObjects)
                         {
-                            if (k.LnLayerType != LnLayerType.None)
-                                continue;
-
                             k.LnLayerType = LnLayerType.InsideRelease;
                             k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnReleaseBeforeMultiplier;
                         }
@@ -643,11 +637,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     // Target hitobject is not an LN
                     else
                     {
-                        foreach (var k in data.HitObjects)
+                        foreach (var k in next.HitObjects)
                         {
-                            if (k.LnLayerType != LnLayerType.None)
-                                continue;
-
                             k.LnLayerType = LnLayerType.InsideTap;
                             k.LnStrainDifficulty = baseDifficulty * StrainConstants.LnTapMultiplier;
                         }
