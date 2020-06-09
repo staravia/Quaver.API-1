@@ -148,7 +148,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("StrainWeightExponent", 12.69273f),
                 new ConstantVariable("MaxDensityBonus", 2.814368f),
                 new ConstantVariable("DensityBonusDuration", 312.3641f),
-                new ConstantVariable("StaminaIncreaseValue", 0.1473745f),
+                new ConstantVariable("StaminaIncreaseValue", 0.01473745f),
                 new ConstantVariable("StaminaDecreaseVelocity", 0.1765149f),
                 new ConstantVariable("StaminaStrainMultiplier", 1.516619f),
                 new ConstantVariable("StaminaDifficultyValue", 16.55687f),
