@@ -392,7 +392,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     continue;
                 }
 
-                count[data.Hand] = 0;
+                count[data.Hand] /= 2;
                 curWristState[data.Hand] = data.WristState;
             }
         }
@@ -428,6 +428,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 }
 
                 // Sort out which action is longer/shorter
+                /*
                 var min = duration;
                 var max = data.FingerActionDurationMs;
                 if (min > max)
@@ -435,10 +436,11 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                     var temp = max;
                     max = min;
                     min = temp;
-                }
+                }*/
 
                 // Check to see if this wrist state is actually a roll
-                if (max / min > rollRatioTolerance)
+                if (data.FingerActionDurationMs / duration > rollRatioTolerance)
+                //if (max / min > rollRatioTolerance)
                 {
                     data.WristState = state;
                     data.NextStrainSolverDataAfterWristUp = data.NextStrainSolverDataOnCurrentHand;
@@ -767,6 +769,12 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             StrainSolverData.Sort((a,b) => SortByStartTime(b.StartTime, a.StartTime));
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         private int SortByStartTime(float a, float b)
         {
             if (a == b)
