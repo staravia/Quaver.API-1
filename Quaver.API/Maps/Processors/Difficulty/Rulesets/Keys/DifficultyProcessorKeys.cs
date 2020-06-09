@@ -760,11 +760,22 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         {
             if (ascending)
             {
-                StrainSolverData.Sort((a,b) => a.StartTime > b.StartTime ? 1 : - 1);
+                StrainSolverData.Sort((a,b) => SortByStartTime(a.StartTime, b.StartTime));
                 return;
             }
 
-            StrainSolverData.Sort((a,b) => a.StartTime > b.StartTime ? -1 : 1);
+            StrainSolverData.Sort((a,b) => SortByStartTime(b.StartTime, a.StartTime));
+        }
+
+        private int SortByStartTime(float a, float b)
+        {
+            if (a == b)
+                return 0;
+
+            if (a > b)
+                return 1;
+
+            return -1;
         }
     }
 }
