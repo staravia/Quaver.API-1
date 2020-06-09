@@ -163,7 +163,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("RollMaxStrainValue", 25.44159f),
                 new ConstantVariable("RollCurveExponential", 3.976988f),
                 new ConstantVariable("BracketUpperBoundaryMs", 523.8061f),
-                new ConstantVariable("BracketMaxStrainValue", 50f),
+                new ConstantVariable("BracketMaxStrainValue", 26f),
                 new ConstantVariable("BracketCurveExponential", 3.4f),
                 new ConstantVariable("LnBaseValue", 5.170606f),
                 new ConstantVariable("LnBaseMultiplier", 0.375f),
