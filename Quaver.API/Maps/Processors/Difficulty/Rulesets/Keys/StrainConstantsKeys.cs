@@ -30,17 +30,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         public float StrainWeightOffset { get; } = 6f;
         public float StrainWeightExponent { get; } = 4f;
 
+        public float EasyActionLength { get; } = 250;
+
         // Density Multiplier
         public float MaxDensityBonus { get; } = 3.7f;
         public float DensityBonusDuration { get; } = 200;
 
         // Stamina
-        public float StaminaIncreaseValue { get; }
-        public float StaminaDecreaseVelocity { get; }
-
-        public float StaminaStrainMultiplier { get; }
-
-        public float StaminaDifficultyValue { get; }
+        public float StaminaCountValue { get; }
 
         // Chords
         public float BothHandChordedMultiplier { get; }
@@ -148,10 +145,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("StrainWeightExponent", 8.854067f),
                 new ConstantVariable("MaxDensityBonus", 0.5011847f),
                 new ConstantVariable("DensityBonusDuration", 378.8592f),
-                new ConstantVariable("StaminaIncreaseValue", 0.05701823f),
-                new ConstantVariable("StaminaDecreaseVelocity", 0.3080455f),
-                new ConstantVariable("StaminaStrainMultiplier", 1.305891f),
-                new ConstantVariable("StaminaDifficultyValue", 8.957695f),
+                new ConstantVariable("StaminaCountValue", 20f),
                 new ConstantVariable("BothHandChordedMultiplier", 1.021279f),
                 new ConstantVariable("SJackUpperBoundaryMs", 376.5979f),
                 new ConstantVariable("SJackMaxStrainValue", 89.91472f),
@@ -196,45 +190,42 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             DensityBonusDuration = NewConstant(defaultConstants[3].Name, input[3]);
 
             // Stamina
-            StaminaIncreaseValue = NewConstant(defaultConstants[4].Name, input[4]);
-            StaminaDecreaseVelocity = NewConstant(defaultConstants[5].Name, input[5]);
-            StaminaStrainMultiplier = NewConstant(defaultConstants[6].Name, input[6]);
-            StaminaDifficultyValue = NewConstant(defaultConstants[7].Name, input[7]);
+            StaminaCountValue = NewConstant(defaultConstants[4].Name, input[4]);
 
             // Chords
-            BothHandChordedMultiplier = NewConstant(defaultConstants[8].Name, input[8]);
+            BothHandChordedMultiplier = NewConstant(defaultConstants[5].Name, input[5]);
 
             // Simple Jacks
-            SJackUpperBoundaryMs = NewConstant(defaultConstants[9].Name, input[9]);
-            SJackMaxStrainValue = NewConstant(defaultConstants[10].Name, input[10]);
-            SJackCurveExponential = NewConstant(defaultConstants[11].Name, input[11]);
+            SJackUpperBoundaryMs = NewConstant(defaultConstants[6].Name, input[6]);
+            SJackMaxStrainValue = NewConstant(defaultConstants[7].Name, input[7]);
+            SJackCurveExponential = NewConstant(defaultConstants[8].Name, input[8]);
 
             // Tech Jacks
-            TJackUpperBoundaryMs = NewConstant(defaultConstants[12].Name, input[12]);
-            TJackMaxStrainValue = NewConstant(defaultConstants[13].Name, input[13]);
-            TJackCurveExponential = NewConstant(defaultConstants[14].Name, input[14]);
+            TJackUpperBoundaryMs = NewConstant(defaultConstants[9].Name, input[9]);
+            TJackMaxStrainValue = NewConstant(defaultConstants[10].Name, input[10]);
+            TJackCurveExponential = NewConstant(defaultConstants[11].Name, input[11]);
 
             // Rolls
-            RollUpperBoundaryMs = NewConstant(defaultConstants[15].Name, input[15]);
-            RollMaxStrainValue = NewConstant(defaultConstants[16].Name, input[16]);
-            RollCurveExponential = NewConstant(defaultConstants[17].Name, input[17]);
+            RollUpperBoundaryMs = NewConstant(defaultConstants[12].Name, input[12]);
+            RollMaxStrainValue = NewConstant(defaultConstants[13].Name, input[13]);
+            RollCurveExponential = NewConstant(defaultConstants[14].Name, input[14]);
 
             // Brackets
-            BracketUpperBoundaryMs = NewConstant(defaultConstants[18].Name, input[18]);
-            BracketMaxStrainValue = NewConstant(defaultConstants[19].Name, input[19]);
-            BracketCurveExponential = NewConstant(defaultConstants[20].Name, input[20]);
+            BracketUpperBoundaryMs = NewConstant(defaultConstants[15].Name, input[15]);
+            BracketMaxStrainValue = NewConstant(defaultConstants[16].Name, input[16]);
+            BracketCurveExponential = NewConstant(defaultConstants[17].Name, input[17]);
 
             // LN
-            LnBaseMultiplier = NewConstant(defaultConstants[21].Name, input[21]);
-            LnBaseValue = NewConstant(defaultConstants[22].Name, input[22]);
-            LnDifficultSizeThresholdMs = NewConstant(defaultConstants[23].Name, input[23]);
-            LnReleaseAfterMultiplier = NewConstant(defaultConstants[24].Name, input[24]);
-            LnReleaseBeforeMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
-            LnTapMultiplier = NewConstant(defaultConstants[26].Name, input[26]);
+            LnBaseMultiplier = NewConstant(defaultConstants[18].Name, input[18]);
+            LnBaseValue = NewConstant(defaultConstants[19].Name, input[19]);
+            LnDifficultSizeThresholdMs = NewConstant(defaultConstants[20].Name, input[20]);
+            LnReleaseAfterMultiplier = NewConstant(defaultConstants[21].Name, input[21]);
+            LnReleaseBeforeMultiplier = NewConstant(defaultConstants[22].Name, input[22]);
+            LnTapMultiplier = NewConstant(defaultConstants[23].Name, input[23]);
 
             // Wrist Manipulation
-            WristManipulationOffset = NewConstant(defaultConstants[27].Name, input[27]);
-            WristManipulationMultiplier = NewConstant(defaultConstants[28].Name, input[28]);
+            WristManipulationOffset = NewConstant(defaultConstants[24].Name, input[24]);
+            WristManipulationMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
         }
     }
 }

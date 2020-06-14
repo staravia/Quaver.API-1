@@ -167,7 +167,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeForFingerActions();
             ComputeForWristManipulation();
             ComputeForLnMultiplier();
-            ComputeForStamina();
+
             return CalculateOverallDifficulty();
         }
 
@@ -664,44 +664,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         }
 
         /// <summary>
-        ///     This will Handle stamina-related calculations
-        /// </summary>
-        private void ComputeForStamina()
-        {
-            // Cached diff
-            float curMultiplier = 0;
-            float prevTime = 0;
-
-            // Sort Data
-            SortDataByStartTime(true);
-
-            // Compute for stamina values
-            foreach (var data in StrainSolverData)
-            {
-                if (data.NextStrainSolverDataOnCurrentHand == null)
-                    continue;
-
-                // Solve for difficulty without stamina multiplier
-                data.CalculateStrainValue();
-
-                // Solve for delta
-                var delta = (data.StartTime - prevTime) / 1000f;
-                prevTime = data.StartTime;
-
-                // Solve for stamina multiplier
-                curMultiplier += data.TotalStrainValue > StrainConstants.StaminaDifficultyValue
-                    ? StrainConstants.StaminaIncreaseValue
-                    : -StrainConstants.StaminaDecreaseVelocity * delta;
-
-                curMultiplier = curMultiplier.Clamp(0, 1);
-                data.StaminaMultiplier = curMultiplier * StrainConstants.StaminaStrainMultiplier + (1 - StrainConstants.StaminaStrainMultiplier);
-
-                // Solve for data difficulty with stamina multiplier
-                data.CalculateStrainValue();
-            }
-        }
-
-        /// <summary>
         ///     Calculate the overall difficulty of the given map
         /// </summary>
         /// <param name="rate"></param>
@@ -711,17 +673,22 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             float weightedDiff = 0;
             float weight = 0;
 
+            // Get the current "stamina" multiplier
+            var staminaMultiplier = 1; // - 1 / (StrainSolverData.Count / StrainConstants.StaminaCountValue + 1);
+
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
             {
-                var delta = (float)Math.Pow(data.StaminaMultiplier + StrainConstants.StrainWeightOffset, StrainConstants.StrainWeightExponent);
+                data.CalculateStrainValue(StrainConstants.EasyActionLength);
+
+                var delta = (float)Math.Pow(data.TotalStrainValue + StrainConstants.StrainWeightOffset, StrainConstants.StrainWeightExponent);
                 weightedDiff += data.TotalStrainValue * delta;
                 weight += delta;
             }
 
             // Calculate the overall difficulty with given weights and values
             weightedDiff /= weight;
-            return weightedDiff;
+            return weightedDiff * staminaMultiplier;
         }
 
         /// <summary>
@@ -729,14 +696,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         /// <param name="qssData"></param>
         /// <param name="qua"></param>
-        private void ComputeNoteDensityData(float rate)
-        {
-            //MapLength = Qua.Length;
-            AverageNoteDensity = SECONDS_TO_MILLISECONDS * Map.HitObjects.Count / (Map.Length * rate);
-
-            //todo: solve note density graph
-            // put stuff here
-        }
+        private void ComputeNoteDensityData(float rate) => AverageNoteDensity = SECONDS_TO_MILLISECONDS * Map.HitObjects.Count / (Map.Length * rate);
 
         /// <summary>
         ///     Used to calculate Coefficient for Strain Difficulty
@@ -762,20 +722,20 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         {
             if (ascending)
             {
-                StrainSolverData.Sort((a,b) => SortByStartTime(a.StartTime, b.StartTime));
+                StrainSolverData.Sort((a,b) => CompareByStartTime(a.StartTime, b.StartTime));
                 return;
             }
 
-            StrainSolverData.Sort((a,b) => SortByStartTime(b.StartTime, a.StartTime));
+            StrainSolverData.Sort((a,b) => CompareByStartTime(b.StartTime, a.StartTime));
         }
 
         /// <summary>
-        ///
+        ///    This will compare the StrainSolverData set by start time.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        private int SortByStartTime(float a, float b)
+        private int CompareByStartTime(float a, float b)
         {
             if (a == b)
                 return 0;
