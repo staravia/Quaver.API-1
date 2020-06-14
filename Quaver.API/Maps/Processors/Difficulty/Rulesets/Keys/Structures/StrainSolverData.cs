@@ -31,6 +31,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// </summary>
         public StrainSolverData NextStrainSolverDataOnCurrentHand { get; set; }
 
+        /// <summary>
+        /// </summary>
         public StrainSolverData NextStrainSolverDataAfterWristUp { get; set; }
 
         /// <summary>
@@ -57,18 +59,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         ///     Strain multiplier determined by pattern difficulty
         /// </summary>
         public float PatternStrainMultiplier { get; set; } = 1;
-
-        /// <summary>
-        ///     Multiplier that gets added to any pattern that could be manipulated via rolls.
-        /// </summary>
-        [Obsolete]
-        public float RollManipulationStrainMultiplier { get; set; } = 1;
-
-        /// <summary>
-        ///     Multiplier that gets applied to any pattern that could be manipulated via long jacks.
-        /// </summary>
-        [Obsolete]
-        public float JackManipulationStrainMultiplier { get; set; } = 1;
 
         /// <summary>
         ///     Multiplier that gets applied to any pattern that could be manipulated via wrist.
@@ -111,11 +101,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         public FingerState FingerState { get; private set; } = FingerState.None;
 
         /// <summary>
-        ///
-        /// </summary>
-        private float EasyCoefficient { get; set; } = 1;
-
-        /// <summary>
         ///     Data used to represent a point in time and other variables that influence difficulty.
         /// </summary>
         /// <param name="hitOb"></param>
@@ -132,16 +117,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
         /// </summary>
         public void CalculateStrainValue(float easyActionLength)
         {
-            // Wrist Manipulation and Chord multipliers should approach 1 as the action gets easier
-            SolveForEasyCoefficient(250); //Math.Min(1, FingerActionDurationMs);
-            var wristMultiplier = Lerp(1, WristManipulationMultiplier, EasyCoefficient);
-            var chordMultiplier = Lerp(1, ChordMultiplier, EasyCoefficient);
+            var easyCoefficient = Math.Min(1, easyActionLength / ( 1 - ( 1 - FingerActionDurationMs )));
+            var easyMultiplier = Lerp(1, WristManipulationMultiplier * ChordMultiplier * PatternStrainMultiplier, easyCoefficient);
 
             // Calculate the strain value of each individual object and add to total
             foreach (var hitOb in HitObjects)
             {
-                hitOb.LnStrainDifficulty = EasyCoefficient * hitOb.LnStrainDifficulty;
-                hitOb.StrainValue = ActionStrainCoefficient * wristMultiplier * chordMultiplier * PatternStrainMultiplier + hitOb.LnStrainDifficulty;
+                hitOb.LnStrainDifficulty = easyCoefficient * hitOb.LnStrainDifficulty;
+                hitOb.StrainValue = ActionStrainCoefficient * easyMultiplier + hitOb.LnStrainDifficulty;
                 TotalStrainValue += hitOb.StrainValue;
             }
 
@@ -149,13 +132,14 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys.Structures
             TotalStrainValue /= HitObjects.Count;
         }
 
+        /// <summary>
+        ///     Solves this data's finger state for pressing.
+        /// </summary>
         public void SolveFingerState()
         {
             foreach (var hitOb in HitObjects)
                 FingerState |= hitOb.FingerState;
         }
-
-        private void SolveForEasyCoefficient(float constantDuration) => EasyCoefficient = Math.Min(1, constantDuration / (1 - (1 - FingerActionDurationMs)));
 
         private float Lerp(float a, float b, float value) => a + ( b - a ) * value;
     }
