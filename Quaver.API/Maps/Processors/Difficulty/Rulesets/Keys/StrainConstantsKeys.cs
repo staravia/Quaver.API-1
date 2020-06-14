@@ -166,7 +166,8 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 new ConstantVariable("LnReleaseBeforeMultiplier", 4.426898f),
                 new ConstantVariable("LnTapMultiplier", 2.064136f),
                 new ConstantVariable("WristManipulationOffset", 5.752428f),
-                new ConstantVariable("WristManipulationMultiplier", 0.8534786f)
+                new ConstantVariable("WristManipulationMultiplier", 0.8534786f),
+                new ConstantVariable("EasyActionLength", 250)
             };
 
             // If there's no input, use default constants
@@ -226,6 +227,9 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Wrist Manipulation
             WristManipulationOffset = NewConstant(defaultConstants[24].Name, input[24]);
             WristManipulationMultiplier = NewConstant(defaultConstants[25].Name, input[25]);
+
+            // Easy Action Length
+            EasyActionLength = NewConstant(defaultConstants[26].Name, input[26]);
         }
     }
 }
