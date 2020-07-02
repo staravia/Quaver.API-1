@@ -523,31 +523,35 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
-            float calculatedDiff = 0;
+            float total = 0;
+            float weight = 0;
 
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
                 data.CalculateStrainValue();
 
-            // left hand
-            foreach (var data in StrainSolverData)
+            const float length = 10;
+            for (var i = 0; i < StrainSolverData.Count - length; i++)
             {
-                if (data.Hand == Hand.Left)
-                    calculatedDiff += data.TotalStrainValue;
+                float diff = 0;
+
+                for (var j = 0; j < 10; j++)
+                {
+                    diff += StrainSolverData[j].TotalStrainValue;
+                }
+
+                var delta = 1 + (float)Math.Pow(total, 2);
+
+                diff /= length;
+                total += diff * delta;
+                weight += delta;
             }
 
-            // right hand
-            foreach (var data in StrainSolverData)
-            {
-                if (data.Hand == Hand.Right)
-                    calculatedDiff += data.TotalStrainValue;
-            }
+            // Calculate overall difficulty
+            total /= weight;
 
-            // Calculate overall 4k difficulty
-            calculatedDiff /= StrainSolverData.Count;
-
-            // Get Overall 4k difficulty
-            return calculatedDiff;
+            // Get Overall difficulty
+            return total;
         }
 
         /// <summary>
