@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Quaver.API.Maps.Structures;
 
 namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
 {
@@ -165,10 +166,10 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             ComputeBaseStrainStates(rate, assumeHand);
             ComputeForChords();
             ComputeForFingerActions();
-            // todo: use ComputeForActionPatterns();
             ComputeForRollManipulation();
             ComputeForJackManipulation();
             ComputeForLnMultiplier();
+
             return CalculateOverallDifficulty();
         }
 
@@ -182,24 +183,24 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         private void ComputeBaseStrainStates(float rate, Hand assumeHand)
         {
             // Add hit objects from qua map to qssData
-            for (var i = 0; i < Map.HitObjects.Count; i++)
+            foreach (var hitob in Map.HitObjects)
             {
-                if (Map.HasScratchKey && Map.HitObjects[i].Lane == Map.GetKeyCount())
+                if (Map.HasScratchKey && hitob.Lane == Map.GetKeyCount())
                     continue;
 
-                var curHitOb = new StrainSolverHitObject(Map.HitObjects[i]);
+                var curHitOb = new StrainSolverHitObject(hitob);
                 var curStrainData = new StrainSolverData(curHitOb, rate);
 
                 // Assign Finger and Hand States
                 switch (Map.Mode)
                 {
                     case GameMode.Keys4:
-                        curHitOb.FingerState = LaneToFinger4K[Map.HitObjects[i].Lane];
-                        curStrainData.Hand = LaneToHand4K[Map.HitObjects[i].Lane];
+                        curHitOb.FingerState = LaneToFinger4K[hitob.Lane];
+                        curStrainData.Hand = LaneToHand4K[hitob.Lane];
                         break;
                     case GameMode.Keys7:
-                        curHitOb.FingerState = LaneToFinger7K[Map.HitObjects[i].Lane];
-                        curStrainData.Hand = LaneToHand7K[Map.HitObjects[i].Lane] == Hand.Ambiguous ? assumeHand : LaneToHand7K[Map.HitObjects[i].Lane];
+                        curHitOb.FingerState = LaneToFinger7K[hitob.Lane];
+                        curStrainData.Hand = LaneToHand7K[hitob.Lane] == Hand.Ambiguous ? assumeHand : LaneToHand7K[hitob.Lane];
                         break;
                 }
 
@@ -224,40 +225,37 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         break;
 
                     // Check if the next and current hit objects are chord-able
-                    if (Math.Abs(msDiff) <= StrainConstants.ChordClumpToleranceMs)
+                    if (!( Math.Abs(msDiff) <= StrainConstants.ChordClumpToleranceMs ))
+                        continue;
+
+                    if (StrainSolverData[i].Hand != StrainSolverData[j].Hand)
+                        continue;
+                    // Search through every hit object for chords
+                    foreach (var k in StrainSolverData[j].HitObjects)
                     {
-                        if (StrainSolverData[i].Hand == StrainSolverData[j].Hand)
+                        // Check if the current data point will have duplicate finger state to prevent stacked notes
+                        var sameStateFound = false;
+                        foreach (var l in StrainSolverData[i].HitObjects)
                         {
-                            // Search through every hit object for chords
-                            foreach (var k in StrainSolverData[j].HitObjects)
+                            if (l.FingerState == k.FingerState)
                             {
-                                // Check if the current data point will have duplicate finger state to prevent stacked notes
-                                var sameStateFound = false;
-                                foreach (var l in StrainSolverData[i].HitObjects)
-                                {
-                                    if (l.FingerState == k.FingerState)
-                                    {
-                                        sameStateFound = true;
-                                    }
-                                }
-
-                                // Add hit object to chord list if its not stacked
-                                if (!sameStateFound)
-                                    StrainSolverData[i].HitObjects.Add(k);
+                                sameStateFound = true;
                             }
-
-                            // Remove un-needed data point because it has been merged with the current point
-                            StrainSolverData.RemoveAt(j);
                         }
+
+                        // Add hit object to chord list if its not stacked
+                        if (!sameStateFound)
+                            StrainSolverData[i].HitObjects.Add(k);
                     }
+
+                    // Remove un-needed data point because it has been merged with the current point
+                    StrainSolverData.RemoveAt(j);
                 }
             }
 
             // Solve finger state of every object once chords have been found and applied.
-            for (var i = 0; i < StrainSolverData.Count; i++)
-            {
-                StrainSolverData[i].SolveFingerState();
-            }
+            foreach (var t in StrainSolverData)
+                t.SolveFingerState();
         }
 
         /// <summary>
@@ -276,70 +274,70 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 for (var j = i + 1; j < StrainSolverData.Count; j++)
                 {
                     var nextHitOb = StrainSolverData[j];
-                    if (curHitOb.Hand == nextHitOb.Hand && nextHitOb.StartTime > curHitOb.StartTime)
+                    if (curHitOb.Hand != nextHitOb.Hand || !( nextHitOb.StartTime > curHitOb.StartTime ))
+                        continue;
+
+                    // Determined by if there's a minijack within 2 set of chords/single notes
+                    var actionJackFound = ((int)nextHitOb.FingerState & (1 << (int)curHitOb.FingerState - 1)) != 0;
+
+                    // Determined by if a chord is found in either finger state
+                    var actionChordFound = curHitOb.HandChord || nextHitOb.HandChord;
+
+                    // Determined by if both fingerstates are exactly the same
+                    var actionSameState = curHitOb.FingerState == nextHitOb.FingerState;
+
+                    // Determined by how long the current finger action is
+                    var actionDuration = nextHitOb.StartTime - curHitOb.StartTime;
+
+                    // Apply the "NextStrainSolverDataOnCurrentHand" value on the current hit object and also apply action duration.
+                    curHitOb.NextStrainSolverDataOnCurrentHand = nextHitOb;
+                    curHitOb.FingerActionDurationMs = actionDuration;
+
+                    // Trill/Roll
+                    if (!actionChordFound && !actionSameState)
                     {
-                        // Determined by if there's a minijack within 2 set of chords/single notes
-                        var actionJackFound = ((int)nextHitOb.FingerState & (1 << (int)curHitOb.FingerState - 1)) != 0;
-
-                        // Determined by if a chord is found in either finger state
-                        var actionChordFound = curHitOb.HandChord || nextHitOb.HandChord;
-
-                        // Determined by if both fingerstates are exactly the same
-                        var actionSameState = curHitOb.FingerState == nextHitOb.FingerState;
-
-                        // Determined by how long the current finger action is
-                        var actionDuration = nextHitOb.StartTime - curHitOb.StartTime;
-
-                        // Apply the "NextStrainSolverDataOnCurrentHand" value on the current hit object and also apply action duration.
-                        curHitOb.NextStrainSolverDataOnCurrentHand = nextHitOb;
-                        curHitOb.FingerActionDurationMs = actionDuration;
-
-                        // Trill/Roll
-                        if (!actionChordFound && !actionSameState)
-                        {
-                            curHitOb.FingerAction = FingerAction.Roll;
-                            curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.RollLowerBoundaryMs,
-                                StrainConstants.RollUpperBoundaryMs,
-                                StrainConstants.RollMaxStrainValue,
-                                StrainConstants.RollCurveExponential);
-                        }
-
-                        // Simple Jack
-                        else if (actionSameState)
-                        {
-                            curHitOb.FingerAction = FingerAction.SimpleJack;
-                            curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.SJackLowerBoundaryMs,
-                                StrainConstants.SJackUpperBoundaryMs,
-                                StrainConstants.SJackMaxStrainValue,
-                                StrainConstants.SJackCurveExponential);
-                        }
-
-                        // Tech Jack
-                        else if (actionJackFound)
-                        {
-                            curHitOb.FingerAction = FingerAction.TechnicalJack;
-                            curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.TJackLowerBoundaryMs,
-                                StrainConstants.TJackUpperBoundaryMs,
-                                StrainConstants.TJackMaxStrainValue,
-                                StrainConstants.TJackCurveExponential);
-                        }
-
-                        // Bracket
-                        else
-                        {
-                            curHitOb.FingerAction = FingerAction.Bracket;
-                            curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
-                                StrainConstants.BracketLowerBoundaryMs,
-                                StrainConstants.BracketUpperBoundaryMs,
-                                StrainConstants.BracketMaxStrainValue,
-                                StrainConstants.BracketCurveExponential);
-                        }
-
-                        break;
+                        curHitOb.FingerAction = FingerAction.Roll;
+                        curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
+                            StrainConstants.RollLowerBoundaryMs,
+                            StrainConstants.RollUpperBoundaryMs,
+                            StrainConstants.RollMaxStrainValue,
+                            StrainConstants.RollCurveExponential);
                     }
+
+                    // Simple Jack
+                    else if (actionSameState)
+                    {
+                        curHitOb.FingerAction = FingerAction.SimpleJack;
+                        curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
+                            StrainConstants.SJackLowerBoundaryMs,
+                            StrainConstants.SJackUpperBoundaryMs,
+                            StrainConstants.SJackMaxStrainValue,
+                            StrainConstants.SJackCurveExponential);
+                    }
+
+                    // Tech Jack
+                    else if (actionJackFound)
+                    {
+                        curHitOb.FingerAction = FingerAction.TechnicalJack;
+                        curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
+                            StrainConstants.TJackLowerBoundaryMs,
+                            StrainConstants.TJackUpperBoundaryMs,
+                            StrainConstants.TJackMaxStrainValue,
+                            StrainConstants.TJackCurveExponential);
+                    }
+
+                    // Bracket
+                    else
+                    {
+                        curHitOb.FingerAction = FingerAction.Bracket;
+                        curHitOb.ActionStrainCoefficient = GetCoefficientValue(actionDuration,
+                            StrainConstants.BracketLowerBoundaryMs,
+                            StrainConstants.BracketUpperBoundaryMs,
+                            StrainConstants.BracketMaxStrainValue,
+                            StrainConstants.BracketCurveExponential);
+                    }
+
+                    break;
                 }
             }
         }
@@ -456,47 +454,49 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             foreach (var data in StrainSolverData)
             {
                 // Check if data is LN
-                if (data.EndTime > data.StartTime)
+                if (!( data.EndTime > data.StartTime ))
+                    continue;
+
+                var durationValue = 1 - Math.Min(1, Math.Max(0, ((StrainConstants.LnLayerThresholdMs + StrainConstants.LnLayerToleranceMs) - (data.EndTime - data.StartTime)) / StrainConstants.LnLayerToleranceMs));
+                var baseMultiplier = 1 + ((1 - durationValue) * StrainConstants.LnBaseMultiplier);
+
+                // Check if next data point exists on current hand
+                var next = data.NextStrainSolverDataOnCurrentHand;
+                if (next == null)
+                    continue;
+
+                if (!( next.StartTime < data.EndTime - StrainConstants.LnEndThresholdMs ))
+                    continue;
+
+                if (!( next.StartTime >= data.StartTime + StrainConstants.LnEndThresholdMs ))
+                    continue;
+
+                if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
                 {
-                    var durationValue = 1 - Math.Min(1, Math.Max(0, ((StrainConstants.LnLayerThresholdMs + StrainConstants.LnLayerToleranceMs) - (data.EndTime - data.StartTime)) / StrainConstants.LnLayerToleranceMs));
-                    var baseMultiplier = 1 + ((1 - durationValue) * StrainConstants.LnBaseMultiplier);
-
-                    // Check if next data point exists on current hand
-                    var next = data.NextStrainSolverDataOnCurrentHand;
-                    if (next != null)
-
-                    // Check to see if the target hitobject is layered inside the current LN
-                    if (next.StartTime < data.EndTime - StrainConstants.LnEndThresholdMs)
-                    if (next.StartTime >= data.StartTime + StrainConstants.LnEndThresholdMs)
-
-                    // Target hitobject's LN ends after current hitobject's LN end.
-                    if (next.EndTime > data.EndTime + StrainConstants.LnEndThresholdMs)
+                    foreach (var k in data.HitObjects)
                     {
-                        foreach (var k in data.HitObjects)
-                        {
-                            k.LnLayerType = LnLayerType.OutsideRelease;
-                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseAfterMultiplier;
-                        }
+                        k.LnLayerType = LnLayerType.OutsideRelease;
+                        k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseAfterMultiplier;
                     }
+                }
 
-                    // Target hitobject's LN ends before current hitobject's LN end
-                    else if (next.EndTime > 0)
+                // Target hitobject's LN ends before current hitobject's LN end
+                else if (next.EndTime > 0)
+                {
+                    foreach (var k in data.HitObjects)
                     {
-                        foreach (var k in data.HitObjects)
-                        {
-                            k.LnLayerType = LnLayerType.InsideRelease;
-                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseBeforeMultiplier;
-                        }
+                        k.LnLayerType = LnLayerType.InsideRelease;
+                        k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseBeforeMultiplier;
                     }
+                }
 
-                    // Target hitobject is not an LN
-                    else
+                // Target hitobject is not an LN
+                else
+                {
+                    foreach (var k in data.HitObjects)
                     {
-                        foreach (var k in data.HitObjects)
-                        {
-                            k.LnLayerType = LnLayerType.InsideTap;
-                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnTapMultiplier;
-                        }
+                        k.LnLayerType = LnLayerType.InsideTap;
+                        k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnTapMultiplier;
                     }
                 }
             }
@@ -523,8 +523,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
-            const float avgLength = 10;
-
             float total = 0;
 
             // Solve strain value of every data point
@@ -549,11 +547,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <param name="qua"></param>
         private void ComputeNoteDensityData(float rate)
         {
-            //MapLength = Qua.Length;
             AverageNoteDensity = SECONDS_TO_MILLISECONDS * Map.HitObjects.Count / (Map.Length * rate);
-
-            //todo: solve note density graph
-            // put stuff here
         }
 
         /// <summary>
@@ -561,8 +555,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// </summary>
         private float GetCoefficientValue(float duration, float xMin, float xMax, float strainMax, float exp)
         {
-            // todo: temp. Linear for now
-            // todo: apply cosine curve
             const float lowestDifficulty = 1;
 
             // calculate ratio between min and max value
