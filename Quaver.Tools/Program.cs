@@ -14,6 +14,7 @@ namespace Quaver.Tools
     {
         internal static void Main(string[] args)
         {
+            /*
             if (args.Length == 0)
             {
                 Console.WriteLine($"Welcome to the Quaver.API test bench.\n" +
@@ -66,7 +67,12 @@ namespace Quaver.Tools
                     break;
                 default:
                     throw new ArgumentException();
-            }
+            }*/
+            new CalcFolderCommand(new []{"-calcdiff", "E:\\Steam\\steamapps\\common\\Quaver\\Songs", "None", "diff-calc-10x"}).Execute();
+
+
+            //new CalcFolderCommand(new []{"-calcdiff", "E:\\Steam\\steamapps\\common\\Quaver\\Songs", "Speed11X", "diff-calc-11x"}).Execute();
+            new CalcFolderCommand(new []{"-calcdiff", "D:\\sddBackup\\osu!\\Songs", "None" , "osu-calc"}).Execute();
         }
     }
 }

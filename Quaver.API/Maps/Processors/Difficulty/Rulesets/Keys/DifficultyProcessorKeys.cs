@@ -523,32 +523,37 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         /// <returns></returns>
         private float CalculateOverallDifficulty()
         {
-            float total = 0;
-            float weight = 0;
+            const float avgLength = 10;
+
+            float total = 1;
+            float weight = 1;
 
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
                 data.CalculateStrainValue();
 
-            const float length = 10;
-            for (var i = 0; i < StrainSolverData.Count - length; i++)
+            for (var i = 0; i < StrainSolverData.Count - avgLength; i++)
             {
                 float diff = 0;
 
-                for (var j = 0; j < 10; j++)
+                for (var j = 0; j < avgLength; j++)
                 {
-                    diff += StrainSolverData[j].TotalStrainValue;
+                    diff += StrainSolverData[i + j].TotalStrainValue;
                 }
 
-                var delta = 1 + (float)Math.Pow(total, 2);
+                diff /= avgLength;
 
-                diff /= length;
+                var delta = 1 + (float)Math.Pow(diff, 2);
+
                 total += diff * delta;
                 weight += delta;
             }
 
+            // Calculate stamina multiplier
+            var stamina = Math.Max(0, 1 - 1 / StrainSolverData.Count);
+
             // Calculate overall difficulty
-            total /= weight;
+            total = stamina * total / weight;
 
             // Get Overall difficulty
             return total;
