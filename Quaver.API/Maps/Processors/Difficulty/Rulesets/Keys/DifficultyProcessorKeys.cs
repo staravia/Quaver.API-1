@@ -531,18 +531,15 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             foreach (var data in StrainSolverData)
             {
 
-                total += data.TotalStrainValue;
                 data.CalculateStrainValue();
+                total += data.TotalStrainValue;
             }
 
             // Calculate stamina multiplier
             var stamina = Math.Max(0, 1 - 1 / StrainSolverData.Count);
 
-            // Calculate overall difficulty
-            total = stamina * total / StrainSolverData.Count;
-
-            // Get Overall difficulty
-            return total;
+            // Calculate and return Overall Difficulty
+            return stamina * total / StrainSolverData.Count;;
         }
 
         /// <summary>
