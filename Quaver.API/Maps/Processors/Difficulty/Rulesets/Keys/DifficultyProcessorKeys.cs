@@ -459,7 +459,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 if (data.EndTime > data.StartTime)
                 {
                     var durationValue = 1 - Math.Min(1, Math.Max(0, ((StrainConstants.LnLayerThresholdMs + StrainConstants.LnLayerToleranceMs) - (data.EndTime - data.StartTime)) / StrainConstants.LnLayerToleranceMs));
-                    var baseMultiplier = 1 + (float)((1 - durationValue) * StrainConstants.LnBaseMultiplier);
+                    var baseMultiplier = 1 + ((1 - durationValue) * StrainConstants.LnBaseMultiplier);
 
                     // Check if next data point exists on current hand
                     var next = data.NextStrainSolverDataOnCurrentHand;
@@ -525,35 +525,21 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
         {
             const float avgLength = 10;
 
-            float total = 1;
-            float weight = 1;
+            float total = 0;
 
             // Solve strain value of every data point
             foreach (var data in StrainSolverData)
-                data.CalculateStrainValue();
-
-            for (var i = 0; i < StrainSolverData.Count - avgLength; i++)
             {
-                float diff = 0;
 
-                for (var j = 0; j < avgLength; j++)
-                {
-                    diff += StrainSolverData[i + j].TotalStrainValue;
-                }
-
-                diff /= avgLength;
-
-                var delta = 1 + (float)Math.Pow(diff, 2);
-
-                total += diff * delta;
-                weight += delta;
+                total += data.TotalStrainValue;
+                data.CalculateStrainValue();
             }
 
             // Calculate stamina multiplier
             var stamina = Math.Max(0, 1 - 1 / StrainSolverData.Count);
 
             // Calculate overall difficulty
-            total = stamina * total / weight;
+            total = stamina * total / StrainSolverData.Count;
 
             // Get Overall difficulty
             return total;
