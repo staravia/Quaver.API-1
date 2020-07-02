@@ -1,7 +1,7 @@
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  * Copyright (c) 2017-2018 Swan & The Quaver Team <support@quavergame.com>.
 */
 
@@ -109,15 +109,15 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
             // Bracket
             BracketLowerBoundaryMs = NewConstant("BracketLowerBoundaryMs", 30);
             BracketUpperBoundaryMs = NewConstant("BracketUpperBoundaryMs", 230);
-            BracketMaxStrainValue = NewConstant("BracketMaxStrainValue", 56);
+            BracketMaxStrainValue = NewConstant("BracketMaxStrainValue", 46);
             BracketCurveExponential = NewConstant("BracketCurveExponential", 1.13f);
 
             // LN
-            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 0.6f);
+            LnBaseMultiplier = NewConstant("LnBaseMultiplier", 0.2f);
             LnLayerToleranceMs = NewConstant("LnLayerToleranceMs", 40f);
-            LnLayerThresholdMs = NewConstant("LnLayerThresholdMs", 93.7f);
-            LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.75f);
-            LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.35f);
+            LnLayerThresholdMs = NewConstant("LnLayerThresholdMs", 400f);
+            LnReleaseAfterMultiplier = NewConstant("LnReleaseAfterMultiplier", 1.45f);
+            LnReleaseBeforeMultiplier = NewConstant("LnReleaseBeforeMultiplier", 1.2f);
             LnTapMultiplier = NewConstant("LnTapMultiplier", 1.05f);
 
             // LongJack Manipulation

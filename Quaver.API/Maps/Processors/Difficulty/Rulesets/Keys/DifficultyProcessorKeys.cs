@@ -460,8 +460,6 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                 {
                     var durationValue = 1 - Math.Min(1, Math.Max(0, ((StrainConstants.LnLayerThresholdMs + StrainConstants.LnLayerToleranceMs) - (data.EndTime - data.StartTime)) / StrainConstants.LnLayerToleranceMs));
                     var baseMultiplier = 1 + (float)((1 - durationValue) * StrainConstants.LnBaseMultiplier);
-                    foreach (var k in data.HitObjects)
-                        k.LnStrainMultiplier = baseMultiplier;
 
                     // Check if next data point exists on current hand
                     var next = data.NextStrainSolverDataOnCurrentHand;
@@ -477,7 +475,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         foreach (var k in data.HitObjects)
                         {
                             k.LnLayerType = LnLayerType.OutsideRelease;
-                            k.LnStrainMultiplier *= StrainConstants.LnReleaseAfterMultiplier;
+                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseAfterMultiplier;
                         }
                     }
 
@@ -487,7 +485,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         foreach (var k in data.HitObjects)
                         {
                             k.LnLayerType = LnLayerType.InsideRelease;
-                            k.LnStrainMultiplier *= StrainConstants.LnReleaseBeforeMultiplier;
+                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnReleaseBeforeMultiplier;
                         }
                     }
 
@@ -497,7 +495,7 @@ namespace Quaver.API.Maps.Processors.Difficulty.Rulesets.Keys
                         foreach (var k in data.HitObjects)
                         {
                             k.LnLayerType = LnLayerType.InsideTap;
-                            k.LnStrainMultiplier *= StrainConstants.LnTapMultiplier;
+                            k.LnStrainMultiplier = baseMultiplier * StrainConstants.LnTapMultiplier;
                         }
                     }
                 }
